@@ -22,8 +22,9 @@ public class Merger {
      * the original input of the array
      * @param input the input array
      */
-    public void sort(int[] input)
+    public void sort(BufferPool pool)
     {
+        int input[] = pool.retrieveRecord();
         inArray = input;
         length = input.length;
         tempArray = new int[length];
