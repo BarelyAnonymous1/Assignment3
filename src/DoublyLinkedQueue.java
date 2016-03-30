@@ -28,8 +28,8 @@ public class DoublyLinkedQueue
      */
     public DoublyLinkedQueue()
     {
-        head = null;
-        tail = null;
+        head = new DoublyLinkedNode(null);
+        tail = new DoublyLinkedNode(null);
         size = 0;
     }
 
@@ -41,7 +41,7 @@ public class DoublyLinkedQueue
      */
     public DoublyLinkedQueue(Buffer startBuffer)
     {
-        head = new DoublyLinkedNode(startBuffer);
+        head.setNext(new DoublyLinkedNode(startBuffer));
         tail = head;
         size = 1;
     }
@@ -77,15 +77,26 @@ public class DoublyLinkedQueue
         }
         else
         {
-            LinkedNode curr = tail;
-            while (curr.getNext() != head)
-                curr = curr.getNext();
             Buffer temp = head.getData();
-            head = curr;
+            head = head.getPrev();
+            head.getNext().setPrev(null);
             head.setNext(null);
             size--;
             return temp;
         }
+    }
+    
+    public Buffer removeFromMiddle(int blockID)
+    {
+        DoublyLinkedNode curr = head;
+        while (curr != null)
+        {
+            if (curr.getData().getID() == blockID)
+            {
+                
+            }
+        }
+        return null;
     }
     
 
@@ -94,12 +105,12 @@ public class DoublyLinkedQueue
      * 
      * @return the head of the list
      */
-    public LinkedNode getHead()
+    public DoublyLinkedNode getHead()
     {
         return head;
     }
     
-    public LinkedNode getTail()
+    public DoublyLinkedNode getTail()
     {
         return tail;
     }
