@@ -44,6 +44,14 @@ public class LinkedQueue
         tail = head;
         size = 1;
     }
+    
+    public void enqueue(Buffer buffer)
+    {
+        LinkedNode newNode = new LinkedNode(buffer);
+        newNode.setNext(tail);
+        tail = newNode;
+        size++;
+    }
 
     public Buffer dequeue()
     {
@@ -53,6 +61,7 @@ public class LinkedQueue
         {
             Buffer temp = head.getData();
             head = null;
+            size = 0;
             return temp;
         }
         else
@@ -63,17 +72,10 @@ public class LinkedQueue
             Buffer temp = head.getData();
             head = curr;
             head.setNext(null);
+            size--;
             return temp;
         }
     }
-
-    /**
-     */
-    public void insert(Buffer newBuffer)
-    {
-        
-    }
-
 
     /**
      * get the pointer to the head of the list
