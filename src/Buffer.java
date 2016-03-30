@@ -27,6 +27,11 @@ public class Buffer
     {
         block = newPage;
     }
+    
+    public File getFile()
+    {
+        return file;
+    }
 
     public byte[] getRecord(int pos)
     {
