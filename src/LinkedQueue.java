@@ -63,7 +63,7 @@ public class LinkedQueue
         {
             Buffer temp = head.getData();
             head = null;
-            tail = null;
+            tail = head;
             size = 0;
             return temp;
         }
