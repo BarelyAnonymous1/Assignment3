@@ -79,6 +79,19 @@ public class LinkedQueue
             return temp;
         }
     }
+    
+    public void shiftList(Buffer shiftBuffer)
+    {
+        LinkedNode curr = tail;
+        while (curr.getNext() != head)
+        {
+            if (shiftBuffer.getIndex() == curr.getData().getIndex())
+            {
+                
+            }
+            curr = curr.getNext();
+        }
+    }
 
     /**
      * get the pointer to the head of the list
