@@ -1,10 +1,11 @@
+
 /**
  * basic linked list implementation; based on storing Points
  * 
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
  */
-public class LinkedQueue
+public class DoublyLinkedQueue
 {
     /**
      * pointer to the first node in the list
@@ -38,7 +39,7 @@ public class LinkedQueue
      * @param startBuffer
      *            the data that will start the list
      */
-    public LinkedQueue(Buffer startBuffer)
+    public DoublyLinkedQueue(Buffer startBuffer)
     {
         head = new LinkedNode(startBuffer);
         tail = head;
@@ -80,18 +81,6 @@ public class LinkedQueue
         }
     }
     
-    public void shiftList(Buffer shiftBuffer)
-    {
-        LinkedNode curr = tail;
-        while (curr.getNext() != head)
-        {
-            if (shiftBuffer.getIndex() == curr.getData().getIndex())
-            {
-                
-            }
-            curr = curr.getNext();
-        }
-    }
 
     /**
      * get the pointer to the head of the list
