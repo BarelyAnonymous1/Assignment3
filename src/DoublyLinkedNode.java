@@ -5,18 +5,17 @@
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
  */
-public class LinkedNode
+public class DoublyLinkedNode
 {
     /**
      * next node in the list
      */
-    private LinkedNode next;
+    private DoublyLinkedNode next;
+    private DoublyLinkedNode prev;
     /**
      * point data contained in the node
      */
     private Buffer     data;
-
-    private int        index;
 
     /**
      * creates a node that contains data and no next node
