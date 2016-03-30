@@ -41,7 +41,7 @@ public class DoublyLinkedQueue
     public DoublyLinkedQueue(Buffer startBuffer)
     {
         head.setNext(new DoublyLinkedNode(startBuffer));
-        tail = head;
+        head.getNext().setNext(tail);
         size = 1;
     }
 
@@ -88,13 +88,15 @@ public class DoublyLinkedQueue
     public Buffer removeFromMiddle(int blockID, File file)
     {
         DoublyLinkedNode curr = head;
-        while (curr != null)
+        while (curr != tail)
         {
             if (curr.getData().getID() == blockID && curr.getData()
                     .getFile().toString().equals(file.toString()))
             {
-
+                Buffer returnBuffer = curr.getData();
+                
             }
+            curr = curr.getNext();
         }
         return null;
     }
