@@ -5,17 +5,17 @@
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
  */
-public class DoublyLinkedNode
+public class DoublyLinkedNode<E>
 {
     /**
      * next node in the list
      */
-    private DoublyLinkedNode next;
-    private DoublyLinkedNode prev;
+    private DoublyLinkedNode<E> next;
+    private DoublyLinkedNode<E> prev;
     /**
      * point data contained in the node
      */
-    private Buffer     data;
+    private E     data;
 
     /**
      * creates a node that contains data and no next node
@@ -23,7 +23,7 @@ public class DoublyLinkedNode
      * @param newValue
      *            the value stored in the node
      */
-    public DoublyLinkedNode(Buffer newValue)
+    public DoublyLinkedNode(E newValue)
     {
         data = newValue;
         prev = null;
@@ -36,7 +36,7 @@ public class DoublyLinkedNode
      * @param newNext
      *            the node next to this one
      */
-    public void setNext(DoublyLinkedNode newNext)
+    public void setNext(DoublyLinkedNode<E> newNext)
     {
         next = newNext;
     }
@@ -46,7 +46,7 @@ public class DoublyLinkedNode
      * 
      * @return the node next to this one
      */
-    public DoublyLinkedNode getNext()
+    public DoublyLinkedNode<E> getNext()
     {
         return next;
     }
@@ -57,7 +57,7 @@ public class DoublyLinkedNode
      * @param newPrev
      *            the node prev to this one
      */
-    public void setPrev(DoublyLinkedNode newPrev)
+    public void setPrev(DoublyLinkedNode<E> newPrev)
     {
         next = newPrev;
     }
@@ -67,7 +67,7 @@ public class DoublyLinkedNode
      * 
      * @return the node next to this one
      */
-    public DoublyLinkedNode getPrev()
+    public DoublyLinkedNode<E> getPrev()
     {
         return prev;
     }
@@ -78,7 +78,7 @@ public class DoublyLinkedNode
      * @param newData
      *            data to be stored in the node
      */
-    public void setData(Buffer newData)
+    public void setData(E newData)
     {
         data = newData;
     }
@@ -88,7 +88,7 @@ public class DoublyLinkedNode
      * 
      * @return the pair in the node
      */
-    public Buffer getData()
+    public E getData()
     {
         return data;
     }
