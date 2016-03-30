@@ -1,3 +1,4 @@
+import java.io.File;
 
 /**
  * basic linked list implementation; based on storing Points
@@ -19,9 +20,7 @@ public class DoublyLinkedQueue
     /**
      * number of nodes in the list
      */
-    private int        size;
-    
-
+    private int              size;
 
     /**
      * default constructor for the LinkedList
@@ -45,7 +44,7 @@ public class DoublyLinkedQueue
         tail = head;
         size = 1;
     }
-    
+
     public void enqueue(Buffer buffer)
     {
         DoublyLinkedNode newNode = new DoublyLinkedNode(buffer);
@@ -85,20 +84,20 @@ public class DoublyLinkedQueue
             return temp;
         }
     }
-    
-    public Buffer removeFromMiddle(int blockID)
+
+    public Buffer removeFromMiddle(int blockID, File file)
     {
         DoublyLinkedNode curr = head;
         while (curr != null)
         {
-            if (curr.getData().getID() == blockID)
+            if (curr.getData().getID() == blockID && curr.getData()
+                    .getFile().toString().equals(file.toString()))
             {
-                
+
             }
         }
         return null;
     }
-    
 
     /**
      * get the pointer to the head of the list
@@ -109,7 +108,7 @@ public class DoublyLinkedQueue
     {
         return head;
     }
-    
+
     public DoublyLinkedNode getTail()
     {
         return tail;
