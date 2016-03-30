@@ -14,7 +14,9 @@ public class LinkedNode
     /**
      * point data contained in the node
      */
-    private Buffer    data;
+    private Buffer     data;
+
+    private int        index;
 
     /**
      * creates a node that contains data and no next node

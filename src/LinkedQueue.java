@@ -25,9 +25,10 @@ public class LinkedQueue
     /**
      * default constructor for the LinkedList
      */
-    public LinkedList()
+    public LinkedQueue()
     {
         head = null;
+        tail = null;
         size = 0;
     }
 
@@ -37,30 +38,32 @@ public class LinkedQueue
      * @param startBuffer
      *            the data that will start the list
      */
-    public LinkedList(Buffer startBuffer)
+    public LinkedQueue(Buffer startBuffer)
     {
         head = new LinkedNode(startBuffer);
+        tail = head;
         size = 1;
     }
 
-    /**
-     * removes the head from the list, and replaces the head with the next node
-     * 
-     * @return the data stored in the head of the node
-     */
-    public Point removeHead()
+    public Buffer dequeue()
     {
-        if (head.getNext() != null)
+        if (head == null)
+            return null;
+        else if (tail == head)
         {
-            Point temp = head.getData();
-            head = head.getNext();
+            Buffer temp = head.getData();
+            head = null;
             return temp;
         }
         else
         {
-            Point output = head.getData();
-            head = null;
-            return output;
+            LinkedNode curr = tail;
+            while (curr.getNext() != head)
+                curr = curr.getNext();
+            Buffer temp = head.getData();
+            head = curr;
+            head.setNext(null);
+            return temp;
         }
     }
 
