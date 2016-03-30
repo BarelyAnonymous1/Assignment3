@@ -10,11 +10,11 @@ public class DoublyLinkedQueue
     /**
      * pointer to the first node in the list
      */
-    private LinkedNode head;
+    private DoublyLinkedNode head;
     /**
      * pointer to the end of the list
      */
-    private LinkedNode tail;
+    private DoublyLinkedNode tail;
 
     /**
      * number of nodes in the list
@@ -26,7 +26,7 @@ public class DoublyLinkedQueue
     /**
      * default constructor for the LinkedList
      */
-    public LinkedQueue()
+    public DoublyLinkedQueue()
     {
         head = null;
         tail = null;
@@ -41,18 +41,25 @@ public class DoublyLinkedQueue
      */
     public DoublyLinkedQueue(Buffer startBuffer)
     {
-        head = new LinkedNode(startBuffer);
+        head = new DoublyLinkedNode(startBuffer);
         tail = head;
         size = 1;
     }
     
     public void enqueue(Buffer buffer)
     {
-        LinkedNode newNode = new LinkedNode(buffer);
-        newNode.setNext(tail);
-        tail = newNode;
+        DoublyLinkedNode newNode = new DoublyLinkedNode(buffer);
         if (head == null)
-            head = tail;
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        else
+        {
+            newNode.setNext(tail);
+            tail.setPrev(newNode);
+            tail = newNode;
+        }
         size++;
     }
 
@@ -64,7 +71,7 @@ public class DoublyLinkedQueue
         {
             Buffer temp = head.getData();
             head = null;
-            tail = head;
+            tail = null;
             size = 0;
             return temp;
         }
