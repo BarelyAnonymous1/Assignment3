@@ -50,6 +50,8 @@ public class LinkedQueue
         LinkedNode newNode = new LinkedNode(buffer);
         newNode.setNext(tail);
         tail = newNode;
+        if (head == null)
+            head = tail;
         size++;
     }
 
@@ -61,6 +63,7 @@ public class LinkedQueue
         {
             Buffer temp = head.getData();
             head = null;
+            tail = null;
             size = 0;
             return temp;
         }
