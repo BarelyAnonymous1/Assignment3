@@ -12,7 +12,7 @@ public class Buffer
         index = pageIndex;
     }
 
-    public int getIndex()
+    public int getID()
     {
         return index;
     }
