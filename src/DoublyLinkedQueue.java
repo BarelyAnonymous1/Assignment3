@@ -6,7 +6,7 @@ import java.io.File;
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
  */
-public class DoublyLinkedQueue
+public class DoublyLinkedQueue<E>
 {
     /**
      * pointer to the first node in the list
