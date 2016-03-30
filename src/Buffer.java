@@ -1,11 +1,12 @@
 import java.util.Arrays;
 import java.io.File;
+
 public class Buffer
 {
 
     private byte[] block;
     private int    index;
-    private File file;
+    private File   file;
 
     public Buffer(byte[] newPage, int pageIndex)
     {
@@ -27,7 +28,7 @@ public class Buffer
     {
         block = newPage;
     }
-    
+
     public File getFile()
     {
         return file;

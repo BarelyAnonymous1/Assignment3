@@ -42,46 +42,42 @@ public class DoublyLinkedQueue
     {
         head.setNext(new DoublyLinkedNode(startBuffer));
         head.getNext().setNext(tail);
+        head.getNext().setPrev(head);
+        tail.setPrev(head.getNext());
         size = 1;
     }
 
     public void enqueue(Buffer buffer)
     {
         DoublyLinkedNode newNode = new DoublyLinkedNode(buffer);
-        if (head == null)
+        if (head.getNext() == tail)
         {
-            head = newNode;
-            tail = newNode;
+            head.setNext(newNode);
+            newNode.setNext(tail);
+            newNode.setPrev(head);
+            tail.setPrev(newNode);
         }
         else
         {
             newNode.setNext(tail);
+            newNode.setPrev(tail.getPrev());
             tail.setPrev(newNode);
-            tail = newNode;
+            newNode.getPrev().setNext(newNode);
         }
         size++;
     }
 
     public Buffer dequeue()
     {
-        if (head == null)
+        if (head.getNext() == tail)
             return null;
-        else if (tail == head)
-        {
-            Buffer temp = head.getData();
-            head = null;
-            tail = null;
-            size = 0;
-            return temp;
-        }
         else
         {
-            Buffer temp = head.getData();
-            head = head.getPrev();
-            head.getNext().setPrev(null);
-            head.setNext(null);
+            DoublyLinkedNode temp = head.getNext();
+            head.setNext(temp.getNext());
+            temp.getNext().setPrev(head);
             size--;
-            return temp;
+            return temp.getData();
         }
     }
 
@@ -94,7 +90,9 @@ public class DoublyLinkedQueue
                     .getFile().toString().equals(file.toString()))
             {
                 Buffer returnBuffer = curr.getData();
-                
+                curr.getPrev().setNext(curr.getNext());
+                curr.getNext().setPrev(curr.getPrev());
+                return returnBuffer;
             }
             curr = curr.getNext();
         }
