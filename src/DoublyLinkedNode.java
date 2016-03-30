@@ -23,9 +23,10 @@ public class DoublyLinkedNode
      * @param newValue
      *            the value stored in the node
      */
-    public LinkedNode(Buffer newValue)
+    public DoublyLinkedNode(Buffer newValue)
     {
         data = newValue;
+        prev = null;
         next = null;
     }
 
@@ -35,7 +36,7 @@ public class DoublyLinkedNode
      * @param newNext
      *            the node next to this one
      */
-    public void setNext(LinkedNode newNext)
+    public void setNext(DoublyLinkedNode newNext)
     {
         next = newNext;
     }
@@ -45,9 +46,30 @@ public class DoublyLinkedNode
      * 
      * @return the node next to this one
      */
-    public LinkedNode getNext()
+    public DoublyLinkedNode getNext()
     {
         return next;
+    }
+    
+    /**
+     * sets the value of the next node
+     * 
+     * @param newPrev
+     *            the node prev to this one
+     */
+    public void setPrev(DoublyLinkedNode newPrev)
+    {
+        next = newPrev;
+    }
+
+    /**
+     * get the next node
+     * 
+     * @return the node next to this one
+     */
+    public DoublyLinkedNode getPrev()
+    {
+        return prev;
     }
 
     /**
