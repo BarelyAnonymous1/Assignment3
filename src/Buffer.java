@@ -8,10 +8,11 @@ public class Buffer
     private int    index;
     private File   file;
 
-    public Buffer(byte[] newPage, int pageIndex)
+    public Buffer(byte[] newPage, int pageIndex, File startFile)
     {
         block = newPage;
         index = pageIndex;
+        file = startFile;
     }
 
     public int getID()
