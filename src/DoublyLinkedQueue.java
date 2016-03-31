@@ -35,16 +35,13 @@ public class DoublyLinkedQueue
         size = 0;
     }
 
-    public void enqueue(Buffer buffer)
+    public void enqueue(DoublyLinkedNode newNode)
     {
-        DoublyLinkedNode newNode = new DoublyLinkedNode(buffer);
         tail.getPrev().setNext(newNode);
         newNode.setPrev(tail.getPrev());
         tail.setPrev(newNode);
         newNode.setNext(tail);
 
-        System.out.println("tried");
-        System.out.println(buffer.getID());
         size++;
     }
 
