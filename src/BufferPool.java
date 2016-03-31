@@ -11,8 +11,8 @@ public class BufferPool
         pool = new LRUQueue(startMax);
         for (int i = 0; i < maxBuffers; i++)
         {
-            pool.addOrShift(new Buffer(null, (-1)*(i+1), null));
-            System.out.println(i);
+            System.out.println(pool.addOrShift(new Buffer(null, (-1)*(i+1), null)));
+
         }
     }
 
