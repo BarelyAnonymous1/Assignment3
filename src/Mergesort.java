@@ -16,7 +16,10 @@ public class Mergesort {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		BufferPool bufpool = new BufferPool(5);
-		bufpool.newBuffer(3, null);
+		BufferPool bufpool = new BufferPool(3);
+		bufpool.newBuffer(1, null);
+		bufpool.newBuffer(2, null);
+		bufpool.newBuffer(3,  null);
+		bufpool.newBuffer(4, null);
 	}
 }
