@@ -35,6 +35,14 @@ public class DoublyLinkedQueue
         size = 0;
     }
 
+    /**
+     * adds a new node into the linked queue
+     * This node is inserted into the front of the queue
+     *     -------------
+     * ->  x
+     *     -------------
+     * @param newNode the node to be inserted
+     */
     public void enqueue(DoublyLinkedNode newNode)
     {
         tail.getPrev().setNext(newNode);
@@ -45,6 +53,10 @@ public class DoublyLinkedQueue
         size++;
     }
 
+    /**
+     * pulls the 
+     * @return
+     */
     public DoublyLinkedNode dequeue()
     {
         if (head.getNext() == tail)

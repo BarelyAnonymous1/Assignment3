@@ -8,6 +8,12 @@ public class Buffer
     private int    index;
     private File   file;
 
+    /**
+     * constructor for the Buffer class
+     * This class will do the file I/O to interface with the BufferPool
+     * @param pageIndex
+     * @param startFile
+     */
     public Buffer(int pageIndex, File startFile)
     {
         block = null;
@@ -20,6 +26,10 @@ public class Buffer
         return index;
     }
 
+    /**
+     * grabs a block from the file
+     * @return the block from the file
+     */
     public byte[] getBlock()
     {
         return block;
