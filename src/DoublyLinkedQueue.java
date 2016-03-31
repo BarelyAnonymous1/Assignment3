@@ -29,7 +29,7 @@ public class DoublyLinkedQueue
     {
         head = new DoublyLinkedNode(null);
         tail = new DoublyLinkedNode(null);
-        
+
         head.setNext(tail);
         tail.setPrev(head);
         size = 0;
@@ -75,8 +75,9 @@ public class DoublyLinkedQueue
         DoublyLinkedNode curr = head;
         while (curr != tail)
         {
-            if (curr.getData().getID() == blockID && curr.getData()
-                    .getFile().toString().equals(file.toString()))
+            if (curr.getData().getID() == blockID
+                    && curr.getData().getFile() != null && curr.getData()
+                            .getFile().toString().equals(file.toString()))
             {
                 Buffer returnBuffer = curr.getData();
                 curr.getPrev().setNext(curr.getNext());
