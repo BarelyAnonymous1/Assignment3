@@ -33,6 +33,18 @@ public class LRUQueue
         }
     }
     
-    public byte[] removeLRU()
+    public Buffer removeLRU()
+    {
+        return list.dequeue();        
+    }
     
+    public int getSize()
+    {
+        return list.getSize();
+    }
+    
+    public DoublyLinkedQueue getLRUQueue()
+    {
+        return list;
+    }
 }
