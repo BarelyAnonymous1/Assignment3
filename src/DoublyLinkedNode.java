@@ -52,7 +52,7 @@ public class DoublyLinkedNode
     }
     
     /**
-     * sets the value of the next node
+     * sets the value of the prev node
      * 
      * @param newPrev
      *            the node prev to this one
@@ -63,9 +63,9 @@ public class DoublyLinkedNode
     }
 
     /**
-     * get the next node
+     * get the prev node
      * 
-     * @return the node next to this one
+     * @return the node prev to this one
      */
     public DoublyLinkedNode getPrev()
     {
@@ -84,9 +84,9 @@ public class DoublyLinkedNode
     }
 
     /**
-     * returns the private KVPair stored in the node
+     * returns the private Buffer stored in the node
      * 
-     * @return the pair in the node
+     * @return the Buffer in the node
      */
     public Buffer getData()
     {
