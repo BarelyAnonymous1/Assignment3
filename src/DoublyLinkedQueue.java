@@ -45,7 +45,7 @@ public class DoublyLinkedQueue
         size++;
     }
 
-    public Buffer dequeue()
+    public DoublyLinkedNode dequeue()
     {
         if (head.getNext() == tail)
             return null;
@@ -55,7 +55,7 @@ public class DoublyLinkedQueue
             head.setNext(temp.getNext());
             temp.getNext().setPrev(head);
             size--;
-            return temp.getData();
+            return temp;
         }
     }
 
