@@ -59,7 +59,7 @@ public class DoublyLinkedNode
      */
     public void setPrev(DoublyLinkedNode newPrev)
     {
-        next = newPrev;
+        prev = newPrev;
     }
 
     /**
