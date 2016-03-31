@@ -17,25 +17,25 @@ public class LRUQueue
      */
     public Buffer addOrShift(Buffer newBuffer)
     {
-        Buffer existingBuffer = list.remove(newBuffer.getID(), newBuffer.getFile());
-        if (existingBuffer == null)
+        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(), newBuffer.getFile());
+        if (foundNode == null)
         {
-            list.enqueue(newBuffer);
+            list.enqueue(new DoublyLinkedNode(newBuffer));
             if (list.getSize() > MAX_SIZE)
-                return list.dequeue();
+                return list.dequeue().getData();
             else
                 return null;
         }
         else
         {
-            list.enqueue(existingBuffer);
+            list.enqueue(foundNode);
             return null;
         }
     }
     
     public Buffer removeLRU()
     {
-        return list.dequeue();        
+        return list.dequeue().getData();        
     }
     
     public int getSize()
