@@ -16,17 +16,11 @@ public class Merger
     {
         pool = startPool;
     }
-<<<<<<< HEAD
 
     public void mergesort(RandomAccessFile input, RandomAccessFile temp, int left,
             int right)
     {
-=======
-    
-//    public void mergesort(byte[] A, Comparable[] temp, int left,
-//            int right)
 //    {
->>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
 //        if (left == right)
 //            return; // List has one record
 //        int mid = (left + right) / 2; // Select midpoint

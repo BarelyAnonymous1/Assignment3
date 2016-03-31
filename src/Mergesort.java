@@ -19,7 +19,7 @@ public class Mergesort {
 		BufferPool bufpool = new BufferPool(3);
 		bufpool.newBuffer(1, null);
 		bufpool.newBuffer(2, null);
-		bufpool.newBuffer(3,  null);
+		bufpool.newBuffer(3, null);
 		bufpool.newBuffer(4, null);
 	}
 }
