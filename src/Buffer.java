@@ -8,9 +8,9 @@ public class Buffer
     private int    index;
     private File   file;
 
-    public Buffer(byte[] newPage, int pageIndex, File startFile)
+    public Buffer(int pageIndex, File startFile)
     {
-        block = newPage;
+        block = null;
         index = pageIndex;
         file = startFile;
     }
