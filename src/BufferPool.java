@@ -41,5 +41,20 @@ public class BufferPool
         else
             return null;
     }
+    
+    public void flushPool()
+    {
+        Buffer bufferToFlush = pool.removeLRU();
+        while(bufferToFlush != null)
+        {
+            bufferToFlush.flush();
+            bufferToFlush = pool.removeLRU();
+        }
+    }
+    
+    public int getMaxSize()
+    {
+        return maxBuffers;
+    }
 
 }
