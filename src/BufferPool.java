@@ -23,7 +23,11 @@ public class BufferPool
         if (foundBuffer == null)
         {
             foundBuffer = new Buffer(searchID, searchFile);
+            Buffer bufferToFlush = pool.addOrShift(foundBuffer);
+            if (bufferToFlush != null)
+                bufferToFlush.flush();
         }
+        return foundBuffer;
     }
     
     public Buffer getBuffer(int searchID, File searchFile)
