@@ -38,21 +38,11 @@ public class DoublyLinkedQueue
     public void enqueue(Buffer buffer)
     {
         DoublyLinkedNode newNode = new DoublyLinkedNode(buffer);
-        if (head.getNext() == tail)
-        {
-            head.setNext(newNode);
-            newNode.setNext(tail);
-            newNode.setPrev(head);
-            tail.setPrev(newNode);
-        }
-        else
-        {
-            newNode.setNext(tail);
-            newNode.setPrev(tail.getPrev());
-            tail.setPrev(newNode);
-            newNode.getPrev().setNext(newNode);
-            System.out.println("tried");
-        }
+        newNode.setNext(tail);
+        newNode.setPrev(tail.getPrev());
+        tail.setPrev(newNode);
+        newNode.getPrev().setNext(newNode);
+        System.out.println("tried");
         System.out.println(buffer.getID());
         size++;
     }
