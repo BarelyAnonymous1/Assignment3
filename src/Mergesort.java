@@ -17,5 +17,6 @@ public class Mergesort {
 	 */
 	public static void main(String[] args) {
 		BufferPool bufpool = new BufferPool(5);
+		bufpool.newBuffer(3, null);
 	}
 }
