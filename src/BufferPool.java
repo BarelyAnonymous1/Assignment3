@@ -13,13 +13,17 @@ public class BufferPool
         {
             // the ID for each filler Buffer is so the Buffer pool knows to do nothing 
             // with it when it is removed
-            pool.addOrShift(new Buffer(null, (-1)*(i+1), null));
+            pool.addOrShift(new Buffer((-1)*(i+1), null));
         }
     }
     
     public Buffer newBuffer(int searchID, File searchFile)
     {
-        Buffer returnBuffer = getBuffer(searchID, searchFile);
+        Buffer foundBuffer = getBuffer(searchID, searchFile);
+        if (foundBuffer == null)
+        {
+            foundBuffer = new Buffer(searchID, searchFile);
+        }
     }
     
     public Buffer getBuffer(int searchID, File searchFile)

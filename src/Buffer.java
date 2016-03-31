@@ -39,4 +39,9 @@ public class Buffer
     {
         return Arrays.copyOfRange(block, pos % 4096, 4);
     }
+    
+    public void flush()
+    {
+        
+    }
 }
