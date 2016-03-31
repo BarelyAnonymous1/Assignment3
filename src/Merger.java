@@ -1,4 +1,4 @@
-
+import java.io.*;
 /**
  * The actual mergesort implementation for the program USING INTS FOR THE TIME
  * BEING/ DON'T KNOW WHAT IT WILL NEED TO BE
@@ -10,21 +10,23 @@
 public class Merger
 {
 
-    public Merger()
+    BufferPool pool;
+    
+    public Merger(BufferPool startPool)
     {
-        // TODO Auto-generated constructor stub
+        pool = startPool;
     }
 
-    public void mergesort(byte[] A, byte[] temp, int left,
+    public void mergesort(RandomAccessFile input, RandomAccessFile temp, int left,
             int right)
     {
         if (left == right)
             return; // List has one record
         int mid = (left + right) / 2; // Select midpoint
-        mergesort(A, temp, left, mid); // Mergesort first half
-        mergesort(A, temp, mid + 1, right); // Mergesort second half
+        mergesort(input, temp, left, mid); // Mergesort first half
+        mergesort(input, temp, mid + 1, right); // Mergesort second half
         for (int i = left; i <= right; i++) // Copy subarray to temp
-            temp[i] = A[i];
+            temp[i] = input[i];
         // Do the merge operation back to A
         int i1 = left;
         int i2 = mid + 1;

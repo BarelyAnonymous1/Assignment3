@@ -42,6 +42,6 @@ public class Buffer
     
     public void flush()
     {
-        
+        System.out.println("Just flushed: " + index);
     }
 }
