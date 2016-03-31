@@ -29,22 +29,10 @@ public class DoublyLinkedQueue
     {
         head = new DoublyLinkedNode(null);
         tail = new DoublyLinkedNode(null);
+        
+        head.setNext(tail);
+        tail.setPrev(head);
         size = 0;
-    }
-
-    /**
-     * creates a LinkedList based on a single node
-     * 
-     * @param startBuffer
-     *            the data that will start the list
-     */
-    public DoublyLinkedQueue(Buffer startBuffer)
-    {
-        head.setNext(new DoublyLinkedNode(startBuffer));
-        head.getNext().setNext(tail);
-        head.getNext().setPrev(head);
-        tail.setPrev(head.getNext());
-        size = 1;
     }
 
     public void enqueue(Buffer buffer)
@@ -81,7 +69,7 @@ public class DoublyLinkedQueue
         }
     }
 
-    public Buffer removeFromMiddle(int blockID, File file)
+    public Buffer remove(int blockID, File file)
     {
         DoublyLinkedNode curr = head;
         while (curr != tail)
@@ -92,6 +80,7 @@ public class DoublyLinkedQueue
                 Buffer returnBuffer = curr.getData();
                 curr.getPrev().setNext(curr.getNext());
                 curr.getNext().setPrev(curr.getPrev());
+                size--;
                 return returnBuffer;
             }
             curr = curr.getNext();
