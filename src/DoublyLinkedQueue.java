@@ -51,7 +51,7 @@ public class DoublyLinkedQueue
             newNode.setPrev(tail.getPrev());
             tail.setPrev(newNode);
             newNode.getPrev().setNext(newNode);
-            System.println("tried")
+            System.println("tried");
         }
         System.out.println(buffer.getID());
         size++;
