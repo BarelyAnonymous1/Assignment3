@@ -72,7 +72,7 @@ public class DoublyLinkedQueue
 
     public Buffer remove(int blockID, File file)
     {
-        DoublyLinkedNode curr = head;
+        DoublyLinkedNode curr = head.getNext();
         while (curr != tail)
         {
             if (curr.getData().getID() == blockID
