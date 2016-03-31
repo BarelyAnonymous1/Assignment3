@@ -38,7 +38,7 @@ public class DoublyLinkedQueue
     public void enqueue(Buffer buffer)
     {
         DoublyLinkedNode newNode = new DoublyLinkedNode(buffer);
-        tail.getPrev();
+        tail.getPrev().setNext(newNode);
         newNode.setPrev(tail.getPrev());
         tail.setPrev(newNode);
         newNode.setNext(tail);
