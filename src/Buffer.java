@@ -72,11 +72,6 @@ public class Buffer
         return file;
     }
 
-    public byte[] getRecord(int pos)
-    {
-        return block;
-    }
-
     public void flush()
     {
         System.out.println("Just flushed: " + index);
