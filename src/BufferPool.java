@@ -80,7 +80,7 @@ public class BufferPool
 
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
-                BufferPool.RECORD_SIZE-1);
+                BufferPool.RECORD_SIZE);
         
         return returnArray;
     }
