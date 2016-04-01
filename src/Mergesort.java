@@ -78,7 +78,7 @@ public class Mergesort
      * determine which record within the block is needed
      */
 
-    // public void sort(RandomAccessFile input, RandomAccessFile temp,
+    // public void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
     // int left, int right)
     // {
     // if (left == right)
