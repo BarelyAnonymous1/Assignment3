@@ -1,4 +1,4 @@
-import java.io.File;
+import java.io.*;
 
 /**
  * basic linked list implementation; based on storing Points
@@ -80,7 +80,7 @@ public class DoublyLinkedQueue
      * @param file the file to look for the block in
      * @return the node with the block removed
      */
-    public DoublyLinkedNode remove(int blockID, File file)
+    public DoublyLinkedNode remove(int blockID, RandomAccessFile file)
     {
         DoublyLinkedNode curr = head.getNext();
         while (curr != tail)

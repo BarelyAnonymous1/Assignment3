@@ -30,7 +30,7 @@ public class BufferPool
      * @param searchFile the file to add the block from
      * @return the block if it is there, if not: null
      */
-    public Buffer newBuffer(int searchID, File searchFile)
+    public Buffer newBuffer(int searchID, RandomAccessFile searchFile)
     {
         // look for a block in the file
         Buffer foundBuffer = getBuffer(searchID, searchFile);
@@ -50,7 +50,7 @@ public class BufferPool
      * @param searchFile the file to search for the block in
      * @return the block if found
      */
-    public Buffer getBuffer(int searchID, File searchFile)
+    public Buffer getBuffer(int searchID, RandomAccessFile searchFile)
     {
         DoublyLinkedNode existNode = pool.getLRUQueue().remove(searchID, searchFile);
         if (existNode != null)
