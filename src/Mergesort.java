@@ -51,7 +51,7 @@ public class Mergesort
             BufferPool bufpool = new BufferPool(1);
             bufpool.newBuffer(1, null);
             bufpool.newBuffer(1, input);
-            bufpool.getBuffer(0, input).storeBlock();
+            bufpool.getBuffer(1, input).storeBlock();
             byte[] output = bufpool.getRecord(input, 4092);
             System.out.println(output[1]);
         }
