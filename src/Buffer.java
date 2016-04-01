@@ -8,6 +8,7 @@ public class Buffer
     private int position;
     private int    index;
     private int BUFFER_SIZE = 4096;
+    private int RECORD_SIZE = 4;
 
     private File   file;
 
@@ -21,7 +22,7 @@ public class Buffer
     public Buffer(int position, File startFile)
     {
         block = null;
-        index = position % BUFFER_SIZE;
+        index = position / BUFFER_SIZE;
         file = startFile;
     }
 
@@ -57,7 +58,7 @@ public class Buffer
 
     public byte[] getRecord(int pos)
     {
-        return Arrays.copyOfRange(block, pos % 4096, 4);
+        return Arrays.copyOfRange(block, pos % BUFFER_SIZE, RECORD_SIZE);
     }
 
     public void flush()
