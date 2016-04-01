@@ -48,13 +48,15 @@ public class Mergesort
         try 
         {
             input = new RandomAccessFile("input.txt", "rw");
+            BufferPool bufpool = new BufferPool(1);
+            bufpool.newBuffer(1, null);
+            bufpool.newBuffer(0, input);
+            bufpool.getBuffer(0, input).storeBlock();
         }
         catch(IOException e)
         {
             e.printStackTrace();
         }
-        BufferPool bufpool = new BufferPool(1);
-        bufpool.newBuffer(1, null);
-        bufpool.newBuffer(0, input);
+
     }
 }
