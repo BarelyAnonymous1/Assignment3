@@ -5,6 +5,7 @@ public class Buffer
 {
 
     private byte[] block;
+    private int position;
     private int    index;
     private int BUFFER_SIZE = 4096;
 
@@ -17,16 +18,21 @@ public class Buffer
      * @param pageIndex
      * @param startFile
      */
-    public Buffer(int pageIndex, File startFile)
+    public Buffer(int position, File startFile)
     {
         block = null;
-        index = pageIndex;
+        index = position % BUFFER_SIZE;
         file = startFile;
     }
 
     public int getID()
     {
         return index;
+    }
+    
+    public void storeBlock()
+    {
+        
     }
 
     /**
