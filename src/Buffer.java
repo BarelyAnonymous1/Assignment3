@@ -8,8 +8,6 @@ public class Buffer
     private byte[]           block;
     private int              position;
     private int              index;
-    private int              BUFFER_SIZE = 4096;
-    private int              RECORD_SIZE = 4;
     private boolean          hasBlock;
 
     private RandomAccessFile file;
@@ -23,9 +21,9 @@ public class Buffer
      */
     public Buffer(int startPosition, RandomAccessFile startFile)
     {
-        block = new byte[BUFFER_SIZE];
+        block = new byte[BufferPool.BUFFER_SIZE];
         position = startPosition;
-        index = position / BUFFER_SIZE;
+        index = position / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
     }

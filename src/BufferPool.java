@@ -1,6 +1,8 @@
 import java.io.*;
 public class BufferPool
 {
+    public static int              BUFFER_SIZE = 4096;
+    public static int              RECORD_SIZE = 4;
     private LRUQueue pool;
     private int maxBuffers;
     
@@ -60,6 +62,14 @@ public class BufferPool
         }
         else
             return null;
+    }
+    
+    public byte[] getRecord(RandomAccessFile file, int recordPos)
+    {
+        byte[] returnArray = new byte[4];
+        Buffer found = newBuffer(recordPos / 4096, file);
+        
+        System.arraycopy(found.getBlock(), pos, dest, destPos, length);
     }
     
     /**
