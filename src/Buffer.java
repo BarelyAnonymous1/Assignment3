@@ -48,6 +48,7 @@ public class Buffer
             {
                 e.printStackTrace();
             }
+            hasBlock = true;
         }
     }
 
