@@ -76,7 +76,7 @@ public class BufferPool
     public byte[] getRecord(RandomAccessFile file, int recordPos)
     {
         byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-        Buffer found = newBuffer(recordPos++ / BufferPool.BUFFER_SIZE, file);
+        Buffer found = newBuffer(recordPos / BufferPool.BUFFER_SIZE, file);
 
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
