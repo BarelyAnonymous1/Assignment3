@@ -72,9 +72,9 @@ public class Buffer
         return file;
     }
 
-    public byte[] getRecord(int pos)
+    public byte getRecord(int pos)
     {
-        return Arrays.copyOfRange(block, pos % BUFFER_SIZE, RECORD_SIZE);
+        return block[pos];
     }
 
     public void flush()
