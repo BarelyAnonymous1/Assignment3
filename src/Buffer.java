@@ -74,7 +74,7 @@ public class Buffer
 
     public byte[] getRecord(int pos)
     {
-        return Arrays.copyOfRange(block, pos % BUFFER_SIZE, RECORD_SIZE);
+        return block;
     }
 
     public void flush()
