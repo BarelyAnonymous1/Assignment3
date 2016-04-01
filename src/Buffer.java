@@ -21,9 +21,10 @@ public class Buffer
      * @param pageIndex
      * @param startFile
      */
-    public Buffer(int position, RandomAccessFile startFile)
+    public Buffer(int startPosition, RandomAccessFile startFile)
     {
-        block = null;
+        block = new byte[BUFFER_SIZE];
+        position = startPosition;
         index = position / BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
@@ -36,7 +37,18 @@ public class Buffer
 
     public void storeBlock()
     {
-
+        if (!hasBlock)
+        {
+            try
+            {
+                file.seek(position);
+                file.read(block);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
