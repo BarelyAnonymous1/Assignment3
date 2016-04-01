@@ -5,6 +5,14 @@ public class BufferPool
     private int BUFFER_SIZE = 4096;
     private int maxBuffers;
     
+    /**
+     * initializes the bufferpool with -1, -2, -3, ...
+     *      for whatever the startMax is. 
+     *      Uses LRUQueue implementation to create the bufferpool
+     * 
+     * @param startMax the max number of blocks the bufferpool can hold 
+     *      (per project spec)
+     */
     public BufferPool(int startMax)
     {
         maxBuffers = startMax;
@@ -17,8 +25,15 @@ public class BufferPool
         }
     }
     
+    /**
+     * adds a new block to the bufferPool from the file
+     * @param searchID the block to be added
+     * @param searchFile the file to add the block from
+     * @return the block if it is there, if not: null
+     */
     public Buffer newBuffer(int searchID, File searchFile)
     {
+        // look for a block in the file
         Buffer foundBuffer = getBuffer(searchID, searchFile);
         if (foundBuffer == null)
         {
@@ -30,6 +45,12 @@ public class BufferPool
         return foundBuffer;
     }
     
+    /**
+     * Looks for a block in the file 
+     * @param searchID the index of the block to be searched for
+     * @param searchFile the file to search for the block in
+     * @return the block if found
+     */
     public Buffer getBuffer(int searchID, File searchFile)
     {
         DoublyLinkedNode existNode = pool.getLRUQueue().remove(searchID, searchFile);
@@ -42,6 +63,10 @@ public class BufferPool
             return null;
     }
     
+    /**
+     * removes everything from the bufferPool
+     * starts with the least recently used block
+     */
     public void flushPool()
     {
         Buffer bufferToFlush = pool.removeLRU();
@@ -52,6 +77,10 @@ public class BufferPool
         }
     }
     
+    /**
+     * getter for the max size 
+     * @return the maximum number of buffers
+     */
     public int getMaxSize()
     {
         return maxBuffers;

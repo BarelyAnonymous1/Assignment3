@@ -54,7 +54,11 @@ public class DoublyLinkedQueue
     }
 
     /**
-     * pulls the 
+     * pulls the last added node from the queue
+     * this node removed from the queue
+     *     -------------
+     *     x-x-x-x-x-x   x ->
+     *     -------------
      * @return
      */
     public DoublyLinkedNode dequeue()
@@ -70,7 +74,12 @@ public class DoublyLinkedQueue
             return temp;
         }
     }
-
+    /**
+     * removes from the middle of the queue and relinks the next and previous
+     * @param blockID the block of the node
+     * @param file the file to look for the block in
+     * @return the node with the block removed
+     */
     public DoublyLinkedNode remove(int blockID, File file)
     {
         DoublyLinkedNode curr = head.getNext();
