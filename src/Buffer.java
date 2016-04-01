@@ -72,9 +72,9 @@ public class Buffer
         return file;
     }
 
-    public byte getRecord(int pos)
+    public byte[] getRecord(int pos)
     {
-        return block[pos];
+        return block;
     }
 
     public void flush()
