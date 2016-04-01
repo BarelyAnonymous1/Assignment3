@@ -1,16 +1,18 @@
 import java.util.Arrays;
+import java.io.*;
 import java.io.File;
 
 public class Buffer
 {
 
-    private byte[] block;
-    private int position;
-    private int    index;
-    private int BUFFER_SIZE = 4096;
-    private int RECORD_SIZE = 4;
+    private byte[]           block;
+    private int              position;
+    private int              index;
+    private int              BUFFER_SIZE = 4096;
+    private int              RECORD_SIZE = 4;
+    private boolean          hasBlock;
 
-    private File   file;
+    private RandomAccessFile file;
 
     /**
      * constructor for the Buffer class This class will do the file I/O to
@@ -19,21 +21,22 @@ public class Buffer
      * @param pageIndex
      * @param startFile
      */
-    public Buffer(int position, File startFile)
+    public Buffer(int position, RandomAccessFile startFile)
     {
         block = null;
         index = position / BUFFER_SIZE;
         file = startFile;
+        hasBlock = false;
     }
 
     public int getID()
     {
         return index;
     }
-    
+
     public void storeBlock()
     {
-        
+
     }
 
     /**
@@ -51,7 +54,7 @@ public class Buffer
         block = newPage;
     }
 
-    public File getFile()
+    public RandomAccessFile getFile()
     {
         return file;
     }
