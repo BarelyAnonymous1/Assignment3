@@ -2,7 +2,6 @@ import java.io.*;
 public class BufferPool
 {
     private LRUQueue pool;
-    private int BUFFER_SIZE = 4096;
     private int maxBuffers;
     
     /**

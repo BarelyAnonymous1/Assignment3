@@ -6,6 +6,8 @@ public class Buffer
 
     private byte[] block;
     private int    index;
+    private int BUFFER_SIZE = 4096;
+
     private File   file;
 
     /**
