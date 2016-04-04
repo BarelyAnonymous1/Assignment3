@@ -26,7 +26,6 @@ public class Buffer
         index = position / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
-        storeBlock();
     }
 
     public int getID()
@@ -58,6 +57,7 @@ public class Buffer
      */
     public byte[] getBlock()
     {
+        storeBlock();
         return block;
     }
 
