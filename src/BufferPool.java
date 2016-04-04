@@ -85,6 +85,17 @@ public class BufferPool
         
         return returnArray;
     }
+    public byte[] get1Record(RandomAccessFile file, int recordPos)
+    {
+        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+        Buffer found = newBuffer(recordPos / BufferPool.BUFFER_SIZE, file);
+
+        System.arraycopy(found.getRealBlock(),
+                recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
+                BufferPool.RECORD_SIZE);
+        
+        return returnArray;
+    }
 
     /**
      * removes everything from the bufferPool starts with the least recently
