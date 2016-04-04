@@ -73,6 +73,8 @@ public class Buffer
 
     public void flush()
     {
+        if (file == null)
+            return;
         try
         {
             file.seek(index * BufferPool.BUFFER_SIZE);
