@@ -48,12 +48,7 @@ public class Buffer
             }
             hasBlock = true;
         }
-    }
-    
-    public byte[] getRealBlock()
-    {
-        return block;
-    }
+    } 
 
     /**
      * grabs a block from the file
