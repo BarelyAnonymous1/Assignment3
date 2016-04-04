@@ -39,7 +39,7 @@ public class Buffer
         {
             try
             {
-                file.seek(position);
+                file.seek(index);
                 file.read(block);
             }
             catch (IOException e)
@@ -73,6 +73,15 @@ public class Buffer
 
     public void flush()
     {
+        try
+        {
+            file.seek(index * BufferPool.BUFFER_SIZE);
+            file.write(block);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         System.out.println("Just flushed: " + index);
     }
 }
