@@ -54,7 +54,10 @@ public class Mergesort
             bufpool.newBuffer(4096, input);
             bufpool.getBuffer(1, input).storeBlock();
             byte[] output = bufpool.getRecord(input, 8187);
+            System.out.println(output[0]);
             System.out.println(output[1]);
+            System.out.println(output[2]);
+            System.out.println(output[3]);
         }
         catch (IOException e)
         {
