@@ -48,7 +48,7 @@ public class Buffer
             }
             hasBlock = true;
         }
-    } 
+    }
 
     /**
      * grabs a block from the file
@@ -64,9 +64,7 @@ public class Buffer
     public void setBlock(byte[] newPage)
     {
         block = newPage;
-        System.arraycopy(newPage,
-               0, block, 0,
-                BufferPool.RECORD_SIZE);
+        System.arraycopy(newPage, 0, block, 0, BufferPool.RECORD_SIZE);
     }
 
     public RandomAccessFile getFile()
