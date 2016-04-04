@@ -17,6 +17,7 @@ public class Mergesort
     public static void main(String[] args)
     {
         RandomAccessFile input;
+        RandomAccessFile temp;
         // try
         // {
         // input = new RandomAccessFile(args[0], "rw");
@@ -48,10 +49,13 @@ public class Mergesort
         try
         {
             input = new RandomAccessFile("input.txt", "rw");
+            temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(5);
             bufpool.newBuffer(4096, input);
             bufpool.getBuffer(1, input).storeBlock();
             byte[] output = bufpool.getRecord(input, 8188);
+            bufpool.newBuffer(0, temp).setBlock(output);
+            bufpool.getBuffer(0, temp).flush();
             System.out.println(output[1]);
         }
         catch (IOException e)
