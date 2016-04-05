@@ -66,7 +66,7 @@ public class Buffer
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
         hasBlock = true;
-        dirtyBit = true;
+        //dirtyBit = true;
     }
 
     public RandomAccessFile getFile()
@@ -80,11 +80,11 @@ public class Buffer
             return;
         try
         {
-            if (dirtyBit)
-            {
+            //if (dirtyBit)
+            //{
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.write(block);
-            }
+            //}
         }
         catch (IOException e)
         {

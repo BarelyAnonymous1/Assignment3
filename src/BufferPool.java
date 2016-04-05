@@ -78,6 +78,7 @@ public class BufferPool
     {
         Buffer buffer = newBuffer(recordPos,
                 file);
+        // recordpos % buffersize is the position within a single block
         buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
