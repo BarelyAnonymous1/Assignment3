@@ -19,6 +19,7 @@ public class RuntimeStats
         writeDisk = 0;
         startTime = 0;
         endTime = 0;
+        newCalls = 0;
     }
 
     public String toString()
