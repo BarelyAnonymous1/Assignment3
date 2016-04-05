@@ -28,7 +28,6 @@ public class BufferPool
             // nothing
             // with it when it is removed
             pool.addOrPromote(new Buffer((-4096) * (i + 1), null));
-            RuntimeStats.newCalls++;
         }
     }
 
