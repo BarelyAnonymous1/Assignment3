@@ -66,13 +66,13 @@ public class Buffer
         return block;
     }
 
-    public void setBlock1(byte[] newPage, int recordNum)
+    public void setBlock(byte[] newPage, int recordNum)
     {
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
     }
 
-    public void setBlock(byte[] newPage, int recordNum)
+    public void setBlock1(byte[] newPage, int recordNum)
     {
         block[recordNum] = newPage[0];
         block[recordNum + 1] = newPage[1];
