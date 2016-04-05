@@ -15,8 +15,8 @@ public class BufferTest extends TestCase {
     Buffer buffer; 
     
     protected void setUp() {
-        file = new RandomAccessFile("input.txt");
-        buffer = new Buffer(0, );
+        //file = new RandomAccessFile("input.txt");
+        //buffer = new Buffer(0, );
     }
 
 }
