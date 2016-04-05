@@ -22,13 +22,14 @@ public class Buffer
     public Buffer(int startPosition, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
-        storeBlock();
         RuntimeStats.newCalls++;
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
-        //dirtyBit = false;
+        storeBlock();
+
+        // dirtyBit = false;
     }
-    
+
     public void reset(int startPosition, RandomAccessFile startFile)
     {
         index = startPosition / BufferPool.BUFFER_SIZE;
@@ -69,7 +70,7 @@ public class Buffer
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
         hasBlock = true;
-        //dirtyBit = true;
+        // dirtyBit = true;
     }
 
     public RandomAccessFile getFile()
@@ -83,11 +84,11 @@ public class Buffer
             return;
         try
         {
-            //if (dirtyBit)
-            //{
-                file.seek(index * BufferPool.BUFFER_SIZE);
-                file.write(block);
-            //}
+            // if (dirtyBit)
+            // {
+            file.seek(index * BufferPool.BUFFER_SIZE);
+            file.write(block);
+            // }
         }
         catch (IOException e)
         {
