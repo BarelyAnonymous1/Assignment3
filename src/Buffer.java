@@ -33,7 +33,7 @@ public class Buffer
     {
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
-        hasBlock = false;
+        storeBlock();
     }
 
     public int getID()
