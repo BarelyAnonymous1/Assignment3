@@ -106,6 +106,7 @@ public class BufferPool
             RandomAccessFile file)
     {
         // recordpos % buffersize is the position within a single block
+        System.out.println(record[1]);
         newBuffer(recordPos, file).setBlock(record,
                 recordPos % BufferPool.BUFFER_SIZE);
     }
