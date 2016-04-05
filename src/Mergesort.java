@@ -68,6 +68,7 @@ public class Mergesort
             System.out.println(tryagain[2]);
             System.out.println(tryagain[3]);
             
+            sort(bufpool, input, temp, 0, (int)input.length());
         }
         catch (IOException e)
         {
@@ -104,11 +105,12 @@ public class Mergesort
      * @param left left side of mergesort
      * @param right right side of mergesort
      */
-    public void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
+    public static void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
             int left, int right)
     {
-        if (left == right)
-            return; // List has one record
+        if (left == right){
+            System.out.println(left);
+            return;} // List has one record
         int mid = (left + right) / 2; // Select midpoint
         sort(pool, input, temp, left, mid); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
@@ -134,7 +136,7 @@ public class Mergesort
                 //A[curr] = temp[i2++];
         }
     }
-    private int compareByteArray(byte[] obj, byte[] comp)
+    private static int compareByteArray(byte[] obj, byte[] comp)
     {
         if (obj[0] < comp[0] ||
                 (obj[0] == comp[0] && obj[1] < comp[1]))
