@@ -25,7 +25,7 @@ public class Buffer
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
-        dirtyBit = false;
+        //dirtyBit = false;
     }
 
     public int getID()
