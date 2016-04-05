@@ -6,6 +6,7 @@ public class Buffer
 {
 
     private byte[]           block;
+    private int              position;
     private int              index;
     private boolean          hasBlock;
 
@@ -18,10 +19,11 @@ public class Buffer
      * @param pageIndex
      * @param startFile
      */
-    public Buffer(int startIndex, RandomAccessFile startFile)
+    public Buffer(int startPosition, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
-        index = startIndex;
+        position = startPosition;
+        index = position / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
     }
@@ -37,7 +39,7 @@ public class Buffer
         {
             try
             {
-                file.seek(index);
+                file.seek(index * BufferPool.BUFFER_SIZE);
                 file.read(block);
             }
             catch (IOException e)
