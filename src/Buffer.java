@@ -71,7 +71,7 @@ public class Buffer
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
     }
-    
+
     public void setBlock1(byte[] newPage, int recordNum)
     {
         block[recordNum] = newPage[0];
