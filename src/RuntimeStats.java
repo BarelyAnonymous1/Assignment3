@@ -1,8 +1,8 @@
 
 public class RuntimeStats
 {
-    public static String file;
-    public static int numBuffers;
+    private static String file;
+    private static int numBuffers;
     public static int foundInBuffer;
     public static int readDisk;
     public static int writeDisk;
