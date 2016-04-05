@@ -46,8 +46,11 @@ public class Buffer
     {
         try
         {
-            file.seek(index * BufferPool.BUFFER_SIZE);
-            file.read(block);
+            if (file != null)
+            {
+                file.seek(index * BufferPool.BUFFER_SIZE);
+                file.read(block);
+            }
         }
         catch (IOException e)
         {
