@@ -28,6 +28,13 @@ public class Buffer
         hasBlock = false;
         //dirtyBit = false;
     }
+    
+    public void reset(int startPosition, RandomAccessFile startFile)
+    {
+        index = startPosition / BufferPool.BUFFER_SIZE;
+        file = startFile;
+        hasBlock = false;
+    }
 
     public int getID()
     {
