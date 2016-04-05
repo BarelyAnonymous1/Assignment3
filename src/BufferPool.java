@@ -128,10 +128,6 @@ public class BufferPool
         // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         // RuntimeStats.newCalls++;
         Buffer found = newBuffer(recordPos, file);
-        TEMP_RECORD[0] = found.getBlock()[recordPos % BUFFER_SIZE];
-        TEMP_RECORD[1] = found.getBlock()[recordPos % BUFFER_SIZE + 1];
-        TEMP_RECORD[2] = found.getBlock()[recordPos % BUFFER_SIZE + 2];
-        TEMP_RECORD[3] = found.getBlock()[recordPos % BUFFER_SIZE + 3];
         return Arrays.copyOfRange(found.getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
