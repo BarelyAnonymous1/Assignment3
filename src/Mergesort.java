@@ -109,11 +109,7 @@ public class Mergesort
      * @param left left side of mergesort
      * @param right right side of mergesort
      */
-<<<<<<< HEAD
     public static void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
-=======
-    private void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
->>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
             int left, int right)
     {
         if (left == right){
