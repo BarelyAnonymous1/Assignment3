@@ -66,6 +66,7 @@ public class Buffer
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
         hasBlock = true;
+        dirtyBit = true;
     }
 
     public RandomAccessFile getFile()
