@@ -49,7 +49,7 @@ public class Mergesort
         try
         {
             int num = 4096;
-            input = new RandomAccessFile("input.txt", "rw");
+            input = new RandomAccessFile("input11.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(40);
             byte[] output = bufpool.getRecord(num, input);
@@ -108,8 +108,8 @@ public class Mergesort
     public static void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
             int left, int right)
     {
-        if (left == right){
-            return;} // List has one record
+        if (left == right)
+            return; // List has one record
         int mid = (left + right) / 2; // Select midpoint
         sort(pool, input, temp, left, mid); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half

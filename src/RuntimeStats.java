@@ -2,13 +2,13 @@
 public class RuntimeStats
 {
     private static String file;
-    private static int numBuffers;
-    public static int foundInBuffer;
-    public static int readDisk;
-    public static int writeDisk;
-    public static int startTime;
-    public static int endTime;
-    
+    private static int    numBuffers;
+    public static int     foundInBuffer;
+    public static int     readDisk;
+    public static int     writeDisk;
+    public static int     startTime;
+    public static int     endTime;
+
     public RuntimeStats(String filename, int numberOfBuffers)
     {
         file = filename;
@@ -19,9 +19,13 @@ public class RuntimeStats
         startTime = 0;
         endTime = 0;
     }
-    
+
     public String toString()
     {
-        return null;
+        int total = endTime - startTime;
+        return ("Filename: " + file + "\nNumber of Buffers: " + numBuffers
+                + "\nRecords found in Buffer: " + foundInBuffer
+                + "\nReads from Disk: " + readDisk + "\nWrites to Disk: "
+                + writeDisk + "\nTotal Time: " + total + " milliseconds");
     }
 }
