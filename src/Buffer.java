@@ -49,7 +49,7 @@ public class Buffer
             hasBlock = true;
         }
     }
-    
+
     public byte[] allocate()
     {
         return block;
@@ -69,8 +69,9 @@ public class Buffer
     public void setBlock(byte[] newPage, int recordNum)
     {
         System.out.println();
-        
-        System.arraycopy(newPage, 0, block, recordNum, BufferPool.RECORD_SIZE);
+
+        System.arraycopy(newPage, 0, block, recordNum,
+                BufferPool.RECORD_SIZE);
         hasBlock = true;
     }
 
@@ -92,6 +93,5 @@ public class Buffer
         {
             e.printStackTrace();
         }
-        System.out.println("Just flushed: " + index);
     }
 }
