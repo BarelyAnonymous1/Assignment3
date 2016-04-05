@@ -25,6 +25,7 @@ public class Buffer
         RuntimeStats.newCalls++;
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
+        dirtyBit = false;
         storeBlock();
     }
 
@@ -32,6 +33,7 @@ public class Buffer
     {
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
+        dirtyBit = false;
         storeBlock();
     }
 
@@ -68,6 +70,7 @@ public class Buffer
 
     public void setBlock(byte[] newPage, int recordNum)
     {
+        dirtyBit = true;
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
     }
@@ -83,11 +86,11 @@ public class Buffer
             return;
         try
         {
-            // if (dirtyBit)
-            // {
-            file.seek(index * BufferPool.BUFFER_SIZE);
-            file.write(block);
-            // }
+            if (dirtyBit)
+            {
+                file.seek(index * BufferPool.BUFFER_SIZE);
+                file.write(block);
+            }
         }
         catch (IOException e)
         {
