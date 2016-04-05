@@ -26,6 +26,7 @@ hs_error_pid*
 *.lib
 *.exe
 *.app
+*.txt
 =======
 ~*
 ._*
