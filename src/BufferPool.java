@@ -54,6 +54,24 @@ public class BufferPool
         }
         return foundBuffer;
     }
+    
+    public Buffer newBuffer2(int recordPos, RandomAccessFile searchFile)
+    {
+        // look for a block in the file
+        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE, searchFile);
+        if (foundBuffer == null)
+        {
+            Buffer bufferToFlush = pool.cycle();
+            if (bufferToFlush != null)
+            {
+                Buffer buffer = pool.removeLRU();
+                buffer.reset(recordPos, searchFile);
+                pool.addOrPromote(buffer);
+                bufferToFlush.flush();
+            }
+        }
+        return foundBuffer;
+    }
 
     /**
      * Looks for a block in the file
@@ -110,6 +128,15 @@ public class BufferPool
             bufferToFlush.flush();
             bufferToFlush = pool.removeLRU();
         }
+    }
+    
+    private Buffer cycle()
+    {
+        if (pool.getSize() == maxBuffers)
+        {
+            return pool.getLRUQueue().getHead().getNext().getData();
+        }
+        return null;
     }
 
     /**
