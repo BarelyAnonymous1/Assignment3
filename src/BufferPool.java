@@ -110,7 +110,7 @@ public class BufferPool
         buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
-    public byte[] getRecord(int recordPos, RandomAccessFile file)
+    public byte[] getRecord1(int recordPos, RandomAccessFile file)
     {
 //        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
 //        RuntimeStats.newCalls++;
@@ -119,6 +119,18 @@ public class BufferPool
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
                 BufferPool.RECORD_SIZE);
+        return returnArray;
+    }
+    
+    public byte[] getRecord(int recordPos, RandomAccessFile file)
+    {
+//        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+//        RuntimeStats.newCalls++;
+        Buffer found = newBuffer(recordPos, file);
+        TEMP_RECORD[0] = found.getBlock()[recordPos % BUFFER_SIZE];
+        TEMP_RECORD[1] = found.getBlock()[recordPos % BUFFER_SIZE + 1];
+        TEMP_RECORD[2] = found.getBlock()[recordPos % BUFFER_SIZE + 2];
+        TEMP_RECORD[3] = found.getBlock()[recordPos % BUFFER_SIZE + 3];
         return returnArray;
     }
 
