@@ -69,6 +69,7 @@ public class BufferPool
                 pool.addOrPromote(foundBuffer);
                 bufferToFlush.flush();
             }
+            pool.addOrPromote(foundBuffer);
             
         }
         return foundBuffer;
