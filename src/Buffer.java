@@ -8,7 +8,7 @@ public class Buffer
     private byte[]           block;
     private int              index;
     private boolean          hasBlock;
-    private int              dirtyBit;
+    private boolean          dirtyBit;
 
     private RandomAccessFile file;
 
@@ -25,6 +25,7 @@ public class Buffer
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
+        dirtyBit = false;
     }
 
     public int getID()
