@@ -100,7 +100,7 @@ public class BufferPool
     {
         Buffer bufferToFlush = pool.removeLRU();
         while (bufferToFlush != null)
-        {
+        { 
             bufferToFlush.flush();
             bufferToFlush = pool.removeLRU();
         }
