@@ -27,6 +27,7 @@ public class BufferPool
             // nothing
             // with it when it is removed
             pool.addOrPromote(new Buffer((-4096) * (i + 1), null));
+            RuntimeStats.newCalls++;
         }
     }
 
@@ -46,6 +47,7 @@ public class BufferPool
         if (foundBuffer == null)
         {
             foundBuffer = new Buffer(recordPos, searchFile);
+            RuntimeStats.newCalls++;
             Buffer bufferToFlush = pool.addOrPromote(foundBuffer);
             if (bufferToFlush != null)
                 bufferToFlush.flush();
@@ -87,6 +89,7 @@ public class BufferPool
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
         byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+        RuntimeStats.newCalls++;
         Buffer found = newBuffer(recordPos, file);
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
