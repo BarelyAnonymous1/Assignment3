@@ -61,7 +61,6 @@ public class Buffer
      */
     public byte[] getBlock()
     {
-        storeBlock();
         return block;
     }
 
