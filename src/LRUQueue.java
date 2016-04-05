@@ -18,7 +18,7 @@ public class LRUQueue
      * @param newBuffer
      * @return
      */
-    public Buffer addOrPromote2(Buffer newBuffer)
+    public Buffer addOrPromote(Buffer newBuffer)
     {
         DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
                 newBuffer.getFile());
