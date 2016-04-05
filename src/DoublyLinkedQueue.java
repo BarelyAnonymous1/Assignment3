@@ -63,7 +63,7 @@ public class DoublyLinkedQueue
      */
     public DoublyLinkedNode dequeue()
     {
-        if (size == 0)
+        if (head.getNext() == tail)
             return null;
         else
         {
