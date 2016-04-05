@@ -118,7 +118,17 @@ public class BufferPool
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
                 BufferPool.RECORD_SIZE);
+        byte[] returnArray = TEMP_RECORD;
         return returnArray;
+    }
+    public void tempRecord(int recordPos, RandomAccessFile file)
+    {
+        // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+        // RuntimeStats.newCalls++;
+        Buffer found = newBuffer(recordPos, file);
+        System.arraycopy(found.getBlock(),
+                recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
+                BufferPool.RECORD_SIZE);
     }
 
     /**
