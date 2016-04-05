@@ -105,29 +105,21 @@ public class BufferPool
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
+        Buffer buffer = newBuffer(recordPos, file);
         // recordpos % buffersize is the position within a single block
-        newBuffer(recordPos, file).setBlock(record,
-                recordPos % BufferPool.BUFFER_SIZE);
+        buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-        // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-        // RuntimeStats.newCalls++;
+//        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+//        RuntimeStats.newCalls++;
         Buffer found = newBuffer(recordPos, file);
+        byte [] returnArray = new byte[RECORD_SIZE];
         System.arraycopy(found.getBlock(),
-                recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
+                recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
                 BufferPool.RECORD_SIZE);
-        return TEMP_RECORD;
-    }
-    public void tempRecord(int recordPos, RandomAccessFile file)
-    {
-        // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-        // RuntimeStats.newCalls++;
-        Buffer found = newBuffer(recordPos, file);
-        System.arraycopy(found.getBlock(),
-                recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
-                BufferPool.RECORD_SIZE);
+        return returnArray;
     }
 
     /**
