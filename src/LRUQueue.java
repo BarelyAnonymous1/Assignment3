@@ -8,6 +8,7 @@ public class LRUQueue
     {
         MAX_SIZE = max;
         list = new DoublyLinkedQueue();
+        RuntimeStats.newCalls++;
     }
     
     /**
@@ -21,6 +22,7 @@ public class LRUQueue
         if (foundNode == null)
         {
             list.enqueue(new DoublyLinkedNode(newBuffer));
+            RuntimeStats.newCalls++;
             if (list.getSize() > MAX_SIZE)
                 return list.dequeue().getData();
             else

@@ -54,6 +54,7 @@ public class Mergesort
             
             sort(bufpool, input, temp, 0, ((int)input.length() - 4)/4);
             bufpool.flushPool();
+            System.out.println(RuntimeStats.newCalls);
         }
         catch (IOException e)
         {
