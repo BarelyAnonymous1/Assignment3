@@ -52,7 +52,6 @@ public class Buffer
     
     public byte[] allocate()
     {
-        storeBlock();
         return block;
     }
 
@@ -63,6 +62,7 @@ public class Buffer
      */
     public byte[] getBlock()
     {
+        storeBlock();
         return block;
     }
 
