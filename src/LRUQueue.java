@@ -22,7 +22,10 @@ public class LRUQueue
         {
             list.enqueue(new DoublyLinkedNode(newBuffer));
             if (list.getSize() > MAX_SIZE)
+            {
+                System.out.println("Too big" + list.getSize());
                 return list.dequeue().getData();
+            }
             else
                 return null;
         }
