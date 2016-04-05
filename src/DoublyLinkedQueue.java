@@ -100,7 +100,7 @@ public class DoublyLinkedQueue
                 size--;
                 return curr;
             }
-            curr = curr.getNext();
+            curr = curr.getPrev();
         }
         return null;
     }
