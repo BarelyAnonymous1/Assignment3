@@ -22,6 +22,7 @@ public class Buffer
     public Buffer(int startPosition, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
+        RuntimeStats.newCalls++;
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
