@@ -48,7 +48,10 @@ public class BufferPool
                     + " " + searchFile);
             Buffer bufferToFlush = pool.addOrShift(foundBuffer);
             if (bufferToFlush != null)
+            {
+                System.out.println("tried");
                 bufferToFlush.flush();
+            }
         }
         return foundBuffer;
     }
