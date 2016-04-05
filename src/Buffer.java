@@ -68,7 +68,7 @@ public class Buffer
 
     public void setBlock(byte[] newPage, int pagePos)
     {
-        System.arraycopy(newPage, 0, block, pagePos, BufferPool.RECORD_SIZE);
+        System.arraycopy(newPage, 0, block, pagePos-1, BufferPool.RECORD_SIZE);
     }
 
     public RandomAccessFile getFile()
