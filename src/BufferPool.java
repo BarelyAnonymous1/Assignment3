@@ -62,7 +62,7 @@ public class BufferPool
      *            the file to search for the block in
      * @return the block if found
      */
-    public Buffer getBuffer(int searchID, RandomAccessFile searchFile)
+    private Buffer getBuffer(int searchID, RandomAccessFile searchFile)
     {
         DoublyLinkedNode existNode = pool.getLRUQueue().remove(searchID,
                 searchFile);
