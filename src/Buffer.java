@@ -49,6 +49,12 @@ public class Buffer
             hasBlock = true;
         }
     }
+    
+    public byte[] allocate()
+    {
+        storeBlock();
+        return block;
+    }
 
     /**
      * grabs a block from the file
@@ -57,13 +63,12 @@ public class Buffer
      */
     public byte[] getBlock()
     {
-        storeBlock();
         return block;
     }
 
-    public void setBlock(byte[] newPage)
+    public void setBlock(byte[] newPage, int pagePos)
     {
-        System.arraycopy(newPage, 0, block, 0, BufferPool.RECORD_SIZE);
+        System.arraycopy(newPage, 0, block, pagePos, BufferPool.RECORD_SIZE);
     }
 
     public RandomAccessFile getFile()

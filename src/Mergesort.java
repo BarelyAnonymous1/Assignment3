@@ -51,10 +51,8 @@ public class Mergesort
             input = new RandomAccessFile("input.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(5);
-            bufpool.newBuffer(4096, input);
-            bufpool.newBuffer(1,  temp);
-            bufpool.getBuffer(1, temp).setBlock(bufpool.getBuffer(4096, input).getBlock());
-            byte[] output = bufpool.getRecord(temp, 8187);
+            bufpool.newBuffer(0,  temp);
+            byte[] output = bufpool.getRecord(8188, input);
             System.out.println(output[0]);
             System.out.println(output[1]);
             System.out.println(output[2]);
@@ -66,6 +64,8 @@ public class Mergesort
         }
 
     }
+    
+    //bufferpool.writeRecord(i, bufferpool.getRecord(j, input), temp);
 
     /**
      * going to keep a collection of notes on how the indexing works in each
@@ -84,6 +84,7 @@ public class Mergesort
      * determine which record within the block is needed
      */
 
+<<<<<<< HEAD
     public void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
             int left, int right)
     {
@@ -108,5 +109,31 @@ public class Mergesort
             else
                 A[curr] = temp[i2++];
         }
+=======
+    public void sort(BufferPool pool, RandomAccessFile input,
+            RandomAccessFile temp, int left, int right)
+    {
+//        if (left == right)
+//            return; // List has one record
+//        int mid = (left + right) / 2; // Select midpoint
+//        sort(input, temp, left, mid); // Mergesort first half
+//        sort(input, temp, mid + 1, right); // Mergesort second half
+//        for (int i = left; i <= right; i++) // Copy subarray to temp
+//            temp[i] = input[i];
+//        // Do the merge operation back to A
+//        int i1 = left;
+//        int i2 = mid + 1;
+//        for (int curr = left; curr <= right; curr++)
+//        {
+//            if (i1 == mid + 1) // Left sublist exhausted
+//                A[curr] = temp[i2++];
+//            else if (i2 > right) // Right sublist exhausted
+//                A[curr] = temp[i1++];
+//            else if (temp[i1] <= temp[i2]) // Get smaller value
+//                A[curr] = temp[i1++];
+//            else
+//                A[curr] = temp[i2++];
+//        }
+>>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
     }
 }
