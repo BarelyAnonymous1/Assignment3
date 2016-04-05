@@ -41,7 +41,7 @@ public class BufferPool
      *            the file to add the block from
      * @return the block if it is there, if not: null
      */
-    public Buffer newBuffer1(int recordPos, RandomAccessFile searchFile)
+    public Buffer newBuffer(int recordPos, RandomAccessFile searchFile)
     {
         // look for a block in the file
         Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE,
@@ -57,7 +57,7 @@ public class BufferPool
         return foundBuffer;
     }
 
-    public Buffer newBuffer(int recordPos, RandomAccessFile searchFile)
+    public Buffer newBufferFastButNotReally(int recordPos, RandomAccessFile searchFile)
     {
         // look for a block in the file
         Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE,
