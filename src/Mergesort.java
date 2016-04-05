@@ -48,17 +48,19 @@ public class Mergesort
         // BufferPool sortPool = new BufferPool(numBuffers);
         try
         {
+            int num = 4096;
             input = new RandomAccessFile("input.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(5);
-            byte[] output = bufpool.getRecord(4096, input);
-            bufpool.writeRecord(4096, output, temp);
+
+            byte[] output = bufpool.getRecord(num, input);
+            bufpool.writeRecord(num, output, temp);
             System.out.println(output[0]);
             System.out.println(output[1]);
             System.out.println(output[2]);
             System.out.println(output[3]);
             
-            byte[] tryagain = bufpool.getRecord(4096,  temp);
+            byte[] tryagain = bufpool.getRecord(num,  temp);
             System.out.println("");
 
             System.out.println(tryagain[0]);

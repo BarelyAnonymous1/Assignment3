@@ -44,7 +44,8 @@ public class BufferPool
         if (foundBuffer == null)
         {
             foundBuffer = new Buffer(searchID, searchFile);
-            System.out.println("just created a new buffer " + searchID + " " + searchFile);
+            System.out.println("just created a new buffer " + searchID
+                    + " " + searchFile);
             Buffer bufferToFlush = pool.addOrShift(foundBuffer);
             if (bufferToFlush != null)
                 bufferToFlush.flush();
@@ -73,10 +74,12 @@ public class BufferPool
         else
             return null;
     }
-    
-    public void writeRecord(int recordPos, byte[] record, RandomAccessFile file)
+
+    public void writeRecord(int recordPos, byte[] record,
+            RandomAccessFile file)
     {
-        Buffer buffer = newBuffer(recordPos / BufferPool.BUFFER_SIZE, file);
+        Buffer buffer = newBuffer(recordPos / BufferPool.BUFFER_SIZE,
+                file);
         buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
@@ -84,11 +87,10 @@ public class BufferPool
     {
         byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         Buffer found = newBuffer(recordPos / BufferPool.BUFFER_SIZE, file);
-        int bufpos = recordPos % BufferPool.BUFFER_SIZE;
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
                 BufferPool.RECORD_SIZE);
-        
+
         return returnArray;
     }
 
