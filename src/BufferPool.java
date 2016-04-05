@@ -6,7 +6,7 @@ public class BufferPool
     public static int RECORD_SIZE = 4;
     private LRUQueue  pool;
     private int       maxBuffers;
-    public static byte[] TEMP_BUFFER;
+    public static byte[] TEMP_RECORD;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -20,7 +20,7 @@ public class BufferPool
     {
         maxBuffers = startMax;
         pool = new LRUQueue(startMax);
-        TEMP_BUFFER = new byte[RECORD_SIZE];
+        TEMP_RECORD = new byte[RECORD_SIZE];
         for (int i = 0; i < maxBuffers; i++)
         {
             // the ID for each filler Buffer is so the Buffer pool knows to do
@@ -86,10 +86,9 @@ public class BufferPool
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         Buffer found = newBuffer(recordPos, file);
         System.arraycopy(found.getBlock(),
-                recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
+                recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
                 BufferPool.RECORD_SIZE);
 
         return returnArray;
