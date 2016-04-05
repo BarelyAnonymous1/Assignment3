@@ -49,6 +49,12 @@ public class Buffer
             hasBlock = true;
         }
     }
+    
+    public byte[] allocate()
+    {
+        storeBlock();
+        return block;
+    }
 
     /**
      * grabs a block from the file
@@ -57,7 +63,6 @@ public class Buffer
      */
     public byte[] getBlock()
     {
-        storeBlock();
         return block;
     }
 
