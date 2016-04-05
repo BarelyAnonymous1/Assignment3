@@ -15,16 +15,14 @@ public class LRUQueue
      * @param newBuffer
      * @return
      */
-    public Buffer addOrShift(Buffer newBuffer)
+    public Buffer addOrPromote(Buffer newBuffer)
     {
         DoublyLinkedNode foundNode = list.remove(newBuffer.getID(), newBuffer.getFile());
         if (foundNode == null)
         {
             list.enqueue(new DoublyLinkedNode(newBuffer));
             if (list.getSize() > MAX_SIZE)
-            {
                 return list.dequeue().getData();
-            }
             else
                 return null;
         }

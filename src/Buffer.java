@@ -6,9 +6,9 @@ public class Buffer
 {
 
     private byte[]           block;
-    private int              position;
     private int              index;
     private boolean          hasBlock;
+    private boolean          dirtyBit;
 
     private RandomAccessFile file;
 
@@ -22,10 +22,10 @@ public class Buffer
     public Buffer(int startPosition, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
-        position = startPosition;
-        index = position / BufferPool.BUFFER_SIZE;
+        index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
+        dirtyBit = false;
     }
 
     public int getID()
@@ -49,11 +49,6 @@ public class Buffer
             hasBlock = true;
         }
     }
-    
-    public byte[] allocate()
-    {
-        return block;
-    }
 
     /**
      * grabs a block from the file
@@ -68,10 +63,10 @@ public class Buffer
 
     public void setBlock(byte[] newPage, int recordNum)
     {
-        System.out.println();
-        
-        System.arraycopy(newPage, 0, block, recordNum, BufferPool.RECORD_SIZE);
+        System.arraycopy(newPage, 0, block, recordNum,
+                BufferPool.RECORD_SIZE);
         hasBlock = true;
+        dirtyBit = true;
     }
 
     public RandomAccessFile getFile()
@@ -85,13 +80,15 @@ public class Buffer
             return;
         try
         {
-            file.seek(index * BufferPool.BUFFER_SIZE);
-            file.write(block);
+            if (dirtyBit)
+            {
+                file.seek(index * BufferPool.BUFFER_SIZE);
+                file.write(block);
+            }
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-        System.out.println("Just flushed: " + index);
     }
 }

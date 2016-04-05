@@ -24,7 +24,7 @@ public class BufferPool
             // the ID for each filler Buffer is so the Buffer pool knows to do
             // nothing
             // with it when it is removed
-            pool.addOrShift(new Buffer((-4096) * (i + 1), null));
+            pool.addOrPromote(new Buffer((-4096) * (i + 1), null));
         }
     }
 
@@ -44,14 +44,9 @@ public class BufferPool
         if (foundBuffer == null)
         {
             foundBuffer = new Buffer(recordPos, searchFile);
-            System.out.println("just created a new buffer " + recordPos
-                    + " " + searchFile);
-            Buffer bufferToFlush = pool.addOrShift(foundBuffer);
+            Buffer bufferToFlush = pool.addOrPromote(foundBuffer);
             if (bufferToFlush != null)
-            {
-                System.out.println("tried");
                 bufferToFlush.flush();
-            }
         }
         return foundBuffer;
     }
