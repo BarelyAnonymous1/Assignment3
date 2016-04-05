@@ -44,6 +44,7 @@ public class BufferPool
         if (foundBuffer == null)
         {
             foundBuffer = new Buffer(searchID, searchFile);
+            System.out.println("just created a new buffer");
             Buffer bufferToFlush = pool.addOrShift(foundBuffer);
             if (bufferToFlush != null)
                 bufferToFlush.flush();

@@ -39,7 +39,7 @@ public class Buffer
         {
             try
             {
-                file.seek(position);
+                file.seek(index);
                 file.read(block);
             }
             catch (IOException e)
@@ -57,12 +57,13 @@ public class Buffer
      */
     public byte[] getBlock()
     {
+        storeBlock();
         return block;
     }
 
     public void setBlock(byte[] newPage)
     {
-        block = newPage;
+        System.arraycopy(newPage, 0, block, 0, BufferPool.RECORD_SIZE);
     }
 
     public RandomAccessFile getFile()
@@ -72,6 +73,17 @@ public class Buffer
 
     public void flush()
     {
+        if (file == null)
+            return;
+        try
+        {
+            file.seek(index * BufferPool.BUFFER_SIZE);
+            file.write(block);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         System.out.println("Just flushed: " + index);
     }
 }
