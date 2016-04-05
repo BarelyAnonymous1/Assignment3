@@ -6,9 +6,9 @@ public class Buffer
 {
 
     private byte[]           block;
-    private int              position;
     private int              index;
     private boolean          hasBlock;
+    private int              dirtyBit;
 
     private RandomAccessFile file;
 
@@ -22,8 +22,7 @@ public class Buffer
     public Buffer(int startPosition, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
-        position = startPosition;
-        index = position / BufferPool.BUFFER_SIZE;
+        index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         hasBlock = false;
     }
@@ -48,11 +47,6 @@ public class Buffer
             }
             hasBlock = true;
         }
-    }
-
-    public byte[] allocate()
-    {
-        return block;
     }
 
     /**
