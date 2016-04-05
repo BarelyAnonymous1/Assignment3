@@ -80,8 +80,11 @@ public class Buffer
             return;
         try
         {
-            file.seek(index * BufferPool.BUFFER_SIZE);
-            file.write(block);
+            if (dirtyBit)
+            {
+                file.seek(index * BufferPool.BUFFER_SIZE);
+                file.write(block);
+            }
         }
         catch (IOException e)
         {
