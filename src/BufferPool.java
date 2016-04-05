@@ -77,7 +77,7 @@ public class BufferPool
     public void writeRecord(int recordPos, byte[] record, RandomAccessFile file)
     {
         Buffer buffer = newBuffer(recordPos / BufferPool.BUFFER_SIZE, file);
-        buffer.setBlock(record, recordPos);
+        buffer.setBlock(record, recordPos / BufferPool.BUFFER_SIZE);
     }
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
