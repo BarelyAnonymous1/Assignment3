@@ -27,7 +27,7 @@ public class BufferPool
             // the ID for each filler Buffer is so the Buffer pool knows to do
             // nothing
             // with it when it is removed
-            pool.addOrPromote(new Buffer((-4096) * (i + 1), null));
+            newBuffer((-4096) * (i + 1), null);
         }
     }
 
@@ -70,14 +70,16 @@ public class BufferPool
                 foundBuffer.reset(recordPos, searchFile);
                 pool.addOrPromote(foundBuffer);
                 bufferToFlush.flush();
+                return foundBuffer;
             }
             else
             {
-                pool.addOrPromote(foundBuffer);
+                
+                return ;
             }
-
         }
         return foundBuffer;
+
     }
 
     /**
