@@ -48,7 +48,7 @@ public class Mergesort
         // BufferPool sortPool = new BufferPool(numBuffers);
         try
         {
-            int num = 4096;
+            int num = 4092;
             input = new RandomAccessFile("input.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(5);
