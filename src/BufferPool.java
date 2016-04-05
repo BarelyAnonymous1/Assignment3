@@ -2,10 +2,10 @@ import java.io.*;
 
 public class BufferPool
 {
-    public static int BUFFER_SIZE = 4096;
-    public static int RECORD_SIZE = 4;
-    private LRUQueue  pool;
-    private int       maxBuffers;
+    public static int    BUFFER_SIZE = 4096;
+    public static int    RECORD_SIZE = 4;
+    private LRUQueue     pool;
+    private int          maxBuffers;
     public static byte[] TEMP_RECORD;
 
     /**
@@ -43,7 +43,8 @@ public class BufferPool
     public Buffer newBuffer(int recordPos, RandomAccessFile searchFile)
     {
         // look for a block in the file
-        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE, searchFile);
+        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE,
+                searchFile);
         if (foundBuffer == null)
         {
             foundBuffer = new Buffer(recordPos, searchFile);
@@ -54,11 +55,12 @@ public class BufferPool
         }
         return foundBuffer;
     }
-    
+
     public Buffer newBuffer1(int recordPos, RandomAccessFile searchFile)
     {
         // look for a block in the file
-        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE, searchFile);
+        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE,
+                searchFile);
         if (foundBuffer == null)
         {
             Buffer bufferToFlush = cycle();
@@ -69,8 +71,11 @@ public class BufferPool
                 pool.addOrPromote(foundBuffer);
                 bufferToFlush.flush();
             }
-            pool.addOrPromote(foundBuffer);
-            
+            else
+            {
+                pool.addOrPromote(foundBuffer);
+            }
+
         }
         return foundBuffer;
     }
@@ -100,8 +105,7 @@ public class BufferPool
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
-        Buffer buffer = newBuffer(recordPos,
-                file);
+        Buffer buffer = newBuffer(recordPos, file);
         // recordpos % buffersize is the position within a single block
         buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
@@ -131,7 +135,7 @@ public class BufferPool
             bufferToFlush = pool.removeLRU();
         }
     }
-    
+
     private Buffer cycle()
     {
         if (pool.getSize() == maxBuffers)
