@@ -1,24 +1,27 @@
 
 public class LRUQueue
 {
-    private final int MAX_SIZE;
+    private final int         MAX_SIZE;
     private DoublyLinkedQueue list;
-    
+
     public LRUQueue(int max)
     {
         MAX_SIZE = max;
         list = new DoublyLinkedQueue();
         RuntimeStats.newCalls++;
     }
-    
+
     /**
-     * will add a buffer to the list if the ID and file name dont already exist in a buffer in the list. if the list was shifted or 
+     * will add a buffer to the list if the ID and file name dont already exist
+     * in a buffer in the list. if the list was shifted or
+     * 
      * @param newBuffer
      * @return
      */
-    public Buffer addOrPromote(Buffer newBuffer)
+    public Buffer addOrPromote2(Buffer newBuffer)
     {
-        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(), newBuffer.getFile());
+        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
+                newBuffer.getFile());
         if (foundNode == null)
         {
             list.enqueue(new DoublyLinkedNode(newBuffer));
@@ -34,23 +37,27 @@ public class LRUQueue
             return null;
         }
     }
-    
+
     /**
-     * will add a buffer to the list if the ID and file name dont already exist in a buffer in the list. if the list was shifted or 
+     * will add a buffer to the list if the ID and file name dont already exist
+     * in a buffer in the list. if the list was shifted or
+     * 
      * @param newBuffer
      * @return
      */
-    public Buffer addOrPromoteFast(Buffer newBuffer)
+    public Buffer addOrPromote1(Buffer newBuffer)
     {
-        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(), newBuffer.getFile());
+        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
+                newBuffer.getFile());
         if (foundNode == null)
         {
-            list.enqueue(new DoublyLinkedNode(newBuffer));
             if (list.getSize() > MAX_SIZE - 1)
             {
-                foundNode =  list.dequeue();
+                foundNode = list.dequeue();
                 Buffer returnBuffer = foundNode.getData();
-                return null;
+                foundNode.setData(newBuffer);
+                list.enqueue(foundNode);
+                return returnBuffer;
             }
             else
                 return null;
@@ -61,21 +68,21 @@ public class LRUQueue
             return null;
         }
     }
-    
+
     public Buffer removeLRU()
     {
         DoublyLinkedNode found = list.dequeue();
         if (found != null)
-            return found.getData(); 
+            return found.getData();
         else
             return null;
     }
-    
+
     public int getSize()
     {
         return list.getSize();
     }
-    
+
     public DoublyLinkedQueue getLRUQueue()
     {
         return list;
