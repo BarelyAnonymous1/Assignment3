@@ -110,7 +110,7 @@ public class BufferPool
                 recordPos % BufferPool.BUFFER_SIZE);
     }
 
-    public void getRecord(int recordPos, RandomAccessFile file)
+    public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
         // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         // RuntimeStats.newCalls++;
@@ -118,6 +118,7 @@ public class BufferPool
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
                 BufferPool.RECORD_SIZE);
+        return returnArray;
     }
 
     /**
