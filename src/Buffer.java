@@ -6,7 +6,6 @@ public class Buffer
 {
 
     private byte[]           block;
-    private int              position;
     private int              index;
     private boolean          hasBlock;
 
@@ -19,11 +18,10 @@ public class Buffer
      * @param pageIndex
      * @param startFile
      */
-    public Buffer(int startPosition, RandomAccessFile startFile)
+    public Buffer(int startIndex, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
-        position = startPosition;
-        index = position / BufferPool.BUFFER_SIZE;
+        index = startIndex;
         file = startFile;
         hasBlock = false;
     }
@@ -68,7 +66,8 @@ public class Buffer
 
     public void setBlock(byte[] newPage, int recordNum)
     {
-        System.out.println(recordNum);
+        System.out.println();
+        
         System.arraycopy(newPage, 0, block, recordNum, BufferPool.RECORD_SIZE);
     }
 
