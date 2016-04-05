@@ -131,7 +131,7 @@ public class BufferPool
         TEMP_RECORD[1] = found.getBlock()[recordPos % BUFFER_SIZE + 1];
         TEMP_RECORD[2] = found.getBlock()[recordPos % BUFFER_SIZE + 2];
         TEMP_RECORD[3] = found.getBlock()[recordPos % BUFFER_SIZE + 3];
-        return returnArray;
+        return TEMP_RECORD;
     }
 
     /**
