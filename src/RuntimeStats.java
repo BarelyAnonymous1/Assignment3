@@ -8,7 +8,10 @@ public class RuntimeStats
     public static int startTime;
     public static int endTime;
     
-    
+    public RuntimeStats(String filename)
+    {
+        file = filename;
+    }
     
     public String toString()
     {
