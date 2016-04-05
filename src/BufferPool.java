@@ -64,9 +64,9 @@ public class BufferPool
             Buffer bufferToFlush = cycle();
             if (bufferToFlush != null)
             {
-                Buffer buffer = pool.removeLRU();
-                buffer.reset(recordPos, searchFile);
-                pool.addOrPromote(buffer);
+                foundBuffer = pool.removeLRU();
+                foundBuffer.reset(recordPos, searchFile);
+                pool.addOrPromote(foundBuffer);
                 bufferToFlush.flush();
             }
         }
