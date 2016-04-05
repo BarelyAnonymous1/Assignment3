@@ -35,7 +35,7 @@ public class LRUQueue
     
     public Buffer removeLRU()
     {
-        return list.dequeue().getData();        
+        return list.dequeue().getData(); 
     }
     
     public int getSize()
