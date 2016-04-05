@@ -60,7 +60,8 @@ public class Mergesort
             System.out.println(output[3]);
             
             byte[] tryagain = bufpool.getRecord(8188,  temp);
-            
+            System.out.println("");
+
             System.out.println(tryagain[0]);
             System.out.println(tryagain[1]);
             System.out.println(tryagain[2]);
