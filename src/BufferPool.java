@@ -111,7 +111,7 @@ public class BufferPool
         buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
-    public byte[] getRecord1(int recordPos, RandomAccessFile file)
+    public byte[] getRecordOld(int recordPos, RandomAccessFile file)
     {
         // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         // RuntimeStats.newCalls++;
