@@ -41,6 +41,6 @@ public class MergesortTest
 	    genargs[2] = "1000";
 	    //String numBlocks = "1000"; // Test file size
 	    generator.generateFile(genargs);
-	    Mergesort.main(args);
+	    //Mergesort.main(args);
 	}
 }
