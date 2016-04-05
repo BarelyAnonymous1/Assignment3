@@ -68,6 +68,7 @@ public class Buffer
 
     public void setBlock(byte[] newPage, int recordNum)
     {
+        System.out.println(recordNum);
         System.arraycopy(newPage, 0, block, recordNum, BufferPool.RECORD_SIZE);
     }
 
