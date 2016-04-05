@@ -35,7 +35,11 @@ public class LRUQueue
     
     public Buffer removeLRU()
     {
-        return list.dequeue().getData(); 
+        DoublyLinkedNode found = list.dequeue();
+        if (found != null)
+            return found.getData(); 
+        else
+            return null;
     }
     
     public int getSize()
