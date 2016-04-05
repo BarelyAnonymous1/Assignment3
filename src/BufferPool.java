@@ -37,14 +37,14 @@ public class BufferPool
      *            the file to add the block from
      * @return the block if it is there, if not: null
      */
-    public Buffer newBuffer(int searchID, RandomAccessFile searchFile)
+    public Buffer newBuffer(int recordPos, RandomAccessFile searchFile)
     {
         // look for a block in the file
-        Buffer foundBuffer = getBuffer(searchID, searchFile);
+        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE, searchFile);
         if (foundBuffer == null)
         {
-            foundBuffer = new Buffer(searchID, searchFile);
-            System.out.println("just created a new buffer " + searchID
+            foundBuffer = new Buffer(recordPos, searchFile);
+            System.out.println("just created a new buffer " + recordPos
                     + " " + searchFile);
             Buffer bufferToFlush = pool.addOrShift(foundBuffer);
             if (bufferToFlush != null)
