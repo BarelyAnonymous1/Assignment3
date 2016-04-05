@@ -70,6 +70,8 @@ public class Buffer
     {
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
+        System.out.println(block[recordNum + 1]);
+
     }
 
     public RandomAccessFile getFile()
