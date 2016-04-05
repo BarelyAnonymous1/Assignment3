@@ -63,6 +63,7 @@ public class Buffer
 
     public void setBlock(byte[] newPage, int recordNum)
     {
+        storeBlock();
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
         hasBlock = true;

@@ -49,7 +49,7 @@ public class Mergesort
         try
         {
             int num = 4096;
-            input = new RandomAccessFile("input1.txt", "rw");
+            input = new RandomAccessFile("input11.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(40);
             byte[] output = bufpool.getRecord(num, input);
