@@ -8,6 +8,7 @@ public class RuntimeStats
     public static int     writeDisk;
     public static int     startTime;
     public static int     endTime;
+    public static int     newCalls;
 
     public RuntimeStats(String filename, int numberOfBuffers)
     {
