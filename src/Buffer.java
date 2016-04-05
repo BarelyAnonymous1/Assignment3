@@ -71,6 +71,7 @@ public class Buffer
         System.out.println();
         
         System.arraycopy(newPage, 0, block, recordNum, BufferPool.RECORD_SIZE);
+        hasBlock = true;
     }
 
     public RandomAccessFile getFile()
