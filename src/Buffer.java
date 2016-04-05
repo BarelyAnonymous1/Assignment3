@@ -26,8 +26,6 @@ public class Buffer
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         storeBlock();
-
-        // dirtyBit = false;
     }
 
     public void reset(int startPosition, RandomAccessFile startFile)
