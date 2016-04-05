@@ -118,8 +118,7 @@ public class BufferPool
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
                 BufferPool.RECORD_SIZE);
-        byte[] returnArray = TEMP_RECORD;
-        return returnArray;
+        return TEMP_RECORD;
     }
     public void tempRecord(int recordPos, RandomAccessFile file)
     {
