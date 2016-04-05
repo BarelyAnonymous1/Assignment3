@@ -51,21 +51,21 @@ public class Mergesort
             input = new RandomAccessFile("input.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(5);
-            bufpool.newBuffer(0,  temp);
+            //bufpool.newBuffer(0,  temp);
             byte[] output = bufpool.getRecord(8188, input);
-            bufpool.writeRecord(8188, output, temp);
+            //bufpool.writeRecord(8188, output, temp);
             System.out.println(output[0]);
             System.out.println(output[1]);
             System.out.println(output[2]);
             System.out.println(output[3]);
             
-            byte[] tryagain = bufpool.getRecord(8188,  temp);
-            System.out.println("");
-
-            System.out.println(tryagain[0]);
-            System.out.println(tryagain[1]);
-            System.out.println(tryagain[2]);
-            System.out.println(tryagain[3]);
+//            byte[] tryagain = bufpool.getRecord(8188,  temp);
+//            System.out.println("");
+//
+//            System.out.println(tryagain[0]);
+//            System.out.println(tryagain[1]);
+//            System.out.println(tryagain[2]);
+//            System.out.println(tryagain[3]);
             
         }
         catch (IOException e)
