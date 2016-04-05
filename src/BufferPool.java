@@ -84,7 +84,7 @@ public class BufferPool
     {
         byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         Buffer found = newBuffer(recordPos / BufferPool.BUFFER_SIZE, file);
-
+        int bufpos = recordPos % BufferPool.BUFFER_SIZE;
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
                 BufferPool.RECORD_SIZE);
