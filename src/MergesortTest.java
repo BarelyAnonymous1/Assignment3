@@ -36,11 +36,11 @@ public class MergesortTest
 	    args[0] = "input.txt";
 	    args[1] = "2"; // Buffer pool size
 	    args[2] = "statFile.txt";
-        genargs[0] = "-a";
+        genargs[0] = "-b";
 	    genargs[1] = "input.txt";
-	    genargs[2] = "40";
+	    genargs[2] = "20000";
 	    String numBlocks = "40"; // Test file size
 	    generator.generateFile(genargs);
-	    //Mergesort.main(args);
+	    Mergesort.main(args);
 	}
 }

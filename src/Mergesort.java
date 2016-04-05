@@ -108,8 +108,8 @@ public class Mergesort
     public static void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
             int left, int right)
     {
-        if (left == right){
-            return;} // List has one record
+        if (left == right)
+            return; // List has one record
         int mid = (left + right) / 2; // Select midpoint
         sort(pool, input, temp, left, mid); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
