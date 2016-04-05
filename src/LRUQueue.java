@@ -51,7 +51,7 @@ public class LRUQueue
                 newBuffer.getFile());
         if (foundNode == null)
         {
-            if (list.getSize() > MAX_SIZE - 1)
+            if (list.getSize() == MAX_SIZE)
             {
                 foundNode = list.dequeue();
                 Buffer returnBuffer = foundNode.getData();
