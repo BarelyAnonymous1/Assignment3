@@ -103,7 +103,7 @@ public class Mergesort
      * @param left left side of mergesort
      * @param right right side of mergesort
      */
-    public void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
+    private void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
             int left, int right)
     {
         if (left == right)
