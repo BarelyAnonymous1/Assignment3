@@ -48,7 +48,10 @@ public class BufferPool
                     + " " + searchFile);
             Buffer bufferToFlush = pool.addOrShift(foundBuffer);
             if (bufferToFlush != null)
+            {
+                System.out.println("tried");
                 bufferToFlush.flush();
+            }
         }
         return foundBuffer;
     }
@@ -62,7 +65,7 @@ public class BufferPool
      *            the file to search for the block in
      * @return the block if found
      */
-    public Buffer getBuffer(int searchID, RandomAccessFile searchFile)
+    private Buffer getBuffer(int searchID, RandomAccessFile searchFile)
     {
         DoublyLinkedNode existNode = pool.getLRUQueue().remove(searchID,
                 searchFile);
@@ -78,7 +81,7 @@ public class BufferPool
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
-        Buffer buffer = newBuffer(recordPos / BufferPool.BUFFER_SIZE,
+        Buffer buffer = newBuffer(recordPos,
                 file);
         buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
@@ -86,7 +89,7 @@ public class BufferPool
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
         byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-        Buffer found = newBuffer(recordPos / BufferPool.BUFFER_SIZE, file);
+        Buffer found = newBuffer(recordPos, file);
         System.arraycopy(found.getBlock(),
                 recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
                 BufferPool.RECORD_SIZE);

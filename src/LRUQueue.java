@@ -22,7 +22,9 @@ public class LRUQueue
         {
             list.enqueue(new DoublyLinkedNode(newBuffer));
             if (list.getSize() > MAX_SIZE)
+            {
                 return list.dequeue().getData();
+            }
             else
                 return null;
         }
@@ -35,7 +37,7 @@ public class LRUQueue
     
     public Buffer removeLRU()
     {
-        return list.dequeue().getData();        
+        return list.dequeue().getData(); 
     }
     
     public int getSize()

@@ -51,8 +51,12 @@ public class Mergesort
             int num = 5100;
             input = new RandomAccessFile("input.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
+<<<<<<< HEAD
             BufferPool bufpool = new BufferPool(5);
 
+=======
+            BufferPool bufpool = new BufferPool(1);
+>>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
             byte[] output = bufpool.getRecord(num, input);
             bufpool.writeRecord(num, output, temp);
             System.out.println(output[0]);
@@ -105,7 +109,11 @@ public class Mergesort
      * @param left left side of mergesort
      * @param right right side of mergesort
      */
+<<<<<<< HEAD
     public static void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
+=======
+    private void sort(BufferPool pool, RandomAccessFile input, RandomAccessFile temp,
+>>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
             int left, int right)
     {
         if (left == right){
