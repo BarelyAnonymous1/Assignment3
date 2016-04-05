@@ -11,6 +11,11 @@ public class RuntimeStats
     public RuntimeStats(String filename)
     {
         file = filename;
+        foundInBuffer = 0;
+        readDisk = 0;
+        writeDisk = 0;
+        startTime = 0;
+        endTime = 0;
     }
     
     public String toString()
