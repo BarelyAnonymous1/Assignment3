@@ -22,10 +22,10 @@ public class Buffer
     public Buffer(int startPosition, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
+        storeBlock();
         RuntimeStats.newCalls++;
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
-        hasBlock = false;
         //dirtyBit = false;
     }
     
@@ -43,18 +43,14 @@ public class Buffer
 
     public void storeBlock()
     {
-        if (!hasBlock)
+        try
         {
-            try
-            {
-                file.seek(index * BufferPool.BUFFER_SIZE);
-                file.read(block);
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            hasBlock = true;
+            file.seek(index * BufferPool.BUFFER_SIZE);
+            file.read(block);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
