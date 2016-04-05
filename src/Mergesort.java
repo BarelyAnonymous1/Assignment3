@@ -51,8 +51,8 @@ public class Mergesort
             input = new RandomAccessFile("input1.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(10);
-//            byte [] output = bufpool.getRecord(0,  input);
-//            System.out.println(output[1]);
+            byte [] output = bufpool.getRecord(0,  input);
+            System.out.println(output[1]);
             bufpool.tempRecord(0,  input);
             System.out.println(BufferPool.TEMP_RECORD[1]);
 //            sort(bufpool, input, temp, 0, ((int)input.length() - 4)/4);
