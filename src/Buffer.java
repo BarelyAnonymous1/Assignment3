@@ -84,6 +84,9 @@ public class Buffer
         dirtyBit = true;
         block[recordNum] = newPage[0];
         block[recordNum + 1] = newPage[1];
+        block[recordNum + 2] = newPage[2];
+        block[recordNum + 3] = newPage[3];
+
     }
 
     public RandomAccessFile getFile()
