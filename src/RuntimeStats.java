@@ -6,9 +6,10 @@ public class RuntimeStats
     public static int     foundInBuffer;
     public static int     readDisk;
     public static int     writeDisk;
-    public static long     startTime;
-    public static long     endTime;
+    public static long    startTime;
+    public static long    endTime;
     public static int     newCalls;
+    public static int     numReset;
 
     public RuntimeStats(String filename, int numberOfBuffers)
     {
