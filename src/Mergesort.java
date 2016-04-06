@@ -108,7 +108,7 @@ public class Mergesort
         int mid = (left + right) / 2; // Select midpoint
         sort(pool, input, temp, left, mid); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
-        for (int i = left; i <= right/ 4; i++) // Copy subarray to temp
+        for (int i = left; i <= right; i++) // Copy subarray to temp
             pool.writeRecord(i*4, pool.getRecord(i*4, input), temp);
         // Do the merge operation back to A
         int i1 = left;
