@@ -68,7 +68,7 @@ public class BufferPool
             {
                 foundBuffer = pool.removeLRU();
                 foundBuffer.reset(recordPos, searchFile);
-                pool.addOrPromote(foundBuffer);
+                pool.getLRUQueue().setLRUBuffer(foundBuffer);
                 bufferToFlush.flush();
                 return foundBuffer;
             }
