@@ -55,8 +55,10 @@ public class Buffer
                             - (index * BufferPool.BUFFER_SIZE));
                 }
                 else
+                {
                     file.read(block);
-                RuntimeStats.readDisk++;
+                    RuntimeStats.readDisk+=4096;
+                }
             }
         }
         catch (IOException e)
