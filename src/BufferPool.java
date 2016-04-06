@@ -53,9 +53,8 @@ public class BufferPool
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
-        Buffer buffer = allocateBuffer(recordPos, file);
         // recordpos % buffersize is the position within a single block
-        buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
+        allocateBuffer(recordPos, file).setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
