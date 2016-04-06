@@ -50,6 +50,7 @@ public class LRUQueue
                         (new Buffer(recordPos, searchFile))));
                 RuntimeStats.newCalls++;
                 RuntimeStats.newCalls++;
+                System.out.println("Ran again");
                 return null;
             }
             else
