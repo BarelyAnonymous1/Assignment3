@@ -53,6 +53,13 @@ public class BufferPool
         }
         return foundBuffer;
     }
+    
+    public Buffer allocateBuffer(int recordPos, RandomAccessFile searchFile)
+    {
+        pool.makeMostRecent(recordPos, searchFile).flush();
+        pool.getMRU().reset(recordPos, searchFile);
+        return pool.getMRU();
+    }
 
     /**
      * Looks for a block in the file
