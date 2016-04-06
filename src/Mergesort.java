@@ -55,9 +55,13 @@ public class Mergesort
 //            System.out.println(output[1]);
 //            bufpool.tempRecord(0,  input);
 //            System.out.println(BufferPool.TEMP_RECORD[1]);
+            RuntimeStats.startTime = System.currentTimeMillis();
             sort(bufpool, input, temp, 0, ((int)input.length() - 4)/4);
             bufpool.flushPool();
+            RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);
+            long total = RuntimeStats.endTime - RuntimeStats.startTime;
+            System.out.println("Time: " + total);
         }
         catch (IOException e)
         {
