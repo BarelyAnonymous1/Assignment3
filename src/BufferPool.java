@@ -56,7 +56,9 @@ public class BufferPool
     
     public Buffer allocateBuffer(int recordPos, RandomAccessFile searchFile)
     {
-        pool.makeMostRecent(recordPos, searchFile).flush();
+        Buffer toFlush = pool.makeMostRecent(recordPos, searchFile);
+        if (toFlush != null)
+            toFlush.flush();
         pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
     }
