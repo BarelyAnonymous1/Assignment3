@@ -67,11 +67,8 @@ public class BufferPool
             if (bufferToFlush != null)
             {
                 bufferToFlush.flush();
-                DoublyLinkedNode MRU = pool.removeLRU();
                 foundBuffer = bufferToFlush;
                 foundBuffer.reset(recordPos, searchFile);
-                MRU.setData(foundBuffer);
-                pool.getLRUQueue().enqueue(MRU);
 
                 return foundBuffer;
             }
@@ -85,7 +82,6 @@ public class BufferPool
         return foundBuffer;
 
     }
-
 
     /**
      * Looks for a block in the file
@@ -145,11 +141,11 @@ public class BufferPool
      */
     public void flushPool()
     {
-        Buffer bufferToFlush = pool.removeLRU().getData();
+        Buffer bufferToFlush = pool.removeLRU();
         while (bufferToFlush != null)
         {
             bufferToFlush.flush();
-            bufferToFlush = pool.removeLRU().getData();
+            bufferToFlush = pool.removeLRU();
         }
     }
 
