@@ -100,8 +100,8 @@ public class Buffer
             if (dirtyBit)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                file.write(block, 0, size);
-                RuntimeStats.writeDisk+=size;
+                file.write(block);
+                RuntimeStats.writeDisk+=4096;
             }
         }
         catch (IOException e)
