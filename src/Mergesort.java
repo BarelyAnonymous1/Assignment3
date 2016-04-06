@@ -62,6 +62,8 @@ public class Mergesort
             System.out.println(RuntimeStats.newCalls);
             double total = (RuntimeStats.endTime - RuntimeStats.startTime)/1000.0;
             System.out.println("Time: " + total);
+            System.out.println("Writes: " + RuntimeStats.writeDisk);
+            System.out.println("Reads: " + RuntimeStats.readDisk);
         }
         catch (IOException e)
         {
