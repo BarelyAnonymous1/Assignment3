@@ -60,9 +60,8 @@ public class BufferPool
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-
-        Buffer found = allocateBuffer(recordPos, file);
-        return Arrays.copyOfRange(found.getBlock(),
+        return Arrays.copyOfRange(
+                allocateBuffer(recordPos, file).getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
 
