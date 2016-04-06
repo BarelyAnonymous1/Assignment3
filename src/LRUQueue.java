@@ -49,6 +49,7 @@ public class LRUQueue
                 list.enqueue(new DoublyLinkedNode(
                         (new Buffer(recordPos, searchFile))));
                 RuntimeStats.newCalls++;
+                RuntimeStats.newCalls++;
                 return null;
             }
             else
