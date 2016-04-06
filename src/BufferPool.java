@@ -3,10 +3,10 @@ import java.util.Arrays;
 
 public class BufferPool
 {
-    public static int     BUFFER_SIZE = 4096;
-    public static int     RECORD_SIZE = 4;
-    private LRUQueue      pool;
-    private int           maxBuffers;
+    public static int BUFFER_SIZE = 4096;
+    public static int RECORD_SIZE = 4;
+    private LRUQueue  pool;
+    private int       maxBuffers;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -42,10 +42,11 @@ public class BufferPool
         Buffer toFlush = pool.makeMostRecent(recordPos, searchFile);
         if (toFlush != null)
             toFlush.flush();
-        pool.getMRU().reset(recordPos, searchFile);
+        if (pool.getMRU().getFile() != searchFile
+                || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
+            pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
     }
-
 
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
