@@ -25,7 +25,7 @@ public class LRUQueue
      * @param newBuffer
      * @return
      */
-    public void cycle(int record, RandomAccessFile file)
+    public Buffer cycle(int record, RandomAccessFile file)
     {
         DoublyLinkedNode foundNode = list.remove(record, file);
         if (foundNode == null)
@@ -42,11 +42,13 @@ public class LRUQueue
                 lruBuffer.flush();
                 lruNode.getData().reset(record, file);
                 list.enqueue(lruNode);
+                return lruNode.getData();
             }
         }
         else
         {
             list.enqueue(foundNode);
+            return foundNode.getData();
         }
     }
 
