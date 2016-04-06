@@ -44,7 +44,7 @@ public class BufferPool
         Buffer toFlush = pool.makeMostRecent(recordPos, searchFile);
         if (toFlush != null)
             toFlush.flush();
-        if (pool.getMRU().getFile() != searchFile
+        if (searchFile != null && pool.getMRU().getFile().toString() != searchFile.toString()
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
             pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
