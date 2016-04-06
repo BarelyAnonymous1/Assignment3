@@ -1,4 +1,4 @@
-
+import java.io.*;
 public class LRUQueue
 {
     private final int         MAX_SIZE;
@@ -30,6 +30,35 @@ public class LRUQueue
                 return list.dequeue().getData();
             else
                 return null;
+        }
+        else
+        {
+            list.enqueue(foundNode);
+            return null;
+        }
+    }
+
+    public Buffer makeMostRecent(int recordPos,
+            RandomAccessFile searchFile)
+    {
+        DoublyLinkedNode foundNode = list.remove(recordPos, searchFile);
+        if (foundNode == null)
+        {
+            if (list.getSize() < MAX_SIZE)
+            {
+                list.enqueue(new DoublyLinkedNode(
+                        (new Buffer(recordPos, searchFile))));
+                RuntimeStats.newCalls++;
+                return null;
+            }
+            else
+            {
+                DoublyLinkedNode lruNode = list.dequeue();
+                Buffer lruBuffer = lruNode.getData();
+                lruNode.getData().reset(record, file);
+                list.enqueue(lruNode);
+                return lruBuffer;
+            }
         }
         else
         {
