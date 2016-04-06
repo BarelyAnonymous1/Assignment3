@@ -123,15 +123,4 @@ public class BufferPool
             bufferToFlush = pool.removeLRU();
         }
     }
-
-    /**
-     * getter for the max size
-     * 
-     * @return the maximum number of buffers
-     */
-    public int getMaxSize()
-    {
-        return maxBuffers;
-    }
-
 }
