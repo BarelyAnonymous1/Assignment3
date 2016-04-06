@@ -62,15 +62,9 @@ public class BufferPool
     {
 
         Buffer found = allocateBuffer(recordPos, file);
-//        return Arrays.copyOfRange(found.getBlock(),
-//                recordPos % BUFFER_SIZE,
-//                recordPos % BUFFER_SIZE + RECORD_SIZE);
-        TEMP_REC[0] = found.getBlock()[recordPos % BUFFER_SIZE];
-        TEMP_REC[1] = found.getBlock()[recordPos % BUFFER_SIZE + 1];
-        TEMP_REC[2] = found.getBlock()[recordPos % BUFFER_SIZE + 2];
-        TEMP_REC[3] = found.getBlock()[recordPos % BUFFER_SIZE + 3];
-        return TEMP_REC;
-
+        return Arrays.copyOfRange(found.getBlock(),
+                recordPos % BUFFER_SIZE,
+                recordPos % BUFFER_SIZE + RECORD_SIZE);
     }
 
     /**
