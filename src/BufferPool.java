@@ -115,11 +115,11 @@ public class BufferPool
 //        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
 //        RuntimeStats.newCalls++;
         Buffer found = allocateBuffer(recordPos, file);
-//        return Arrays.copyOfRange(found.getBlock(),
-//                recordPos % BUFFER_SIZE,
-//                recordPos % BUFFER_SIZE + RECORD_SIZE);
-        System.arraycopy(found.getBlock(), recordPos % 4096, TEMP_RECORD, 0, 4);
-        return TEMP_RECORD;
+        return Arrays.copyOfRange(found.getBlock(),
+                recordPos % BUFFER_SIZE,
+                recordPos % BUFFER_SIZE + RECORD_SIZE);
+//        System.arraycopy(found.getBlock(), recordPos % 4096, TEMP_RECORD, 0, 4);
+//        return TEMP_RECORD;
     }
 
     /**
