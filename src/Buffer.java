@@ -31,6 +31,7 @@ public class Buffer
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         dirtyBit = false;
+        RuntimeStats.numReset++;
         storeBlock();
     }
 
