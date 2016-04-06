@@ -117,6 +117,7 @@ public class BufferPool
 //                recordPos % BUFFER_SIZE,
 //                recordPos % BUFFER_SIZE + RECORD_SIZE);
         System.arraycopy(found.getBlock(), recordPos % 4096, returnArray, 0, 4);
+        return returnArray;
     }
 
     /**
