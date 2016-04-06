@@ -48,6 +48,7 @@ public class BufferPool
         return pool.getMRU();
     }
 
+
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
@@ -58,8 +59,8 @@ public class BufferPool
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-        RuntimeStats.newCalls++;
+        // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+        // RuntimeStats.newCalls++;
         Buffer found = allocateBuffer(recordPos, file);
         return Arrays.copyOfRange(found.getBlock(),
                 recordPos % BUFFER_SIZE,
