@@ -91,7 +91,7 @@ public class BufferPool
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
-        Buffer buffer = allocateBuffer(recordPos, file);
+        Buffer buffer = newBuffer(recordPos, file);
         // recordpos % buffersize is the position within a single block
         buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
@@ -112,7 +112,7 @@ public class BufferPool
     {
         // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         // RuntimeStats.newCalls++;
-        Buffer found = allocateBuffer(recordPos, file);
+        Buffer found = newBuffer(recordPos, file);
         return Arrays.copyOfRange(found.getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
