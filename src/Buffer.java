@@ -1,13 +1,10 @@
-import java.util.Arrays;
 import java.io.*;
-import java.io.File;
 
 public class Buffer
 {
 
     private byte[]           block;
     private int              index;
-    private boolean          hasBlock;
     private boolean          dirtyBit;
 
     private RandomAccessFile file;
@@ -86,11 +83,11 @@ public class Buffer
             return;
         try
         {
-//            if (dirtyBit)
-//            {
+            if (dirtyBit)
+            {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.write(block);
-//            }
+            }
         }
         catch (IOException e)
         {
