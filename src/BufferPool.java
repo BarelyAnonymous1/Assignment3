@@ -7,6 +7,7 @@ public class BufferPool
     public static int RECORD_SIZE = 4;
     private LRUQueue  pool;
     private int       maxBuffers;
+    public static byte[] TEMP_REC;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -59,15 +60,11 @@ public class BufferPool
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-        // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-        // RuntimeStats.newCalls++;
+
         Buffer found = allocateBuffer(recordPos, file);
         return Arrays.copyOfRange(found.getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
-        // System.arraycopy(found.getBlock(), recordPos % 4096, TEMP_RECORD, 0,
-        // 4);
-        // return TEMP_RECORD;
     }
 
     /**
