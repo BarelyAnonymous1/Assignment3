@@ -64,7 +64,6 @@ public class LRUQueue
         {
             list.enqueue(foundNode);
             RuntimeStats.foundInBuffer++;
-            return null;
         }
     }
 
