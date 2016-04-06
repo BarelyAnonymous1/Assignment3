@@ -103,22 +103,23 @@ public class BufferPool
         // byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
         // RuntimeStats.newCalls++;
         Buffer found = newBuffer(recordPos, file);
+        byte[] returnArray = new byte[RECORD_SIZE];
         System.arraycopy(found.getBlock(),
-                recordPos % BufferPool.BUFFER_SIZE, TEMP_RECORD, 0,
+                recordPos % BufferPool.BUFFER_SIZE, returnArray, 0,
                 BufferPool.RECORD_SIZE);
-        return TEMP_RECORD;
+        return returnArray;
     }
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-        RuntimeStats.newCalls++;
+//        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+//        RuntimeStats.newCalls++;
         Buffer found = allocateBuffer(recordPos, file);
 //        return Arrays.copyOfRange(found.getBlock(),
 //                recordPos % BUFFER_SIZE,
 //                recordPos % BUFFER_SIZE + RECORD_SIZE);
-        System.arraycopy(found.getBlock(), recordPos % 4096, returnArray, 0, 4);
-        return returnArray;
+        System.arraycopy(found.getBlock(), recordPos % 4096, TEMP_RECORD, 0, 4);
+        return TEMP_RECORD;
     }
 
     /**
