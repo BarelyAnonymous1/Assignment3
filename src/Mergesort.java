@@ -64,6 +64,7 @@ public class Mergesort
             System.out.println("Time: " + total);
             System.out.println("Writes: " + RuntimeStats.writeDisk);
             System.out.println("Reads: " + RuntimeStats.readDisk);
+            System.out.println("Cache hits: " + RuntimeStats.foundInBuffer);
         }
         catch (IOException e)
         {
