@@ -60,7 +60,7 @@ public class Mergesort
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);
-            long total = (RuntimeStats.endTime - RuntimeStats.startTime)/1000;
+            double total = (RuntimeStats.endTime - RuntimeStats.startTime)/1000.0;
             System.out.println("Time: " + total);
         }
         catch (IOException e)
