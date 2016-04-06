@@ -6,6 +6,7 @@ public class Buffer
     private byte[]           block;
     private int              index;
     private boolean          dirtyBit;
+    private int size;
 
     private RandomAccessFile file;
 
@@ -47,7 +48,14 @@ public class Buffer
             if (file != null)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                file.read(block);
+                if ((index + 1)
+                        * BufferPool.BUFFER_SIZE > Mergesort.FILE_SIZE)
+                {
+                    file.read(block, 0, Mergesort.FILE_SIZE
+                            - (index * BufferPool.BUFFER_SIZE));
+                }
+                else
+                    file.read(block);
                 RuntimeStats.readDisk++;
             }
         }
