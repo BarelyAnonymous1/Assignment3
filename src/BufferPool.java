@@ -3,10 +3,10 @@ import java.util.Arrays;
 
 public class BufferPool
 {
-    public static int BUFFER_SIZE = 4096;
-    public static int RECORD_SIZE = 4;
-    private LRUQueue  pool;
-    private int       maxBuffers;
+    public static int    BUFFER_SIZE = 4096;
+    public static int    RECORD_SIZE = 4;
+    private LRUQueue     pool;
+    private int          maxBuffers;
     public static byte[] TEMP_REC;
 
     /**
@@ -30,7 +30,6 @@ public class BufferPool
         }
     }
 
-    
     /**
      * returns the buffer that is relevant for the given record
      * 
@@ -65,6 +64,11 @@ public class BufferPool
         return Arrays.copyOfRange(found.getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
+        TEMP_REC[0] = found.getBlock()[recordPos % BUFFER_SIZE];
+        TEMP_REC[1] = found.getBlock()[recordPos % BUFFER_SIZE + 1];
+        TEMP_REC[2] = found.getBlock()[recordPos % BUFFER_SIZE + 2];
+        TEMP_REC[3] = found.getBlock()[recordPos % BUFFER_SIZE + 3];
+
     }
 
     /**
