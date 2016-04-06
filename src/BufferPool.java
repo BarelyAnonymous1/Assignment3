@@ -40,22 +40,6 @@ public class BufferPool
      *            the file to add the block from
      * @return the block if it is there, if not: null
      */
-    public Buffer newBuffer(int recordPos, RandomAccessFile searchFile)
-    {
-        // look for a block in the file
-        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE,
-                searchFile);
-        if (foundBuffer == null)
-        {
-            foundBuffer = new Buffer(recordPos, searchFile);
-            RuntimeStats.newCalls++;
-            Buffer bufferToFlush = pool.addOrPromote(foundBuffer);
-            if (bufferToFlush != null)
-                bufferToFlush.flush();
-        }
-        return foundBuffer;
-    }
-
     public Buffer allocateBuffer(int recordPos,
             RandomAccessFile searchFile)
     {
