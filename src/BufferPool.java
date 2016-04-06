@@ -3,11 +3,11 @@ import java.util.Arrays;
 
 public class BufferPool
 {
-    public static int BUFFER_SIZE = 4096;
-    public static int RECORD_SIZE = 4;
+    public static int     BUFFER_SIZE = 4096;
+    public static int     RECORD_SIZE = 4;
     private static byte[] TEMP_RECORD;
-    private LRUQueue  pool;
-    private int       maxBuffers;
+    private LRUQueue      pool;
+    private int           maxBuffers;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -32,13 +32,11 @@ public class BufferPool
     }
 
     /**
-     * adds a new block to the bufferPool from the file
+     * returns the buffer that is relevant for the given record
      * 
-     * @param searchID
-     *            the block to be added
+     * @param recordPos
      * @param searchFile
-     *            the file to add the block from
-     * @return the block if it is there, if not: null
+     * @return
      */
     public Buffer allocateBuffer(int recordPos,
             RandomAccessFile searchFile)
@@ -46,32 +44,8 @@ public class BufferPool
         Buffer toFlush = pool.makeMostRecent(recordPos, searchFile);
         if (toFlush != null)
             toFlush.flush();
-        if (pool.getMRU().getID() != recordPos / BUFFER_SIZE
-                || pool.getMRU().getFile() != searchFile)
-            pool.getMRU().reset(recordPos,  searchFile);
+        pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
-    }
-
-    /**
-     * Looks for a block in the file
-     * 
-     * @param searchID
-     *            the index of the block to be searched for
-     * @param searchFile
-     *            the file to search for the block in
-     * @return the block if found
-     */
-    private Buffer getBuffer(int searchID, RandomAccessFile searchFile)
-    {
-        DoublyLinkedNode existNode = pool.getLRUQueue().remove(searchID,
-                searchFile);
-        if (existNode != null)
-        {
-            pool.getLRUQueue().enqueue(existNode);
-            return existNode.getData();
-        }
-        else
-            return null;
     }
 
     public void writeRecord(int recordPos, byte[] record,
@@ -84,14 +58,15 @@ public class BufferPool
 
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-//        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
-//        RuntimeStats.newCalls++;
+        byte[] returnArray = new byte[BufferPool.RECORD_SIZE];
+        RuntimeStats.newCalls++;
         Buffer found = allocateBuffer(recordPos, file);
-        return Arrays.copyOfRange(found.getBlock(),
-                recordPos % BUFFER_SIZE,
-                recordPos % BUFFER_SIZE + RECORD_SIZE);
-//        System.arraycopy(found.getBlock(), recordPos % 4096, TEMP_RECORD, 0, 4);
-//        return TEMP_RECORD;
+//        return Arrays.copyOfRange(found.getBlock(),
+//                recordPos % BUFFER_SIZE,
+//                recordPos % BUFFER_SIZE + RECORD_SIZE);
+        System.arraycopy(found.getBlock(), recordPos % 4096, returnArray, 0,
+         4);
+         return returnArray;
     }
 
     /**
