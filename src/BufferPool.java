@@ -56,33 +56,6 @@ public class BufferPool
         return foundBuffer;
     }
 
-    public Buffer newBuffer2(int recordPos, RandomAccessFile searchFile)
-    {
-        // look for a block in the file
-        Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE,
-                searchFile);
-        if (foundBuffer == null)
-        {
-            Buffer bufferToFlush = cycle();
-            if (bufferToFlush != null)
-            {
-                bufferToFlush.flush();
-                foundBuffer = bufferToFlush;
-                foundBuffer.reset(recordPos, searchFile);
-
-                return foundBuffer;
-            }
-            else
-            {
-                pool.addOrPromote(foundBuffer);
-                return foundBuffer;
-
-            }
-        }
-        return foundBuffer;
-
-    }
-
     /**
      * Looks for a block in the file
      * 
