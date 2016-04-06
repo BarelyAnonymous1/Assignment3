@@ -25,10 +25,10 @@ public class LRUQueue
      * @param newBuffer
      * @return
      */
-    public Buffer addOrPromote(Buffer newBuffer)
+    public Buffer addOrPromote(int record,  RandomAccessFile file)
     {
-        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
-                newBuffer.getFile());
+        DoublyLinkedNode foundNode = list.remove(record,
+                file);
         if (foundNode == null)
         {
             if (list.getSize() < MAX_SIZE)
