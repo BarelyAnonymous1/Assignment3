@@ -1,4 +1,5 @@
 import java.io.*;
+
 public class LRUQueue
 {
     private final int         MAX_SIZE;
@@ -41,7 +42,8 @@ public class LRUQueue
     public Buffer makeMostRecent(int recordPos,
             RandomAccessFile searchFile)
     {
-        DoublyLinkedNode foundNode = list.remove(recordPos, searchFile);
+        DoublyLinkedNode foundNode = list
+                .remove(recordPos / BufferPool.BUFFER_SIZE, searchFile);
         if (foundNode == null)
         {
             if (list.getSize() < MAX_SIZE)
@@ -85,7 +87,7 @@ public class LRUQueue
     {
         return list;
     }
-    
+
     public Buffer getMRU()
     {
         return list.getHead().getNext().getData();
