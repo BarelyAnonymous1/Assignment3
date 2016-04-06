@@ -101,7 +101,7 @@ public class Buffer
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.write(block);
-                RuntimeStats.writeDisk+=4096;
+                RuntimeStats.writeDisk+=4096; //75411456
             }
         }
         catch (IOException e)
