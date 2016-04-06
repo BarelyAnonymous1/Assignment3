@@ -1,4 +1,3 @@
-import java.io.*;
 
 public class LRUQueue
 {
@@ -10,48 +9,6 @@ public class LRUQueue
         MAX_SIZE = max;
         list = new DoublyLinkedQueue();
         RuntimeStats.newCalls++;
-    }
-
-    private void addBuffer(Buffer newBuffer)
-    {
-        list.enqueue(new DoublyLinkedNode(newBuffer));
-        RuntimeStats.newCalls++;
-    }
-
-    /**
-     * will add a buffer to the list if the ID and file name dont already exist
-     * in a buffer in the list. if the list was shifted or
-     * 
-     * @param newBuffer
-     * @return
-     */
-    public Buffer cycle(int record, RandomAccessFile file)
-    {
-        DoublyLinkedNode foundNode = list.remove(record, file);
-        if (foundNode == null)
-        {
-            if (list.getSize() < MAX_SIZE)
-            {
-                Buffer buffer = new Buffer(record, file);
-                addBuffer(buffer);
-                RuntimeStats.newCalls++;
-                return buffer;
-            }
-            else
-            {
-                DoublyLinkedNode lruNode = list.dequeue();
-                Buffer lruBuffer = lruNode.getData();
-                lruBuffer.flush();
-                lruNode.getData().reset(record, file);
-                list.enqueue(lruNode);
-                return lruNode.getData();
-            }
-        }
-        else
-        {
-            list.enqueue(foundNode);
-            return foundNode.getData();
-        }
     }
 
     /**
