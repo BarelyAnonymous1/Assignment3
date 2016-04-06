@@ -25,7 +25,8 @@ public class BufferPool
             // the ID for each filler Buffer is so the Buffer pool knows to do
             // nothing
             // with it when it is removed
-            pool.makeMostRecent((-4096) * (i + 1), null);
+            pool.getLRUQueue().enqueue(new DoublyLinkedNode(
+                    new Buffer((-4096) * (i + 1), null)));
         }
     }
 
@@ -62,7 +63,7 @@ public class BufferPool
             toFlush.flush();
         if (pool.getMRU().getID() != recordPos / BUFFER_SIZE
                 || pool.getMRU().getFile() != searchFile)
-            pool.getMRU().reset(recordPos,  searchFile);
+            pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
     }
 
