@@ -86,7 +86,6 @@ public class Buffer
         block[recordNum + 1] = newPage[1];
         block[recordNum + 2] = newPage[2];
         block[recordNum + 3] = newPage[3];
-
     }
 
     public RandomAccessFile getFile()
@@ -103,8 +102,8 @@ public class Buffer
             if (dirtyBit)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                file.write(block);
-                RuntimeStats.writeDisk += 4096; // 75411456
+                file.write(block, 0, size);
+                RuntimeStats.writeDisk+=size;
             }
         }
         catch (IOException e)
