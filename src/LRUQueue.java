@@ -1,3 +1,4 @@
+import java.io.*;
 
 public class LRUQueue
 {
@@ -16,7 +17,6 @@ public class LRUQueue
         list.enqueue(new DoublyLinkedNode(newBuffer));
         RuntimeStats.newCalls++;
     }
-    
 
     /**
      * will add a buffer to the list if the ID and file name dont already exist
@@ -25,25 +25,50 @@ public class LRUQueue
      * @param newBuffer
      * @return
      */
-    public Buffer addOrPromote(int record,  RandomAccessFile file)
+    public void cycle(int record, RandomAccessFile file)
     {
-        DoublyLinkedNode foundNode = list.remove(record,
-                file);
+        DoublyLinkedNode foundNode = list.remove(record, file);
         if (foundNode == null)
         {
             if (list.getSize() < MAX_SIZE)
             {
-                addBuffer(newBuffer);
-                return null;
+                addBuffer(new Buffer(record, file));
+                RuntimeStats.newCalls++;
             }
             else
             {
                 DoublyLinkedNode lruNode = list.dequeue();
                 Buffer lruBuffer = lruNode.getData();
-                lruNode.setData(newBuffer);
+                lruBuffer.flush();
+                lruNode.getData().reset(record, file);
                 list.enqueue(lruNode);
-                return lruBuffer;
             }
+        }
+        else
+        {
+            list.enqueue(foundNode);
+        }
+    }
+
+    /**
+     * will add a buffer to the list if the ID and file name dont already exist
+     * in a buffer in the list. if the list was shifted or
+     * 
+     * @param newBuffer
+     * @return
+     */
+    public Buffer addOrPromote(Buffer newBuffer)
+    {
+        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
+                newBuffer.getFile());
+        if (foundNode == null)
+        {
+            list.enqueue(new DoublyLinkedNode(newBuffer));
+            RuntimeStats.newCalls++;
+            if (list.getSize() > MAX_SIZE)
+                return list.dequeue().getData();
+            else
+                return null;
         }
         else
         {

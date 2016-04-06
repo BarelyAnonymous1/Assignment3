@@ -27,7 +27,7 @@ public class BufferPool
             // the ID for each filler Buffer is so the Buffer pool knows to do
             // nothing
             // with it when it is removed
-            pool.addOrPromote(new Buffer((-4096) * (i + 1), null));
+            pool.addOrPromote((-4096) * (i + 1), null);
         }
     }
 
@@ -56,7 +56,7 @@ public class BufferPool
         return foundBuffer;
     }
 
-    public Buffer newBuffer(int recordPos, RandomAccessFile searchFile)
+    public Buffer newBuffer2(int recordPos, RandomAccessFile searchFile)
     {
         // look for a block in the file
         Buffer foundBuffer = getBuffer(recordPos / BufferPool.BUFFER_SIZE,
@@ -84,6 +84,11 @@ public class BufferPool
         }
         return foundBuffer;
 
+    }
+
+    public Buffer newBuffer(int recordPos, RandomAccessFile searchFile)
+    {
+        return pool.cycle(recordPos, searchFile);
     }
 
     /**
