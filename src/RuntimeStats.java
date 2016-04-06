@@ -6,8 +6,8 @@ public class RuntimeStats
     public static int     foundInBuffer;
     public static int     readDisk;
     public static int     writeDisk;
-    public static int     startTime;
-    public static int     endTime;
+    public static long     startTime;
+    public static long     endTime;
     public static int     newCalls;
 
     public RuntimeStats(String filename, int numberOfBuffers)
@@ -24,7 +24,7 @@ public class RuntimeStats
 
     public String toString()
     {
-        int total = endTime - startTime;
+        long total = endTime - startTime;
         return ("Filename: " + file + "\nNumber of Buffers: " + numBuffers
                 + "\nRecords found in Buffer: " + foundInBuffer
                 + "\nReads from Disk: " + readDisk + "\nWrites to Disk: "
