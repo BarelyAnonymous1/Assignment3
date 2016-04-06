@@ -72,6 +72,8 @@ public class DoublyLinkedQueue
             DoublyLinkedNode temp = head.getNext();
             head.setNext(temp.getNext());
             temp.getNext().setPrev(head);
+            temp.setNext(null);
+            temp.setPrev(null);
             size--;
             return temp;
         }
@@ -84,8 +86,8 @@ public class DoublyLinkedQueue
      */
     public DoublyLinkedNode remove(int blockID, RandomAccessFile file)
     {
-        DoublyLinkedNode curr = head.getNext();
-        while (curr != tail)
+        DoublyLinkedNode curr = tail.getPrev();
+        while (curr != head)
         {
             if (curr.getData().getID() == blockID
                     && curr.getData().getFile() != null && curr.getData()
@@ -93,10 +95,12 @@ public class DoublyLinkedQueue
             {
                 curr.getPrev().setNext(curr.getNext());
                 curr.getNext().setPrev(curr.getPrev());
+                curr.setPrev(null);
+                curr.setNext(null);
                 size--;
                 return curr;
             }
-            curr = curr.getNext();
+            curr = curr.getPrev();
         }
         return null;
     }
@@ -124,6 +128,11 @@ public class DoublyLinkedQueue
     public int getSize()
     {
         return size;
+    }
+    
+    public void setMRUBuffer(Buffer newBuffer)
+    {
+        head.getNext().setData(newBuffer);
     }
 
 }

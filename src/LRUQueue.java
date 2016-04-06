@@ -1,3 +1,4 @@
+import java.io.*;
 
 public class LRUQueue
 {
@@ -38,33 +39,32 @@ public class LRUQueue
         }
     }
 
-    /**
-     * will add a buffer to the list if the ID and file name dont already exist
-     * in a buffer in the list. if the list was shifted or
-     * 
-     * @param newBuffer
-     * @return
-     */
-    public Buffer addOrPromote1(Buffer newBuffer)
+    public Buffer makeMostRecent(int recordPos,
+            RandomAccessFile searchFile)
     {
-        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
-                newBuffer.getFile());
+        DoublyLinkedNode foundNode = list
+                .remove(recordPos / BufferPool.BUFFER_SIZE, searchFile);
         if (foundNode == null)
         {
-            if (list.getSize() >= MAX_SIZE)
+            if (list.getSize() < MAX_SIZE)
             {
-                foundNode = list.dequeue();
-                Buffer returnBuffer = foundNode.getData();
-                foundNode.setData(newBuffer);
-                list.enqueue(foundNode);
-                return returnBuffer;
+                list.enqueue(new DoublyLinkedNode(
+                        (new Buffer(recordPos, searchFile))));
+                RuntimeStats.newCalls++;
+                RuntimeStats.newCalls++;
+                return null;
             }
             else
-                return null;
+            {
+                DoublyLinkedNode lruNode = list.dequeue();
+                list.enqueue(lruNode);
+                return lruNode.getData();
+            }
         }
         else
         {
             list.enqueue(foundNode);
+            RuntimeStats.foundInBuffer++;
             return null;
         }
     }
@@ -86,5 +86,10 @@ public class LRUQueue
     public DoublyLinkedQueue getLRUQueue()
     {
         return list;
+    }
+
+    public Buffer getMRU()
+    {
+        return list.getTail().getPrev().getData();
     }
 }

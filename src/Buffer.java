@@ -1,13 +1,10 @@
-import java.util.Arrays;
 import java.io.*;
-import java.io.File;
 
 public class Buffer
 {
 
     private byte[]           block;
     private int              index;
-    private boolean          hasBlock;
     private boolean          dirtyBit;
 
     private RandomAccessFile file;
@@ -25,8 +22,16 @@ public class Buffer
         RuntimeStats.newCalls++;
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
-        hasBlock = false;
-        //dirtyBit = false;
+        dirtyBit = false;
+        storeBlock();
+    }
+
+    public void reset(int startPosition, RandomAccessFile startFile)
+    {
+        index = startPosition / BufferPool.BUFFER_SIZE;
+        file = startFile;
+        dirtyBit = false;
+        storeBlock();
     }
 
     public int getID()
@@ -36,18 +41,18 @@ public class Buffer
 
     public void storeBlock()
     {
-        if (!hasBlock)
+        try
         {
-            try
+            if (file != null)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.read(block);
+                RuntimeStats.readDisk++;
             }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            hasBlock = true;
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -58,17 +63,14 @@ public class Buffer
      */
     public byte[] getBlock()
     {
-        storeBlock();
         return block;
     }
 
     public void setBlock(byte[] newPage, int recordNum)
     {
-        storeBlock();
+        dirtyBit = true;
         System.arraycopy(newPage, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
-        hasBlock = true;
-        //dirtyBit = true;
     }
 
     public RandomAccessFile getFile()
@@ -82,11 +84,12 @@ public class Buffer
             return;
         try
         {
-            //if (dirtyBit)
-            //{
+            if (dirtyBit)
+            {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.write(block);
-            //}
+                RuntimeStats.writeDisk++;
+            }
         }
         catch (IOException e)
         {

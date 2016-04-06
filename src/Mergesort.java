@@ -50,11 +50,21 @@ public class Mergesort
         {
             input = new RandomAccessFile("input1.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
-            BufferPool bufpool = new BufferPool(10);
-            
+            BufferPool bufpool = new BufferPool(15);
+//            byte [] output = bufpool.getRecord(0,  input);
+//            System.out.println(output[1]);
+//            bufpool.tempRecord(0,  input);
+//            System.out.println(BufferPool.TEMP_RECORD[1]);
+            RuntimeStats.startTime = System.currentTimeMillis();
             sort(bufpool, input, temp, 0, ((int)input.length() - 4)/4);
             bufpool.flushPool();
+            RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);
+            double total = (RuntimeStats.endTime - RuntimeStats.startTime)/1000.0;
+            System.out.println("Time: " + total);
+            System.out.println("Writes: " + RuntimeStats.writeDisk);
+            System.out.println("Reads: " + RuntimeStats.readDisk);
+            System.out.println("Cache hits: " + RuntimeStats.foundInBuffer);
         }
         catch (IOException e)
         {
@@ -132,4 +142,5 @@ public class Mergesort
         else
             return 0;
     }
+    
 }
