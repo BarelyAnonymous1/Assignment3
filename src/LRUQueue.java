@@ -11,6 +11,13 @@ public class LRUQueue
         RuntimeStats.newCalls++;
     }
 
+    private void addBuffer(Buffer newBuffer)
+    {
+        list.enqueue(new DoublyLinkedNode(newBuffer));
+        RuntimeStats.newCalls++;
+    }
+    
+
     /**
      * will add a buffer to the list if the ID and file name dont already exist
      * in a buffer in the list. if the list was shifted or
@@ -24,12 +31,19 @@ public class LRUQueue
                 newBuffer.getFile());
         if (foundNode == null)
         {
-            list.enqueue(new DoublyLinkedNode(newBuffer));
-            RuntimeStats.newCalls++;
-            if (list.getSize() > MAX_SIZE)
-                return list.dequeue().getData();
-            else
+            if (list.getSize() < MAX_SIZE)
+            {
+                addBuffer(newBuffer);
                 return null;
+            }
+            else
+            {
+                DoublyLinkedNode lruNode = list.dequeue();
+                Buffer lruBuffer = lruNode.getData();
+                lruNode.setData(newBuffer);
+                list.enqueue(lruNode);
+                return lruBuffer;
+            }
         }
         else
         {
@@ -71,11 +85,11 @@ public class LRUQueue
 
     public DoublyLinkedNode removeLRU()
     {
-//        DoublyLinkedNode found = list.dequeue();
-//        if (found != null)
-//            return found.getData();
-//        else
-//            return null;
+        // DoublyLinkedNode found = list.dequeue();
+        // if (found != null)
+        // return found.getData();
+        // else
+        // return null;
         return list.dequeue();
     }
 
