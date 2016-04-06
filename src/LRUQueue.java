@@ -57,9 +57,8 @@ public class LRUQueue
             else
             {
                 DoublyLinkedNode lruNode = list.dequeue();
-                Buffer lruBuffer = lruNode.getData();
                 list.enqueue(lruNode);
-                return lruBuffer;
+                return lruNode.getData();
             }
         }
         else
