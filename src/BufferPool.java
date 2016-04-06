@@ -27,7 +27,7 @@ public class BufferPool
             // the ID for each filler Buffer is so the Buffer pool knows to do
             // nothing
             // with it when it is removed
-            pool.addOrPromote((-4096) * (i + 1), null);
+            pool.cycle((-4096) * (i + 1), null);
         }
     }
 

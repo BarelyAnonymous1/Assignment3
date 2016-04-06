@@ -32,8 +32,10 @@ public class LRUQueue
         {
             if (list.getSize() < MAX_SIZE)
             {
-                addBuffer(new Buffer(record, file));
+                Buffer buffer = new Buffer(record, file);
+                addBuffer(buffer);
                 RuntimeStats.newCalls++;
+                return buffer;
             }
             else
             {
