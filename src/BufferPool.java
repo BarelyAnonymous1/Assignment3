@@ -66,10 +66,13 @@ public class BufferPool
             Buffer bufferToFlush = cycle();
             if (bufferToFlush != null)
             {
-                foundBuffer = pool.removeLRU();
-                foundBuffer.reset(recordPos, searchFile);
-                pool.getLRUQueue().setMRUBuffer(foundBuffer);
                 bufferToFlush.flush();
+                DoublyLinkedNode MRU = pool.removeLRU();
+                foundBuffer = bufferToFlush;
+                foundBuffer.reset(recordPos, searchFile);
+                MRU.setData(foundBuffer);
+                pool.getLRUQueue().enqueue(MRU);
+
                 return foundBuffer;
             }
             else

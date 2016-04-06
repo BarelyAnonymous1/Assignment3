@@ -69,13 +69,14 @@ public class LRUQueue
         }
     }
 
-    public Buffer removeLRU()
+    public DoublyLinkedNode removeLRU()
     {
-        DoublyLinkedNode found = list.dequeue();
-        if (found != null)
-            return found.getData();
-        else
-            return null;
+//        DoublyLinkedNode found = list.dequeue();
+//        if (found != null)
+//            return found.getData();
+//        else
+//            return null;
+        return list.dequeue();
     }
 
     public int getSize()
