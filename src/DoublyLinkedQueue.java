@@ -130,7 +130,7 @@ public class DoublyLinkedQueue
         return size;
     }
     
-    public void setLRUBuffer(Buffer newBuffer)
+    public void setMRUBuffer(Buffer newBuffer)
     {
         head.getNext().setData(newBuffer);
     }
