@@ -47,6 +47,7 @@ public class Buffer
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.read(block);
+                RuntimeStats.readDisk++;
             }
         }
         catch (IOException e)
@@ -87,6 +88,7 @@ public class Buffer
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.write(block);
+                RuntimeStats.writeDisk++;
             }
         }
         catch (IOException e)
