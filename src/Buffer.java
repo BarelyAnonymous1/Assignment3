@@ -86,11 +86,11 @@ public class Buffer
             return;
         try
         {
-            if (dirtyBit)
-            {
+//            if (dirtyBit)
+//            {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 file.write(block);
-            }
+//            }
         }
         catch (IOException e)
         {
