@@ -5,7 +5,6 @@ public class BufferPool
 {
     public static int     BUFFER_SIZE = 4096;
     public static int     RECORD_SIZE = 4;
-    private static byte[] TEMP_RECORD;
     private LRUQueue      pool;
     private int           maxBuffers;
 
@@ -21,7 +20,6 @@ public class BufferPool
     {
         maxBuffers = startMax;
         pool = new LRUQueue(startMax);
-        TEMP_RECORD = new byte[RECORD_SIZE];
         for (int i = 0; i < maxBuffers; i++)
         {
             // the ID for each filler Buffer is so the Buffer pool knows to do
