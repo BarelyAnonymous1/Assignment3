@@ -55,7 +55,6 @@ public class LRUQueue
             {
                 DoublyLinkedNode lruNode = list.dequeue();
                 Buffer lruBuffer = lruNode.getData();
-                lruNode.getData().reset(record, file);
                 list.enqueue(lruNode);
                 return lruBuffer;
             }
@@ -84,5 +83,10 @@ public class LRUQueue
     public DoublyLinkedQueue getLRUQueue()
     {
         return list;
+    }
+    
+    public Buffer getMRU()
+    {
+        return list.getHead().getNext().getData();
     }
 }
