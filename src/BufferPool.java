@@ -98,7 +98,7 @@ public class BufferPool
                 searchFile);
         if (existNode != null)
         {
-            pool.getLRUQueue().enqueue(existNode);
+//            pool.getLRUQueue().enqueue(existNode);
             return existNode.getData();
         }
         else
