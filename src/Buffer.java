@@ -2,11 +2,10 @@ import java.io.*;
 
 public class Buffer
 {
-
     private byte[]           block;
     private int              index;
     private boolean          dirtyBit;
-    private int size;
+    private int              size;
 
     private RandomAccessFile file;
 
@@ -53,12 +52,15 @@ public class Buffer
                 {
                     file.read(block, 0, Mergesort.FILE_SIZE
                             - (index * BufferPool.BUFFER_SIZE));
+                    size = (Mergesort.FILE_SIZE
+                            - (index * BufferPool.BUFFER_SIZE));
                 }
                 else
                 {
                     file.read(block);
-                    RuntimeStats.readDisk+=4096;
+                    size = BufferPool.BUFFER_SIZE;
                 }
+                RuntimeStats.readDisk++;
             }
         }
         catch (IOException e)
@@ -98,7 +100,7 @@ public class Buffer
             if (dirtyBit)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                file.write(block);
+                file.write(block, 0, size);
                 RuntimeStats.writeDisk++;
             }
         }
