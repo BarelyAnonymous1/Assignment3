@@ -79,10 +79,10 @@ public class Buffer
         return block;
     }
 
-    public void setBlock(int recordNum)
+    public void setBlock(byte[] record, int recordNum)
     {
         dirtyBit = true;
-        System.arraycopy(BufferPool.TEMP_REC, 0, block, recordNum,
+        System.arraycopy(record, 0, block, recordNum,
                 BufferPool.RECORD_SIZE);
     }
 

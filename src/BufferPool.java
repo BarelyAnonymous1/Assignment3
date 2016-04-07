@@ -8,7 +8,6 @@ public class BufferPool
     private LRUQueue     pool;
     private int          maxBuffers;
     public static byte[] TEMP_REC;
-    private Buffer allocatedBuffer;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -23,7 +22,6 @@ public class BufferPool
         maxBuffers = startMax;
         pool = new LRUQueue(startMax);
         TEMP_REC = new byte[RECORD_SIZE];
-        allocatedBuffer = null;
         for (int i = 0; i < maxBuffers; i++)
         {
             // the ID for each filler Buffer is so the Buffer pool knows to do
@@ -40,36 +38,27 @@ public class BufferPool
      * @param searchFile
      * @return
      */
-    public void allocateBuffer(int recordPos,
+    public Buffer allocateBuffer(int recordPos,
             RandomAccessFile searchFile)
     {
-        Buffer toFlush = pool.makeMostRecent(recordPos, searchFile);
-        if (toFlush != null)
-            toFlush.flush();
-        allocatedBuffer = pool.getMRU();
-        if (allocatedBuffer.getFile() != searchFile
-                || allocatedBuffer.getID() != recordPos / BUFFER_SIZE)
-            allocatedBuffer.reset(recordPos, searchFile);
-        /**pool.makeMostRecent(recordPos, searchFile);
+        pool.makeMostRecent(recordPos, searchFile);
         if (pool.getMRU().getFile() != searchFile
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
             pool.getMRU().reset(recordPos, searchFile);
-        return pool.getMRU();*/
+        return pool.getMRU();
     }
 
-    public void writeRecord(int recordPos,// byte[] record,
+    public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
-        allocateBuffer(recordPos, file);
         // recordpos % buffersize is the position within a single block
-        allocatedBuffer.setBlock(recordPos % BufferPool.BUFFER_SIZE);
-        //allocateBuffer(recordPos, file).setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
+        allocateBuffer(recordPos, file).setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
-    public void getRecord(int recordPos, RandomAccessFile file)
+    public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
-        allocateBuffer(recordPos, file);
-        TEMP_REC = Arrays.copyOfRange(allocatedBuffer.getBlock(),
+        return Arrays.copyOfRange(
+                allocateBuffer(recordPos, file).getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
 
