@@ -50,8 +50,6 @@ public class Mergesort
             return;
         }
 
-        input = new RandomAccessFile(args[0], "rw");
-        temp = new RandomAccessFile("test.txt", "rw");
         RuntimeStats stats = new RuntimeStats("input1.txt", 15);
         BufferPool pool = new BufferPool(Integer.parseInt(args[1]));
         FILE_SIZE = (int) input.length();
@@ -66,7 +64,7 @@ public class Mergesort
         
         RuntimeStats.endTime = System.currentTimeMillis();
         System.out.println(stats.toString());
-        statFile.writeBytes(stats.toString());
+        statFile.writeChars(stats.toString());
 
     }
 
