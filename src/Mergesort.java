@@ -139,7 +139,7 @@ public class Mergesort
             {
                 pool.writeRecord(curr * 4,
                         pool.getRecord(4 * (i2++), temp), input);
-//                pool.writeRecordTemp(4 * curr, input, tempRec2);
+                // pool.writeRecordTemp(4 * curr, input, tempRec2);
                 // A[curr] = temp[i2++];
             }
             else if (i2 > right) // Right sublist exhausted
@@ -155,7 +155,7 @@ public class Mergesort
             {
                 pool.writeRecord(curr * 4,
                         pool.getRecord(4 * (i1++), temp), input);
-                // pool.writeRecord(4*curr, tempRec1);
+                // pool.writeRecord(4 * curr, tempRec1);
                 // A[curr] = temp[i1++];
             }
 
