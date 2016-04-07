@@ -9,10 +9,16 @@ import java.io.*;
 public class Mergesort
 {
 
+<<<<<<< HEAD
     public static int     FILE_SIZE;
     private static byte[] tempRec1;
     private static byte[] tempRec2;
 
+=======
+    public static int FILE_SIZE;
+    public static byte[] TEMP1;
+    public static byte[] TEMP2;
+>>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
     /**
      * The entry point of the application
      * 
@@ -52,9 +58,9 @@ public class Mergesort
         // BufferPool sortPool = new BufferPool(numBuffers);
         try
         {
-            input = new RandomAccessFile("input1.txt", "rw");
+            input = new RandomAccessFile("input15.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
-            BufferPool bufpool = new BufferPool(15);
+            BufferPool bufpool = new BufferPool(5);
             // byte [] output = bufpool.getRecord(0, input);
             // System.out.println(output[1]);
             // bufpool.tempRecord(0, input);
@@ -64,6 +70,7 @@ public class Mergesort
             tempRec2 = new byte[4];
             RuntimeStats.startTime = System.currentTimeMillis();
             sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
+            //System.out.println(bufpool.toString());
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);

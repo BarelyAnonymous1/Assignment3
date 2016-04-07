@@ -76,6 +76,14 @@ public class LRUQueue
             return null;
     }
 
+    /**
+     * tostring
+     * @return string
+     */
+    public String toString()
+    {
+        return list.toString();
+    }
     public int getSize()
     {
         return list.getSize();

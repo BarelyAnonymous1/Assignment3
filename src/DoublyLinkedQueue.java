@@ -31,7 +31,6 @@ public class DoublyLinkedQueue
         RuntimeStats.newCalls++;
         tail = new DoublyLinkedNode(null);
         RuntimeStats.newCalls++;
-
         head.setNext(tail);
         tail.setPrev(head);
         size = 0;
@@ -119,7 +118,18 @@ public class DoublyLinkedQueue
     {
         return tail;
     }
-
+    public String toString()
+    {
+        String str = "";
+        DoublyLinkedNode temp = head;
+        while (temp.getNext() != null)
+        {
+            str += temp;
+            str += "\n";
+            temp = temp.getNext();
+        }
+        return str;
+    }
     /**
      * get the size of the list; size should not include duplicates
      * 

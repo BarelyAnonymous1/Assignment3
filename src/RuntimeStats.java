@@ -29,6 +29,7 @@ public class RuntimeStats
         return ("Filename: " + file + "\nNumber of Buffers: " + numBuffers
                 + "\nRecords found in Buffer: " + foundInBuffer
                 + "\nReads from Disk: " + readDisk + "\nWrites to Disk: "
-                + writeDisk + "\nTotal Time: " + total + " milliseconds");
+                + writeDisk + "\nTotal Time: " + total + " milliseconds\n"
+                + "Total Resets: " + numReset);
     }
 }
