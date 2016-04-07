@@ -31,7 +31,6 @@ public class DoublyLinkedQueue
         RuntimeStats.newCalls++;
         tail = new DoublyLinkedNode(null);
         RuntimeStats.newCalls++;
-
         head.setNext(tail);
         tail.setPrev(head);
         size = 0;
