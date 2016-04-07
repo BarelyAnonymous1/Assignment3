@@ -125,6 +125,7 @@ public class DoublyLinkedQueue
         while (temp.getNext() != null)
         {
             str += temp;
+            str += "\n";
             temp = temp.getNext();
         }
         return str;
