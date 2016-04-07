@@ -54,23 +54,27 @@ public class BufferPool
         // recordpos % buffersize is the position within a single block
         allocateBuffer(recordPos, file).setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
-
+    
     public byte[] getRecord(int recordPos, RandomAccessFile file)
     {
         return Arrays.copyOfRange(
                 allocateBuffer(recordPos, file).getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
-
     }
     
-    public byte[] getRecordTemp(int recordPos, RandomAccessFile file)
+    public void writeRecordTemp(int recordPos, byte[] record,
+            RandomAccessFile file)
     {
-        return Arrays.copyOfRange(
-                allocateBuffer(recordPos, file).getBlock(),
-                recordPos % BUFFER_SIZE,
-                recordPos % BUFFER_SIZE + RECORD_SIZE);
+        // recordpos % buffersize is the position within a single block
+        allocateBuffer(recordPos, file).setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
+    }
 
+
+    
+    public void getRecordTemp(int recordPos, byte[] record, RandomAccessFile file)
+    {
+        allocateBuffer(recordPos, file).getBlockTemp(record);
     }
 
     /**
