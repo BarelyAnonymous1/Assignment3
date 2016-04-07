@@ -3,12 +3,12 @@ import java.io.*;
 public class LRUQueue
 {
     private final int         MAX_SIZE;
-    private SinglyLinkedQueue list;
+    private DoublyLinkedQueue list;
 
     public LRUQueue(int max)
     {
         MAX_SIZE = max;
-        list = new SinglyLinkedQueue();
+        list = new DoublyLinkedQueue();
         RuntimeStats.newCalls++;
     }
 
@@ -21,11 +21,11 @@ public class LRUQueue
      */
     public Buffer addOrPromote(Buffer newBuffer)
     {
-        SinglyLinkedNode foundNode = list.remove(newBuffer.getID(),
+        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
                 newBuffer.getFile());
         if (foundNode == null)
         {
-            list.enqueue(new SinglyLinkedNode(newBuffer));
+            list.enqueue(new DoublyLinkedNode(newBuffer));
             RuntimeStats.newCalls++;
             if (list.getSize() > MAX_SIZE)
                 return list.dequeue().getData();
@@ -42,20 +42,20 @@ public class LRUQueue
     public void makeMostRecent(int recordPos,
             RandomAccessFile searchFile)
     {
-        SinglyLinkedNode foundNode = list
+        DoublyLinkedNode foundNode = list
                 .remove(recordPos / BufferPool.BUFFER_SIZE, searchFile);
         if (foundNode == null)
         {
             if (list.getSize() < MAX_SIZE)
             {
-                list.enqueue(new SinglyLinkedNode(
+                list.enqueue(new DoublyLinkedNode(
                         (new Buffer(recordPos, searchFile))));
                 RuntimeStats.newCalls++;
                 RuntimeStats.newCalls++;
             }
             else
             {
-                SinglyLinkedNode lruNode = list.dequeue();
+                DoublyLinkedNode lruNode = list.dequeue();
                 list.enqueue(lruNode);
                 lruNode.getData().flush();
             }
@@ -69,7 +69,7 @@ public class LRUQueue
 
     public Buffer removeLRU()
     {
-        SinglyLinkedNode found = list.dequeue();
+        DoublyLinkedNode found = list.dequeue();
         if (found != null)
             return found.getData();
         else
@@ -89,13 +89,13 @@ public class LRUQueue
         return list.getSize();
     }
 
-    public SinglyLinkedQueue getLRUQueue()
+    public DoublyLinkedQueue getLRUQueue()
     {
         return list;
     }
 
     public Buffer getMRU()
     {
-        return list.getEnd().getData();
+        return list.getTail().getData();
     }
 }
