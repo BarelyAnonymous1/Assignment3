@@ -84,7 +84,7 @@ public class SinglyLinkedQueue
                     && curr.getNext().getData().getFile() != null
                     && curr.getNext().getData().getFile().toString().equals(file.toString()))
             {
-                SinglyLinkedNode temp = curr.getNext().getNext();
+                SinglyLinkedNode temp = curr.getNext();
                 curr.setNext(temp.getNext());
                 temp.setNext(null);
                 return temp;
