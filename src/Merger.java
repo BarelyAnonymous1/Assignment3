@@ -9,6 +9,7 @@ public class Merger
     {
         tempRec1 = new byte[4];
         tempRec2 = new byte[4];
+        int a  = 2;
     }
 
     /**
