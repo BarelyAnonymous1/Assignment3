@@ -51,7 +51,7 @@ public class BufferPool
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
             pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
-    } //edit
+    } // edit
 
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
@@ -88,13 +88,23 @@ public class BufferPool
      * removes everything from the bufferPool starts with the least recently
      * used block
      */
-    public void flushPool()
+    public void flushPool(String statName)
     {
         Buffer bufferToFlush = pool.removeLRU();
         while (bufferToFlush != null)
         {
             bufferToFlush.flush();
             bufferToFlush = pool.removeLRU();
+        }
+        RandomAccessFile statFile;
+        try
+        {
+            statFile = new RandomAccessFile(statName, "rw");
+            statFile.writeChars(RuntimeStats.toStaticString());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 }
