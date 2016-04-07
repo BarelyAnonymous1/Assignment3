@@ -15,6 +15,8 @@ public class SinglyLinkedQueueTest extends TestCase {
     {
         Buffer buffer = new Buffer(5, null);
         Buffer buffer2 = new Buffer(10, null);
+        list.enqueue(new SinglyLinkedNode(buffer));
+        list.enqueue(new SinglyLinkedNode(buffer2));
         System.out.println(list.toString());
     }
     
