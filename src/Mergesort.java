@@ -126,7 +126,11 @@ public class Mergesort
         sort(pool, input, temp, left, mid); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
         for (int i = left; i <= right; i++) // Copy subarray to temp
-            pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
+        {
+            //pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
+            pool.getRecordTemp(4*i, tempRec1, input);
+            pool.writeRecordTemp(4*i, tempRec1, temp);
+        }
         // Do the merge operation back to A
         int i1 = left;
         int i2 = mid + 1;
