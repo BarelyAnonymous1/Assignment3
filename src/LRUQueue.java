@@ -3,12 +3,12 @@ import java.io.*;
 public class LRUQueue
 {
     private final int         MAX_SIZE;
-    private DoublyLinkedQueue list;
+    private SinglyLinkedQueue list;
 
     public LRUQueue(int max)
     {
         MAX_SIZE = max;
-        list = new DoublyLinkedQueue();
+        list = new SinglyLinkedQueue();
         RuntimeStats.newCalls++;
     }
 
@@ -21,7 +21,7 @@ public class LRUQueue
      */
     public Buffer addOrPromote(Buffer newBuffer)
     {
-        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
+        SinglyLinkedNode foundNode = list.remove(newBuffer.getID(),
                 newBuffer.getFile());
         if (foundNode == null)
         {
