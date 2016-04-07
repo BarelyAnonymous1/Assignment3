@@ -87,8 +87,11 @@ public class SinglyLinkedQueue
                 SinglyLinkedNode temp = curr.getNext().getNext();
                 curr.setNext(temp.getNext());
                 temp.setNext(null);
+                return temp;
             }
+            curr = curr.getNext();
         }
+        return null;
         /**SinglyLinkedNode curr = head;
         while (curr.getNext() != null)
         {
