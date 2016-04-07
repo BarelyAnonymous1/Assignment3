@@ -31,7 +31,7 @@ public class Mergesort
             }
             input = new RandomAccessFile(args[0], "rw");
             temp = new RandomAccessFile("temp", "rw");
-            temp.setLength(0);
+            temp.setLength(0); // empties the temp files used
             BufferPool pool = new BufferPool(Integer.parseInt(args[1]));
             Merger fileSort = new Merger();
             FILE_SIZE = (int) input.length();
