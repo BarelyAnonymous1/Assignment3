@@ -136,8 +136,8 @@ public class Mergesort
         int i2 = mid + 1;
         for (int curr = left; curr <= right; curr++)
         {
-            pool.getRecordTemp(4 * (i1 + 1), tempRec1, temp);
-            pool.getRecordTemp(4 * (i2 + 1), tempRec2, temp);
+            pool.getRecordTemp(4 * (i1), tempRec1, temp);
+            pool.getRecordTemp(4 * (i2), tempRec2, temp);
             if (i1 == mid + 1) // Left sublist exhausted
             {
                 // pool.writeRecord(curr * 4,
