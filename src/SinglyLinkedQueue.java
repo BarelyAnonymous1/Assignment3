@@ -77,7 +77,7 @@ public class SinglyLinkedQueue
      */
     public SinglyLinkedNode remove(int blockID, RandomAccessFile file)
     {
-        SinglyLinkedNode curr = head.getNext();
+        SinglyLinkedNode curr = head;
         while (curr.getNext() != null)
         {
             if (curr.getNext().getData().getID() == blockID
