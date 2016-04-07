@@ -165,7 +165,7 @@ public class Mergesort
             {
                 // pool.writeRecord(curr * 4,
                 // pool.getRecord(4 * (i2++), temp), input);
-                pool.writeRecord(4 * curr, tempRec2, input);
+                pool.writeRecordTemp(4 * curr, tempRec2, input);
                 // A[curr] = temp[i2++];
 
             }
