@@ -132,40 +132,42 @@ public class Mergesort
         int i2 = mid + 1;
         for (int curr = left; curr <= right; curr++)
         {
-            // pool.getRecordTemp(4*(i1++), tempRec1, temp);
-            // pool.getRecordTemp(4*(i2++), tempRec2, temp);
+            pool.getRecordTemp(4 * (i1++), tempRec1, temp);
+            pool.getRecordTemp(4 * (i2++), tempRec2, temp);
 
             if (i1 == mid + 1) // Left sublist exhausted
             {
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i2++), temp), input);
-                // pool.writeRecordTemp(4 * curr, tempRec2, input);
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i2++), temp), input);
+                pool.writeRecordTemp(4 * curr, tempRec2, input);
                 // A[curr] = temp[i2++];
             }
             else if (i2 > right) // Right sublist exhausted
             {
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i1++), temp), input);
-                // pool.writeRecordTemp(4 * curr, tempRec1, input);
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i1++), temp), input);
+                pool.writeRecordTemp(4 * curr, tempRec1, input);
                 // A[curr] = temp[i1++];
             }
-            // compareByteArray(tempRec1, tempRec2) <= 0
-            else if (compareByteArray(pool.getRecord(4 * i1, temp),
-                    pool.getRecord(4 * i2, temp)) <= 0) // Get smaller value
+            // compareByteArray(pool.getRecord(4 * i1, temp),
+            // pool.getRecord(4 * i2, temp)) <= 0
+
+            else if (compareByteArray(tempRec1, tempRec2) <= 0) // Get smaller
+                                                                // value
             {
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i1++), temp), input);
-                // pool.writeRecord(4 * curr, tempRec1, input);
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i1++), temp), input);
+                pool.writeRecord(4 * curr, tempRec1, input);
                 // A[curr] = temp[i1++];
             }
 
             else
             {
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i2++), temp), input);
-                // pool.writeRecord(4 * curr, tempRec2, input);
-            // A[curr] = temp[i2++];
-                
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i2++), temp), input);
+                pool.writeRecord(4 * curr, tempRec2, input);
+                // A[curr] = temp[i2++];
+
             }
         }
     }
