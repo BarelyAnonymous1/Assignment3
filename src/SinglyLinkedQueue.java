@@ -58,7 +58,7 @@ public class SinglyLinkedQueue
             return null;
         else
         {
-            SinglyLinkedNode temp = head.getNext();
+            SinglyLinkedNode temp = head;
             while (temp.getNext().getNext() != null)
             {
                 temp = temp.getNext();

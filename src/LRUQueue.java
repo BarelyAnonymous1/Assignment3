@@ -3,7 +3,7 @@ import java.io.*;
 public class LRUQueue
 {
     private final int         MAX_SIZE;
-    private SinglyLinkedList list;
+    private SinglyLinkedQueue list;
 
     public LRUQueue(int max)
     {
