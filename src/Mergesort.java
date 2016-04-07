@@ -22,35 +22,27 @@ public class Mergesort
         RandomAccessFile temp;
         try
         {
-            input = new RandomAccessFile(args[0], "rw");
-
             int numBuffers = Integer.parseInt(args[1]);
-
-
             if (numBuffers < 1)
             {
                 System.out.println(
                         "Please provide at least 1 buffer for the buffer pool");
                 return;
             }
-
+            input = new RandomAccessFile(args[0], "rw");
             temp = new RandomAccessFile("temp", "rw");
             BufferPool pool = new BufferPool(Integer.parseInt(args[1]));
             Merger fileSort = new Merger();
             FILE_SIZE = (int) input.length();
 
             RuntimeStats.startTime = System.currentTimeMillis();
-
             fileSort.sort(pool, input, temp, 0, (FILE_SIZE - 4) / 4);
             pool.flushPool(args[2]);
-
             RuntimeStats.endTime = System.currentTimeMillis();
-            System.out.println(stats.toString());
-            statFile.writeChars(stats.toString());
-            
-            statFile.close();
+
             input.close();
-            
+            temp.close();
+
         }
         catch (IOException e)
         {
