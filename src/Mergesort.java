@@ -51,7 +51,7 @@ public class Mergesort
         // BufferPool sortPool = new BufferPool(numBuffers);
         try
         {
-            input = new RandomAccessFile("input17.txt", "rw");
+            input = new RandomAccessFile("input15.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
             BufferPool bufpool = new BufferPool(5);
             // byte [] output = bufpool.getRecord(0, input);
@@ -61,6 +61,7 @@ public class Mergesort
             RuntimeStats.startTime = System.currentTimeMillis();
             FILE_SIZE = (int) input.length();
             sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
+            System.out.println(bufpool.toString());
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);

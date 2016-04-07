@@ -121,9 +121,11 @@ public class DoublyLinkedQueue
     public String toString()
     {
         String str = "";
-        while (head.getNext() != null)
+        DoublyLinkedNode temp = head;
+        while (temp.getNext() != null)
         {
-            str += head;
+            str += temp;
+            temp = temp.getNext();
         }
         return str;
     }
