@@ -41,7 +41,6 @@ public class Mergesort
             pool.flushPool(args[2]);
 
             input.close();
-            temp.setLength(0);
             temp.close();
 
         }
