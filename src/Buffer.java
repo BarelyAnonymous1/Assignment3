@@ -94,7 +94,7 @@ public class Buffer
 //                BufferPool.RECORD_SIZE);
         block[recordNum] = newPage[0];
         block[recordNum + 1] = newPage[1];
-        block[recordNum] = newPage[2];
+        block[recordNum + 2] = newPage[2];
         block[recordNum + 3] = newPage[3];
     }
 
