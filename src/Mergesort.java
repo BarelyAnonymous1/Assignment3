@@ -66,6 +66,7 @@ public class Mergesort
         
         RuntimeStats.endTime = System.currentTimeMillis();
         System.out.println(stats.toString());
+        statFile.writeBytes(stats.toString());
 
     }
 
