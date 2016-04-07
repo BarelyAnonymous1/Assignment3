@@ -9,9 +9,7 @@ import java.io.*;
 public class Mergesort
 {
 
-    public static int     FILE_SIZE;
-    private static byte[] tempRec1;
-    private static byte[] tempRec2;
+    public static int FILE_SIZE;
 
     /**
      * The entry point of the application
@@ -25,46 +23,41 @@ public class Mergesort
         try
         {
             input = new RandomAccessFile(args[0], "rw");
-        }
-        catch (IOException e)
-        {
-            System.out.println("File '" + args[0] + "' was not found");
-        }
 
-        int numBuffers = Integer.parseInt(args[1]);
-        
-        RandomAccessFile statFile;
-        try
-        {
+            int numBuffers = Integer.parseInt(args[1]);
+
+            RandomAccessFile statFile;
             statFile = new RandomAccessFile(args[2], "rw");
+            if (numBuffers < 1)
+            {
+                System.out.println(
+                        "Please provide at least 1 buffer for the buffer pool");
+                return;
+            }
+
+            RuntimeStats stats = new RuntimeStats("input1.txt", 15);
+            temp = new RandomAccessFile("temp", "rw");
+            BufferPool pool = new BufferPool(Integer.parseInt(args[1]));
+            Merger fileSort = new Merger();
+            FILE_SIZE = (int) input.length();
+
+            RuntimeStats.startTime = System.currentTimeMillis();
+
+            fileSort.sort(pool, input, temp, 0, (FILE_SIZE - 4) / 4);
+            pool.flushPool();
+
+            RuntimeStats.endTime = System.currentTimeMillis();
+            System.out.println(stats.toString());
+            statFile.writeChars(stats.toString());
+            
+            statFile.close();
+            input.close();
+            
         }
         catch (IOException e)
         {
-            System.out.println("There was an error");
+            e.printStackTrace();
         }
-
-        if (numBuffers < 1)
-        {
-            System.out.println(
-                    "Please provide at least 1 buffer for the buffer pool");
-            return;
-        }
-
-        RuntimeStats stats = new RuntimeStats("input1.txt", 15);
-        BufferPool pool = new BufferPool(Integer.parseInt(args[1]));
-        FILE_SIZE = (int) input.length();
-        
-        tempRec1 = new byte[4];
-        tempRec2 = new byte[4];
-        
-        RuntimeStats.startTime = System.currentTimeMillis();
-        
-        sort(pool, input, temp, 0, (FILE_SIZE - 4) / 4);
-        pool.flushPool();
-        
-        RuntimeStats.endTime = System.currentTimeMillis();
-        System.out.println(stats.toString());
-        statFile.writeChars(stats.toString());
 
     }
 
