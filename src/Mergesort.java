@@ -42,6 +42,7 @@ public class Mergesort
             RuntimeStats.endTime = System.currentTimeMillis();
 
             input.close();
+            temp.setLength(0);
             temp.close();
 
         }
