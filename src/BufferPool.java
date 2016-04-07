@@ -100,7 +100,7 @@ public class BufferPool
         try
         {
             statFile = new RandomAccessFile(statName, "rw");
-            statFile.writeChars(RuntimeStats.toStaticString());
+            statFile.writeUTF(RuntimeStats.toStaticString());
             statFile.close();
         }
         catch (IOException e)
