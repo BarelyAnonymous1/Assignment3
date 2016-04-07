@@ -139,14 +139,14 @@ public class Mergesort
             {
                 pool.writeRecord(curr * 4,
                         pool.getRecord(4 * (i2++), temp), input);
-                // pool.writeRecordTemp(4 * curr, input, tempRec2);
+                // pool.writeRecordTemp(4 * curr, tempRec2, input);
                 // A[curr] = temp[i2++];
             }
             else if (i2 > right) // Right sublist exhausted
             {
                 pool.writeRecord(curr * 4,
                         pool.getRecord(4 * (i1++), temp), input);
-                // pool.writeRecordTemp(4 * curr, input, tempRec1);
+                // pool.writeRecordTemp(4 * curr, tempRec1, input);
                 // A[curr] = temp[i1++];
             }
             // compareByteArray(tempRec1, tempRec2) <= 0
@@ -155,7 +155,7 @@ public class Mergesort
             {
                 pool.writeRecord(curr * 4,
                         pool.getRecord(4 * (i1++), temp), input);
-                // pool.writeRecord(4 * curr, input, tempRec1);
+                // pool.writeRecord(4 * curr, tempRec1, input);
                 // A[curr] = temp[i1++];
             }
 
@@ -163,7 +163,7 @@ public class Mergesort
             {
                 pool.writeRecord(curr * 4,
                         pool.getRecord(4 * (i2++), temp), input);
-                // pool.writeRecord(4 * curr, input, tempRec2);
+                // pool.writeRecord(4 * curr, tempRec2, input);
             // A[curr] = temp[i2++];
                 
             }
