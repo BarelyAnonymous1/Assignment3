@@ -80,6 +80,18 @@ public class SinglyLinkedQueue
         SinglyLinkedNode curr = head;
         while (curr.getNext() != null)
         {
+            if(curr.getNext().getData().getID() == blockID
+                    && curr.getNext().getData().getFile() != null
+                    && curr.getNext().getData().getFile().toString().equals(file.toString()))
+            {
+                SinglyLinkedNode temp = curr.getNext().getNext();
+                curr.setNext(temp.getNext());
+                temp.setNext(null);
+            }
+        }
+        /**SinglyLinkedNode curr = head;
+        while (curr.getNext() != null)
+        {
             if (curr.getNext().getData().getID() == blockID
                     && curr.getNext().getData().getFile() != null && curr.getNext().getData()
                             .getFile().toString().equals(file.toString()))
@@ -92,7 +104,7 @@ public class SinglyLinkedQueue
             }
             curr = curr.getNext();
         }
-        return null;
+        return null;*/
     }
 
     /**
