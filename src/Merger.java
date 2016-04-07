@@ -87,17 +87,6 @@ public class Merger
             }
         }
     }
-
-    private int compareByteArray(byte[] obj, byte[] comp)
-    {
-        if (obj[0] < comp[0] || (obj[0] == comp[0] && obj[1] < comp[1]))
-            return -1;
-        else if (obj[0] > comp[0]
-                || (obj[0] == comp[0] && obj[1] > comp[1]))
-            return 1;
-        else
-            return 0;
-    }
     
     private boolean compareByteArray2(byte[] obj, byte[] comp)
     {
