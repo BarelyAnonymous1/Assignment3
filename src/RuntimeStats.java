@@ -8,9 +8,6 @@ public class RuntimeStats
     public static int     writeDisk;
     public static long    startTime;
     public static long    endTime;
-    public static int     newCalls;
-    public static int     numReset;
-
     public RuntimeStats(String filename, int numberOfBuffers)
     {
         file = filename;
@@ -20,7 +17,6 @@ public class RuntimeStats
         writeDisk = 0;
         startTime = 0;
         endTime = 0;
-        newCalls = 0;
     }
 
     public String toString()
@@ -29,7 +25,6 @@ public class RuntimeStats
         return ("Filename: " + file + "\nNumber of Buffers: " + numBuffers
                 + "\nRecords found in Buffer: " + foundInBuffer
                 + "\nReads from Disk: " + readDisk + "\nWrites to Disk: "
-                + writeDisk + "\nTotal Time: " + total + " milliseconds\n"
-                + "Total Resets: " + numReset);
+                + writeDisk + "\nTotal Time: " + total + " milliseconds\n");
     }
 }
