@@ -100,6 +100,7 @@ public class BufferPool
         try
         {
             statFile = new RandomAccessFile(statName, "rw");
+            RuntimeStats.endTime = System.currentTimeMillis();
             statFile.writeUTF(RuntimeStats.toStaticString());
             statFile.close();
         }
