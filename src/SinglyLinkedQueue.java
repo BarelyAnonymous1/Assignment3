@@ -86,7 +86,7 @@ public class SinglyLinkedQueue
             {
                 SinglyLinkedNode temp = curr.getNext();
                 curr.setNext(curr.getNext().getNext());
-                curr.setNext(null);
+                curr.getNext().setNext(null);
                 size--;
                 return temp;
             }

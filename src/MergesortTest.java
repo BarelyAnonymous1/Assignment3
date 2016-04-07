@@ -39,7 +39,7 @@ public class MergesortTest
         genargs[0] = "-a";
 	    genargs[1] = "input15.txt";
 	    genargs[2] = "10000";
-	    //String numBlocks = "10000"; // Test file size
+	    //String numBlocks = "100"; // Test file size
 	    generator.generateFile(genargs);
 	    //Mergesort.main(args);
 	}
