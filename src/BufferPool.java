@@ -74,7 +74,7 @@ public class BufferPool
     
     public void getRecordTemp(int recordPos, byte[] record, RandomAccessFile file)
     {
-        allocateBuffer(recordPos, file).getBlockTemp(record);
+        allocateBuffer(recordPos, file).getRecord(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
     /**

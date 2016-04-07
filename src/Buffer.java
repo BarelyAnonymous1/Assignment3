@@ -79,6 +79,14 @@ public class Buffer
         return block;
     }
 
+    public void getRecord(byte[] record, int pos)
+    {
+        record[0] = block[pos];
+        record[1] = block[pos + 1];
+        record[2] = block[pos + 2];
+        record[3] = block[pos + 3];
+    }
+
     public void setBlock(byte[] newPage, int recordNum)
     {
         dirtyBit = true;
