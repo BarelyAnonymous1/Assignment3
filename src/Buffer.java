@@ -79,7 +79,6 @@ public class Buffer
         return block;
     }
 
-<<<<<<< HEAD
     public void getRecord(byte[] record, int pos)
     {
         record[0] = block[pos];
@@ -88,23 +87,17 @@ public class Buffer
         record[3] = block[pos + 3];
     }
 
-    public void setBlock(byte[] newPage, int recordNum)
-=======
-    public void setBlock(byte[] record, int recordNum)
->>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
+    public void setBlock(byte[] newPage, int recordNum)   
     {
         dirtyBit = true;
-<<<<<<< HEAD
 //        System.arraycopy(newPage, 0, block, recordNum,
 //                BufferPool.RECORD_SIZE);
         block[recordNum] = newPage[0];
         block[recordNum + 1] = newPage[1];
         block[recordNum + 2] = newPage[2];
         block[recordNum + 3] = newPage[3];
-=======
-        System.arraycopy(record, 0, block, recordNum,
-                BufferPool.RECORD_SIZE);
->>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
+//        System.arraycopy(record, 0, block, recordNum,
+//                BufferPool.RECORD_SIZE);
     }
 
     public RandomAccessFile getFile()

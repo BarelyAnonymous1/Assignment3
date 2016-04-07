@@ -9,16 +9,10 @@ import java.io.*;
 public class Mergesort
 {
 
-<<<<<<< HEAD
     public static int     FILE_SIZE;
     private static byte[] tempRec1;
     private static byte[] tempRec2;
 
-=======
-    public static int FILE_SIZE;
-    public static byte[] TEMP1;
-    public static byte[] TEMP2;
->>>>>>> branch 'master' of https://github.com/BarelyAnonymous1/Assignment3.git
     /**
      * The entry point of the application
      * 
@@ -70,7 +64,7 @@ public class Mergesort
             tempRec2 = new byte[4];
             RuntimeStats.startTime = System.currentTimeMillis();
             sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
-            //System.out.println(bufpool.toString());
+            // System.out.println(bufpool.toString());
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);
@@ -134,9 +128,9 @@ public class Mergesort
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
         for (int i = left; i <= right; i++) // Copy subarray to temp
         {
-            //pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
-            pool.getRecordTemp(4*i, tempRec1, input);
-            pool.writeRecordTemp(4*i, tempRec1, temp);
+            // pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
+            pool.getRecordTemp(4 * i, tempRec1, input);
+            pool.writeRecordTemp(4 * i, tempRec1, temp);
         }
         // Do the merge operation back to A
         int i1 = left;
