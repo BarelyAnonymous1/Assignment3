@@ -33,11 +33,11 @@ public class MergesortTest
 	    FileGenerator generator = new FileGenerator();
 	    String[] args = new String[3];
 	    String[] genargs = new String[3];
-	    args[0] = "input15.txt";
+	    args[0] = "input12.txt";
 	    args[1] = "2"; // Buffer pool size
 	    args[2] = "statFile.txt";
         genargs[0] = "-a";
-	    genargs[1] = "input15.txt";
+	    genargs[1] = "input12.txt";
 	    genargs[2] = "100";
 	    //String numBlocks = "100"; // Test file size
 	    generator.generateFile(genargs);
