@@ -52,30 +52,24 @@ public class Mergesort
         // BufferPool sortPool = new BufferPool(numBuffers);
         try
         {
-            input = new RandomAccessFile("input12a.txt", "rw");
+            input = new RandomAccessFile(args[0], "rw");
             temp = new RandomAccessFile("test.txt", "rw");
-            BufferPool bufpool = new BufferPool(5);
-            // byte [] output = bufpool.getRecord(0, input);
-            // System.out.println(output[1]);
-            // bufpool.tempRecord(0, input);
-            // System.out.println(BufferPool.TEMP_RECORD[1]);
+            BufferPool buffpool = new BufferPool(Integer.parseInt(args[1]));
             FILE_SIZE = (int) input.length();
             tempRec1 = new byte[4];
             tempRec2 = new byte[4];
+            System.out.println(input);
+            
             RuntimeStats.startTime = System.currentTimeMillis();
-            sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
-            // System.out.println(bufpool.toString());
-            bufpool.flushPool();
+            
+            sort(buffpool, input, temp, 0, (FILE_SIZE - 4) / 4);
+            buffpool.flushPool();
+            
             RuntimeStats.endTime = System.currentTimeMillis();
-            System.out.println(RuntimeStats.newCalls);
             double total = (RuntimeStats.endTime - RuntimeStats.startTime)
                     / 1000.0;
             System.out.println("Time: " + total);
-            System.out.println("Writes: " + RuntimeStats.writeDisk);
-            System.out.println("Reads: " + RuntimeStats.readDisk);
-            System.out
-                    .println("Cache hits: " + RuntimeStats.foundInBuffer);
-            System.out.println("Resets: " + RuntimeStats.numReset);
+            
         }
         catch (IOException e)
         {

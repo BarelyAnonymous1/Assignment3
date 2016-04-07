@@ -1,3 +1,5 @@
+import java.io.RandomAccessFile;
+
 import student.TestCase;
 
 /**
@@ -34,13 +36,14 @@ public class MergesortTest
 	    String[] args = new String[3];
 	    String[] genargs = new String[3];
 	    args[0] = "input12a.txt";
-	    args[1] = "2"; // Buffer pool size
+	    args[1] = "15"; // Buffer pool size
 	    args[2] = "statFile.txt";
         genargs[0] = "-a";
 	    genargs[1] = "input12a.txt";
-	    genargs[2] = "10000";
+	    genargs[2] = "1000";
 	    //String numBlocks = "100"; // Test file size
 	    generator.generateFile(genargs);
-	    //Mergesort.main(args);
+	    Mergesort.main(args);
+
 	}
 }
