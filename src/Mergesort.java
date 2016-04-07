@@ -39,7 +39,6 @@ public class Mergesort
             RuntimeStats.startTime = System.currentTimeMillis();
             fileSort.sort(pool, input, temp, 0, (FILE_SIZE - 4) / 4);
             pool.flushPool(args[2]);
-            RuntimeStats.endTime = System.currentTimeMillis();
 
             input.close();
             temp.setLength(0);
