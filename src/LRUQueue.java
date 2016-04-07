@@ -8,7 +8,7 @@ public class LRUQueue
     public LRUQueue(int max)
     {
         MAX_SIZE = max;
-        list = new SinglyLinkedQueue();
+        list = new DoublyLinkedQueue();
         RuntimeStats.newCalls++;
     }
 
