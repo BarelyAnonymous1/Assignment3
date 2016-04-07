@@ -59,10 +59,10 @@ public class Mergesort
             // System.out.println(output[1]);
             // bufpool.tempRecord(0, input);
             // System.out.println(BufferPool.TEMP_RECORD[1]);
-            RuntimeStats.startTime = System.currentTimeMillis();
             FILE_SIZE = (int) input.length();
             tempRec1 = new byte[4];
             tempRec2 = new byte[4];
+            RuntimeStats.startTime = System.currentTimeMillis();
             sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
