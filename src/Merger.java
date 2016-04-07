@@ -1,4 +1,5 @@
 import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
 
 public class Merger
 {
@@ -65,8 +66,8 @@ public class Merger
             }
             // compareByteArray(pool.getRecord(4 * i1, temp),
             // pool.getRecord(4 * i2, temp)) <= 0
-
-            else if (compareByteArray(tempRec1, tempRec2) <= 0) // Get smaller
+//            compareByteArray(tempRec1, tempRec2) <= 0
+            else if (compareByteArray2(tempRec1, tempRec2)) // Get smaller
                                                                 // value
             {
                 // pool.writeRecord(curr * 4,
@@ -96,5 +97,12 @@ public class Merger
             return 1;
         else
             return 0;
+    }
+    
+    private boolean compareByteArray2(byte[] obj, byte[] comp)
+    {
+        short objNum = ByteBuffer.wrap(obj).getShort();
+        short compNum = ByteBuffer.wrap(comp).getShort();
+        return objNum <= compNum;
     }
 }
