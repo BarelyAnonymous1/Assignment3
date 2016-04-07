@@ -82,7 +82,7 @@ public class SinglyLinkedQueue
         {
             Buffer buffer = curr.getNext().getData();
             if (buffer.getID() == blockID && buffer.getFile() != null
-                    && buffer.getFile().toString().equals(file.toString()))
+                    && buffer.getFile() == file)
             {
                 SinglyLinkedNode temp = curr.getNext();
                 curr.setNext(temp.getNext());
