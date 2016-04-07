@@ -30,6 +30,7 @@ public class Mergesort
                 return;
             }
             input = new RandomAccessFile(args[0], "rw");
+            RuntimeStats.file = args[0];
             temp = new RandomAccessFile("temp", "rw");
             temp.setLength(0); // empties the temp files used
             BufferPool pool = new BufferPool(Integer.parseInt(args[1]));
