@@ -102,7 +102,7 @@ public class BufferPool
             statFile = new RandomAccessFile(statName, "rw");
             statFile.setLength(0);
             RuntimeStats.endTime = System.currentTimeMillis();
-            statFile.write(RuntimeStats.toStaticString().getBytes());
+            statFile.writeUTF(RuntimeStats.toStaticString());
             statFile.close();
         }
         catch (IOException e)
