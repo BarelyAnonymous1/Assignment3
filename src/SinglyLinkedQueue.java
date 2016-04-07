@@ -29,12 +29,11 @@ public class SinglyLinkedQueue
     }
 
     /**
-     * adds a new node into the linked queue
-     * This node is inserted into the front of the queue
-     *     -------------
-     * ->  x
-     *     -------------
-     * @param newNode the node to be inserted
+     * adds a new node into the linked queue This node is inserted into the
+     * front of the queue ------------- -> x -------------
+     * 
+     * @param newNode
+     *            the node to be inserted
      */
     public void enqueue(SinglyLinkedNode newNode)
     {
@@ -44,11 +43,9 @@ public class SinglyLinkedQueue
     }
 
     /**
-     * pulls the last added node from the queue
-     * this node removed from the queue
-     *     -------------
-     *     x-x-x-x-x-x   x ->
-     *     -------------
+     * pulls the last added node from the queue this node removed from the queue
+     * ------------- x-x-x-x-x-x x -> -------------
+     * 
      * @return
      */
     public SinglyLinkedNode dequeue()
@@ -68,10 +65,14 @@ public class SinglyLinkedQueue
             return temp2;
         }
     }
+
     /**
      * removes from the middle of the queue and relinks the next and previous
-     * @param blockID the block of the node
-     * @param file the file to look for the block in
+     * 
+     * @param blockID
+     *            the block of the node
+     * @param file
+     *            the file to look for the block in
      * @return the node with the block removed
      */
     public SinglyLinkedNode remove(int blockID, RandomAccessFile file)
@@ -79,9 +80,9 @@ public class SinglyLinkedQueue
         SinglyLinkedNode curr = head;
         while (curr.getNext() != null)
         {
-            if(curr.getNext().getData().getID() == blockID
-                    && curr.getNext().getData().getFile() != null
-                    && curr.getNext().getData().getFile().toString().equals(file.toString()))
+            Buffer buffer = curr.getNext().getData();
+            if (buffer.getID() == blockID && buffer.getFile() != null
+                    && buffer.getFile().toString().equals(file.toString()))
             {
                 SinglyLinkedNode temp = curr.getNext();
                 curr.setNext(temp.getNext());
@@ -92,22 +93,16 @@ public class SinglyLinkedQueue
             curr = curr.getNext();
         }
         return null;
-        /**SinglyLinkedNode curr = head;
-        while (curr.getNext() != null)
-        {
-            if (curr.getNext().getData().getID() == blockID
-                    && curr.getNext().getData().getFile() != null && curr.getNext().getData()
-                            .getFile().toString().equals(file.toString()))
-            {
-                SinglyLinkedNode temp = curr.getNext();
-                curr.setNext(curr.getNext().getNext());
-                curr.getNext().setNext(null);
-                size--;
-                return temp;
-            }
-            curr = curr.getNext();
-        }
-        return null;*/
+        /**
+         * SinglyLinkedNode curr = head; while (curr.getNext() != null) { if
+         * (curr.getNext().getData().getID() == blockID &&
+         * curr.getNext().getData().getFile() != null &&
+         * curr.getNext().getData()
+         * .getFile().toString().equals(file.toString())) { SinglyLinkedNode
+         * temp = curr.getNext(); curr.setNext(curr.getNext().getNext());
+         * curr.getNext().setNext(null); size--; return temp; } curr =
+         * curr.getNext(); } return null;
+         */
     }
 
     /**
@@ -132,6 +127,7 @@ public class SinglyLinkedQueue
         }
         return str;
     }
+
     /**
      * get the size of the list; size should not include duplicates
      * 
@@ -141,7 +137,7 @@ public class SinglyLinkedQueue
     {
         return size;
     }
-    
+
     public SinglyLinkedNode getEnd()
     {
         SinglyLinkedNode temp = head;
@@ -151,7 +147,7 @@ public class SinglyLinkedQueue
         }
         return temp;
     }
-    
+
     public void setMRUBuffer(Buffer newBuffer)
     {
         head.getNext().setData(newBuffer);
