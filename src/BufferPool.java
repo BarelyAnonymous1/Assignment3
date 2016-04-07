@@ -63,6 +63,15 @@ public class BufferPool
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
 
     }
+    
+    public byte[] getRecordTemp(int recordPos, RandomAccessFile file)
+    {
+        return Arrays.copyOfRange(
+                allocateBuffer(recordPos, file).getBlock(),
+                recordPos % BUFFER_SIZE,
+                recordPos % BUFFER_SIZE + RECORD_SIZE);
+
+    }
 
     /**
      * removes everything from the bufferPool starts with the least recently
