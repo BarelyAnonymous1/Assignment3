@@ -87,7 +87,6 @@ public class SinglyLinkedQueue
                 SinglyLinkedNode temp = curr.getNext();
                 curr.setNext(temp.getNext());
                 temp.setNext(null);
-<<<<<<< HEAD
                 size--;
                 return temp;
             }
