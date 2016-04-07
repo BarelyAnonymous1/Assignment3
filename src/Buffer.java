@@ -79,11 +79,25 @@ public class Buffer
         return block;
     }
 
-    public void setBlock(byte[] record, int recordNum)
+    public void getRecord(byte[] record, int pos)
+    {
+        record[0] = block[pos];
+        record[1] = block[pos + 1];
+        record[2] = block[pos + 2];
+        record[3] = block[pos + 3];
+    }
+
+    public void setBlock(byte[] newPage, int recordNum)   
     {
         dirtyBit = true;
-        System.arraycopy(record, 0, block, recordNum,
-                BufferPool.RECORD_SIZE);
+//        System.arraycopy(newPage, 0, block, recordNum,
+//                BufferPool.RECORD_SIZE);
+        block[recordNum] = newPage[0];
+        block[recordNum + 1] = newPage[1];
+        block[recordNum + 2] = newPage[2];
+        block[recordNum + 3] = newPage[3];
+//        System.arraycopy(record, 0, block, recordNum,
+//                BufferPool.RECORD_SIZE);
     }
 
     public RandomAccessFile getFile()

@@ -9,9 +9,10 @@ import java.io.*;
 public class Mergesort
 {
 
-    public static int FILE_SIZE;
-    public static byte[] TEMP1;
-    public static byte[] TEMP2;
+    public static int     FILE_SIZE;
+    private static byte[] tempRec1;
+    private static byte[] tempRec2;
+
     /**
      * The entry point of the application
      * 
@@ -58,10 +59,12 @@ public class Mergesort
             // System.out.println(output[1]);
             // bufpool.tempRecord(0, input);
             // System.out.println(BufferPool.TEMP_RECORD[1]);
-            RuntimeStats.startTime = System.currentTimeMillis();
             FILE_SIZE = (int) input.length();
+            tempRec1 = new byte[4];
+            tempRec2 = new byte[4];
+            RuntimeStats.startTime = System.currentTimeMillis();
             sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
-            //System.out.println(bufpool.toString());
+            // System.out.println(bufpool.toString());
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);
@@ -124,29 +127,55 @@ public class Mergesort
         sort(pool, input, temp, left, mid); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
         for (int i = left; i <= right; i++) // Copy subarray to temp
-            pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
+        {
+            // pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
+            pool.getRecordTemp(4 * i, tempRec1, input);
+            pool.writeRecordTemp(4 * i, tempRec1, temp);
+        }
         // Do the merge operation back to A
         int i1 = left;
         int i2 = mid + 1;
         for (int curr = left; curr <= right; curr++)
         {
+            pool.getRecordTemp(4 * (i1), tempRec1, temp);
+            pool.getRecordTemp(4 * (i2), tempRec2, temp);
             if (i1 == mid + 1) // Left sublist exhausted
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i2++), temp), input);
-            // A[curr] = temp[i2++];
+            {
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i2++), temp), input);
+                pool.writeRecordTemp(4 * curr, tempRec2, input);
+                // A[curr] = temp[i2++];
+                i2++;
+            }
             else if (i2 > right) // Right sublist exhausted
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i1++), temp), input);
-            // A[curr] = temp[i1++];
-            else if (compareByteArray(pool.getRecord(4 * i1, temp),
-                    pool.getRecord(4 * i2, temp)) <= 0) // Get smaller value
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i1++), temp), input);
-            // A[curr] = temp[i1++];
+            {
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i1++), temp), input);
+                pool.writeRecordTemp(4 * curr, tempRec1, input);
+                // A[curr] = temp[i1++];
+                i1++;
+            }
+            // compareByteArray(pool.getRecord(4 * i1, temp),
+            // pool.getRecord(4 * i2, temp)) <= 0
+
+            else if (compareByteArray(tempRec1, tempRec2) <= 0) // Get smaller
+                                                                // value
+            {
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i1++), temp), input);
+                pool.writeRecordTemp(4 * curr, tempRec1, input);
+                // A[curr] = temp[i1++];
+                i1++;
+            }
+
             else
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i2++), temp), input);
-            // A[curr] = temp[i2++];
+            {
+                // pool.writeRecord(curr * 4,
+                // pool.getRecord(4 * (i2++), temp), input);
+                pool.writeRecordTemp(4 * curr, tempRec2, input);
+                // A[curr] = temp[i2++];
+                i2++;
+            }
         }
     }
 
