@@ -127,6 +127,16 @@ public class SinglyLinkedQueue
         return size;
     }
     
+    public SinglyLinkedNode getEnd()
+    {
+        SinglyLinkedNode temp = head;
+        while (temp.getNext() != null)
+        {
+            temp = temp.getNext();
+        }
+        return temp;
+    }
+    
     public void setMRUBuffer(Buffer newBuffer)
     {
         head.getNext().setData(newBuffer);
