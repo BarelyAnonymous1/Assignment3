@@ -25,7 +25,6 @@ public class SinglyLinkedQueue
     {
         head = new SinglyLinkedNode(null);
         RuntimeStats.newCalls++;
-        head.setNext(null);
         size = 0;
     }
 
