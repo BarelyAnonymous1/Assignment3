@@ -39,7 +39,7 @@ public class LRUQueue
         }
     }
 
-    public Buffer makeMostRecent(int recordPos,
+    public void makeMostRecent(int recordPos,
             RandomAccessFile searchFile)
     {
         DoublyLinkedNode foundNode = list
@@ -52,20 +52,18 @@ public class LRUQueue
                         (new Buffer(recordPos, searchFile))));
                 RuntimeStats.newCalls++;
                 RuntimeStats.newCalls++;
-                return null;
             }
             else
             {
                 DoublyLinkedNode lruNode = list.dequeue();
                 list.enqueue(lruNode);
-                return lruNode.getData();
+                lruNode.getData().flush();
             }
         }
         else
         {
             list.enqueue(foundNode);
             RuntimeStats.foundInBuffer++;
-            return null;
         }
     }
 

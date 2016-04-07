@@ -50,6 +50,11 @@ public class BufferPool
         if (allocatedBuffer.getFile() != searchFile
                 || allocatedBuffer.getID() != recordPos / BUFFER_SIZE)
             allocatedBuffer.reset(recordPos, searchFile);
+        /**pool.makeMostRecent(recordPos, searchFile);
+        if (pool.getMRU().getFile() != searchFile
+                || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
+            pool.getMRU().reset(recordPos, searchFile);
+        return pool.getMRU();*/
     }
 
     public void writeRecord(int recordPos,// byte[] record,
@@ -58,15 +63,16 @@ public class BufferPool
         allocateBuffer(recordPos, file);
         // recordpos % buffersize is the position within a single block
         allocatedBuffer.setBlock(recordPos % BufferPool.BUFFER_SIZE);
+        //allocateBuffer(recordPos, file).setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
     }
 
     public void getRecord(int recordPos, RandomAccessFile file)
     {
-
         allocateBuffer(recordPos, file);
         TEMP_REC = Arrays.copyOfRange(allocatedBuffer.getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
+
     }
 
     /**
