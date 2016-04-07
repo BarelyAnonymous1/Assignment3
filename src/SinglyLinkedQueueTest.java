@@ -24,7 +24,9 @@ public class SinglyLinkedQueueTest extends TestCase {
         list.dequeue();
         System.out.println(list.toString());
         list.enqueue(new SinglyLinkedNode(buffer));
+        System.out.println(list.toString());
         list.remove(10, null);
+        System.out.println(list.toString());
     }
     
 }
