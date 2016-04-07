@@ -8,6 +8,7 @@ public class BufferPool
     private LRUQueue     pool;
     private int          maxBuffers;
     public static byte[] TEMP_REC;
+    private Buffer allocatedBuffer;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -22,6 +23,7 @@ public class BufferPool
         maxBuffers = startMax;
         pool = new LRUQueue(startMax);
         TEMP_REC = new byte[RECORD_SIZE];
+        allocatedBuffer = null;
         for (int i = 0; i < maxBuffers; i++)
         {
             // the ID for each filler Buffer is so the Buffer pool knows to do
@@ -38,31 +40,31 @@ public class BufferPool
      * @param searchFile
      * @return
      */
-    public Buffer allocateBuffer(int recordPos,
+    public void allocateBuffer(int recordPos,
             RandomAccessFile searchFile)
     {
         Buffer toFlush = pool.makeMostRecent(recordPos, searchFile);
         if (toFlush != null)
             toFlush.flush();
-        if (pool.getMRU().getFile() != searchFile
-                || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
-            pool.getMRU().reset(recordPos, searchFile);
-        return pool.getMRU();
+        allocatedBuffer = pool.getMRU();
+        if (allocatedBuffer.getFile() != searchFile
+                || allocatedBuffer.getID() != recordPos / BUFFER_SIZE)
+            allocatedBuffer.reset(recordPos, searchFile);
     }
 
-    public void writeRecord(int recordPos, byte[] record,
+    public void writeRecord(int recordPos,// byte[] record,
             RandomAccessFile file)
     {
-        Buffer buffer = allocateBuffer(recordPos, file);
+        allocateBuffer(recordPos, file);
         // recordpos % buffersize is the position within a single block
-        buffer.setBlock(record, recordPos % BufferPool.BUFFER_SIZE);
+        allocatedBuffer.setBlock(recordPos % BufferPool.BUFFER_SIZE);
     }
 
-    public byte[] getRecord(int recordPos, RandomAccessFile file)
+    public void getRecord(int recordPos, RandomAccessFile file)
     {
 
-        Buffer found = allocateBuffer(recordPos, file);
-        return Arrays.copyOfRange(found.getBlock(),
+        allocateBuffer(recordPos, file);
+        TEMP_REC = Arrays.copyOfRange(allocatedBuffer.getBlock(),
                 recordPos % BUFFER_SIZE,
                 recordPos % BUFFER_SIZE + RECORD_SIZE);
     }

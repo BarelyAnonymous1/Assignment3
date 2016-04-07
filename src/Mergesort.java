@@ -10,7 +10,8 @@ public class Mergesort
 {
 
     public static int FILE_SIZE;
-
+    public static byte[] TEMP1;
+    public static byte[] TEMP2;
     /**
      * The entry point of the application
      * 
@@ -52,7 +53,7 @@ public class Mergesort
         {
             input = new RandomAccessFile("input17.txt", "rw");
             temp = new RandomAccessFile("test.txt", "rw");
-            BufferPool bufpool = new BufferPool(15);
+            BufferPool bufpool = new BufferPool(5);
             // byte [] output = bufpool.getRecord(0, input);
             // System.out.println(output[1]);
             // bufpool.tempRecord(0, input);
@@ -122,28 +123,38 @@ public class Mergesort
         sort(pool, input, temp, left, mid); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
         for (int i = left; i <= right; i++) // Copy subarray to temp
-            pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
+            {pool.getRecord(i * 4, input);
+            pool.writeRecord(i * 4, temp);}
         // Do the merge operation back to A
         int i1 = left;
         int i2 = mid + 1;
         for (int curr = left; curr <= right; curr++)
         {
-            if (i1 == mid + 1) // Left sublist exhausted
-                pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i2++), temp), input);
+            pool.getRecord(4 * i1, temp);
+            TEMP1 = BufferPool.TEMP_REC;
+            pool.getRecord(4 * i2, temp);
+            TEMP2 = BufferPool.TEMP_REC;
+            if (i1 == mid + 1)
+            {// Left sublist exhausted
+                pool.getRecord(4 * (i2++), temp);
+                pool.writeRecord(curr * 4, input);
+            }
             // A[curr] = temp[i2++];
             else if (i2 > right) // Right sublist exhausted
+                {pool.getRecord(4 * (i1++), temp);
                 pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i1++), temp), input);
+                         input);}
             // A[curr] = temp[i1++];
-            else if (compareByteArray(pool.getRecord(4 * i1, temp),
-                    pool.getRecord(4 * i2, temp)) <= 0) // Get smaller value
+            else if (compareByteArray(TEMP1, TEMP2
+                    ) <= 0) // Get smaller value
+                {pool.getRecord(4 * (i1++), temp);
                 pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i1++), temp), input);
+                        input);}
             // A[curr] = temp[i1++];
             else
+                pool.getRecord(4 * (i2++), temp);
                 pool.writeRecord(curr * 4,
-                        pool.getRecord(4 * (i2++), temp), input);
+                         input);
             // A[curr] = temp[i2++];
         }
     }
