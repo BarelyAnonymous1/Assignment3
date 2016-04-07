@@ -160,9 +160,13 @@ public class Mergesort
             }
 
             else
+            {
                 pool.writeRecord(curr * 4,
                         pool.getRecord(4 * (i2++), temp), input);
+                // pool.writeRecord(4 * curr, tempRec2);
             // A[curr] = temp[i2++];
+                
+            }
         }
     }
 
