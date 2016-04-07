@@ -75,7 +75,6 @@ public class Mergesort
             System.out.println("Reads: " + RuntimeStats.readDisk);
             System.out
                     .println("Cache hits: " + RuntimeStats.foundInBuffer);
-            System.out.println("Resets: " + RuntimeStats.numReset);
         }
         catch (IOException e)
         {
