@@ -24,8 +24,8 @@ public class RuntimeStats
     {
         long total = endTime - startTime;
         return ("Filename: " + file + "\nNumber of Buffers: " + numBuffers
-                + "\nRecords found in Buffer: " + foundInBuffer
-                + "\nReads from Disk: " + readDisk + "\nWrites to Disk: "
+                + "\nCache Hits: " + foundInBuffer
+                + "\nReads: " + readDisk + "\nWrites: "
                 + writeDisk + "\nTotal Time: " + total + " milliseconds\n");
     }
 }

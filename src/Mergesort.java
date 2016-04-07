@@ -59,6 +59,7 @@ public class Mergesort
             // System.out.println(output[1]);
             // bufpool.tempRecord(0, input);
             // System.out.println(BufferPool.TEMP_RECORD[1]);
+            RuntimeStats stats = new RuntimeStats("input1.txt", 15);
             FILE_SIZE = (int) input.length();
             tempRec1 = new byte[4];
             tempRec2 = new byte[4];
@@ -67,8 +68,7 @@ public class Mergesort
             // System.out.println(bufpool.toString());
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
-            double total = (RuntimeStats.endTime - RuntimeStats.startTime)
-                    / 1000.0;
+            System.out.println(stats.toString());
         }
         catch (IOException e)
         {
