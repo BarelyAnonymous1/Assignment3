@@ -10,6 +10,7 @@ public class Mergesort
 {
 
     public static int FILE_SIZE;
+    private static byte [] tempRec;
 
     /**
      * The entry point of the application
@@ -59,6 +60,7 @@ public class Mergesort
             // System.out.println(BufferPool.TEMP_RECORD[1]);
             RuntimeStats.startTime = System.currentTimeMillis();
             FILE_SIZE = (int) input.length();
+            tempRec = new byte[4];
             sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
@@ -119,7 +121,7 @@ public class Mergesort
         if (left == right)
             return; // List has one record
         int mid = (left + right) / 2; // Select midpoint
-        sort(pool, input, temp, left, mid); // Mergesort first half
+        sort(pool, input, temp, left, mid, record); // Mergesort first half
         sort(pool, input, temp, mid + 1, right); // Mergesort second half
         for (int i = left; i <= right; i++) // Copy subarray to temp
             pool.writeRecord(i * 4, pool.getRecord(i * 4, input), temp);
