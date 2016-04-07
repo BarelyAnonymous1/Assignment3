@@ -118,7 +118,15 @@ public class DoublyLinkedQueue
     {
         return tail;
     }
-
+    public String toString()
+    {
+        String str = "";
+        while (head.getNext() != null)
+        {
+            str += head;
+        }
+        return str;
+    }
     /**
      * get the size of the list; size should not include duplicates
      * 
