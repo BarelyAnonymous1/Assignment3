@@ -47,7 +47,7 @@ public class BufferPool
             RandomAccessFile searchFile)
     {
         pool.makeMostRecent(recordPos, searchFile);
-        if (pool.getMRU().getFile() != searchFile
+        if (
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
             pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
