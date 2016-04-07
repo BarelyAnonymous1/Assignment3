@@ -111,7 +111,7 @@ public class SinglyLinkedQueue
         SinglyLinkedNode temp = head;
         while (temp.getNext() != null)
         {
-            str += temp;
+            str += temp.getData();
             str += "\n";
             temp = temp.getNext();
         }
