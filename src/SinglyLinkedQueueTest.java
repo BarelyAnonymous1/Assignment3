@@ -23,6 +23,8 @@ public class SinglyLinkedQueueTest extends TestCase {
         System.out.println(list.toString());
         list.dequeue();
         System.out.println(list.toString());
+        list.enqueue(new SinglyLinkedNode(buffer));
+        list.remove(10, null);
     }
     
 }
