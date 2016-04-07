@@ -15,7 +15,7 @@ public class DoublyLinkedQueue
     /**
      * pointer to the end of the list
      */
-    private DoublyLinkedNode tail;
+    //private DoublyLinkedNode tail;
 
     /**
      * number of nodes in the list
@@ -29,10 +29,10 @@ public class DoublyLinkedQueue
     {
         head = new DoublyLinkedNode(null);
         RuntimeStats.newCalls++;
-        tail = new DoublyLinkedNode(null);
+        //tail = new DoublyLinkedNode(null);
         RuntimeStats.newCalls++;
         head.setNext(tail);
-        tail.setPrev(head);
+        //tail.setPrev(head);
         size = 0;
     }
 

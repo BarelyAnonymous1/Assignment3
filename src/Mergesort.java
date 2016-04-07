@@ -61,7 +61,7 @@ public class Mergesort
             RuntimeStats.startTime = System.currentTimeMillis();
             FILE_SIZE = (int) input.length();
             sort(bufpool, input, temp, 0, (FILE_SIZE - 4) / 4);
-            System.out.println(bufpool.toString());
+            //System.out.println(bufpool.toString());
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
             System.out.println(RuntimeStats.newCalls);
