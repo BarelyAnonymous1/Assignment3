@@ -90,11 +90,11 @@ public class Buffer
     public void setBlock(byte[] newPage, int recordNum)
     {
         dirtyBit = true;
-        System.arraycopy(newPage, 0, block, recordNum,
-                BufferPool.RECORD_SIZE);
+//        System.arraycopy(newPage, 0, block, recordNum,
+//                BufferPool.RECORD_SIZE);
         block[recordNum] = newPage[0];
         block[recordNum + 1] = newPage[1];
-         block[recordNum] = newPage[2];
+        block[recordNum] = newPage[2];
         block[recordNum + 3] = newPage[3];
     }
 
