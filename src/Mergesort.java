@@ -67,14 +67,8 @@ public class Mergesort
             // System.out.println(bufpool.toString());
             bufpool.flushPool();
             RuntimeStats.endTime = System.currentTimeMillis();
-            System.out.println(RuntimeStats.newCalls);
             double total = (RuntimeStats.endTime - RuntimeStats.startTime)
                     / 1000.0;
-            System.out.println("Time: " + total);
-            System.out.println("Writes: " + RuntimeStats.writeDisk);
-            System.out.println("Reads: " + RuntimeStats.readDisk);
-            System.out
-                    .println("Cache hits: " + RuntimeStats.foundInBuffer);
         }
         catch (IOException e)
         {
