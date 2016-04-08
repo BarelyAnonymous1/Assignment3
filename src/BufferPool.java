@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Arrays;
 
 /**
  * BufferPool that is implemented with a modified linked queue to use the Least
