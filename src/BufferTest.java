@@ -28,6 +28,7 @@ public class BufferTest extends TestCase
 
     public void testStoreBlock() throws IOException
     {
+        Mergesort.FILE_SIZE = 100000;
         file = new RandomAccessFile("testin.txt", "rw");
         test = new byte[4096];
         for (int i = 0; i < 4096; i++)
