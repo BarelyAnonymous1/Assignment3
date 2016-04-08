@@ -64,8 +64,8 @@ public class Buffer
      * @param resetFile
      *            new file for the Buffer to read data from
      */
-    public void reset(int resetID, RandomAccessFile resetFile)
-        throws IOException
+    public void reset(int resetID,
+            RandomAccessFile resetFile) throws IOException
     {
         index = resetID;
         file = resetFile;
