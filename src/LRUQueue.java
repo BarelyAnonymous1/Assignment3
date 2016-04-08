@@ -1,6 +1,8 @@
 import java.io.*;
 
 /**
+ * makes use of a modified DoublyLinkedQueue to recycle nodes once the maximum
+ * number of nodes has been created
  * 
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
@@ -24,10 +26,13 @@ public class LRUQueue
     }
 
     /**
-     * searches the current buffer for a record. if found, adds to the list
-     * if not, creates a new buffer for the correct record
-     * @param recordPos the position to be searched
-     * @param searchFile the file to search
+     * searches the current buffer for a record. if found, adds to the list if
+     * not, creates a new buffer for the correct record
+     * 
+     * @param recordPos
+     *            the position to be searched
+     * @param searchFile
+     *            the file to search
      */
     public void makeMostRecent(int recordPos, RandomAccessFile searchFile)
     {
@@ -56,6 +61,7 @@ public class LRUQueue
 
     /**
      * removes the least recently used node
+     * 
      * @return the buffer removed
      */
     public Buffer removeLRU()
@@ -69,6 +75,7 @@ public class LRUQueue
 
     /**
      * getter for the size
+     * 
      * @return the size
      */
     public int getSize()
@@ -78,6 +85,7 @@ public class LRUQueue
 
     /**
      * getter for MRU
+     * 
      * @return most recently used node
      */
     public Buffer getMRU()
