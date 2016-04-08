@@ -6,6 +6,7 @@ public class Buffer
     private int              index;
     private boolean          dirtyBit;
     private int              size;
+    private int              furthestByte;
 
     private RandomAccessFile file;
 
@@ -22,6 +23,7 @@ public class Buffer
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         dirtyBit = false;
+        furthestByte = 0;
         storeBlock();
     }
 
@@ -30,6 +32,7 @@ public class Buffer
         index = startPosition / BufferPool.BUFFER_SIZE;
         file = startFile;
         dirtyBit = false;
+        furthestByte = 0;
         storeBlock();
     }
 
@@ -85,17 +88,18 @@ public class Buffer
         record[3] = block[pos + 3];
     }
 
-    public void setBlock(byte[] newPage, int recordNum)   
+    public void setBlock(byte[] newPage, int recordNum)
     {
         dirtyBit = true;
-//        System.arraycopy(newPage, 0, block, recordNum,
-//                BufferPool.RECORD_SIZE);
+        // System.arraycopy(newPage, 0, block, recordNum,
+        // BufferPool.RECORD_SIZE);
         block[recordNum] = newPage[0];
         block[recordNum + 1] = newPage[1];
         block[recordNum + 2] = newPage[2];
         block[recordNum + 3] = newPage[3];
-//        System.arraycopy(record, 0, block, recordNum,
-//                BufferPool.RECORD_SIZE);
+        furthestByte = recordNum + 3;
+        // System.arraycopy(record, 0, block, recordNum,
+        // BufferPool.RECORD_SIZE);
     }
 
     public RandomAccessFile getFile()
@@ -112,7 +116,7 @@ public class Buffer
             if (dirtyBit)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                file.write(block, 0, size);
+                file.write(block, 0, furthestByte);
                 RuntimeStats.writeDisk++;
             }
         }
