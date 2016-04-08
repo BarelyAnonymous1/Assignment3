@@ -59,7 +59,7 @@ public class BufferPool
         // return the Buffer that was just used
         return pool.getMRU();
     }
-    
+
     /**
      * reads a byte array record from the allocated buffer
      * 
@@ -96,8 +96,13 @@ public class BufferPool
     }
 
     /**
-     * removes everything from the bufferPool starts with the least recently
-     * used block
+     * removes everything from the bufferPool starting with the least recently
+     * used block. Will also write all stats to the file given in the
+     * parameters.
+     * 
+     * @param statName
+     *            name of the file that the stats from the sort will be written
+     *            to
      */
     public void flushPool(String statName)
     {
