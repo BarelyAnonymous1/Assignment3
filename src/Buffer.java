@@ -81,26 +81,20 @@ public class Buffer
      */
     public void storeBlock()
     {
-        try
-        {
-            // go to the byte position at the start of the block
-            file.seek(index * BufferPool.bufferSize);
-            if ((index + 1) * BufferPool.bufferSize > Mergesort.FILE_SIZE)
-            { // check if the block would extend beyond the file
-              // read from the start of the block to the end of the file
-                file.read(block, 0, Mergesort.FILE_SIZE
-                        - (index * BufferPool.bufferSize));
-            }
-            else
-            {
-                file.read(block); // read the block from the file
-            }
-            RuntimeStats.readDisk++; // increment the number of disk reads
+
+        // go to the byte position at the start of the block
+        file.seek(index * BufferPool.bufferSize);
+        if ((index + 1) * BufferPool.bufferSize > Mergesort.FILE_SIZE)
+        { // check if the block would extend beyond the file
+          // read from the start of the block to the end of the file
+            file.read(block, 0,
+                    Mergesort.FILE_SIZE - (index * BufferPool.bufferSize));
         }
-        catch (IOException e)
+        else
         {
-            e.printStackTrace();
+            file.read(block); // read the block from the file
         }
+        RuntimeStats.readDisk++; // increment the number of disk reads
     }
 
     /**
