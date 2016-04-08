@@ -1,6 +1,5 @@
 import java.io.*;
 
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,8 +15,8 @@ import student.TestCase;
 public class BufferPoolTest extends TestCase
 {
 
-    BufferPool       buffpool;
-    RandomAccessFile file;
+    private BufferPool       buffpool;
+    private RandomAccessFile file;
 
     /**
      * sets up the tests

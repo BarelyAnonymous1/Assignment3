@@ -3,12 +3,21 @@ import org.junit.Test;
 
 import student.TestCase;
 
-public class DoublyLinkedQueueTest extends TestCase {
+/**
+ * tests the implementation of the DoublyLinkedQueue
+ * 
+ * @author Preston Lattimer (platt) Jonathan DeFreeuw (jondef95)
+ * @version 1
+ *
+ */
+public class DoublyLinkedQueueTest extends TestCase
+{
 
-    private DoublyLinkedNode node1;
-    private DoublyLinkedNode node2;
-    private RandomAccessFile file; 
+    private DoublyLinkedNode  node1;
+    private DoublyLinkedNode  node2;
+    private RandomAccessFile  file;
     private DoublyLinkedQueue list;
+
     public void setUp() throws IOException
     {
         file = new RandomAccessFile("buffertest.txt", "rw");
@@ -18,7 +27,8 @@ public class DoublyLinkedQueueTest extends TestCase {
     }
 
     @Test
-    public void testEnqueue() {
+    public void testEnqueue()
+    {
         list.enqueue(node1);
         assertEquals(1, list.getSize());
         list.enqueue(node2);
@@ -26,7 +36,8 @@ public class DoublyLinkedQueueTest extends TestCase {
     }
 
     @Test
-    public void testDequeue() {
+    public void testDequeue()
+    {
         assertNull(list.dequeue());
         list.enqueue(node1);
         list.enqueue(node2);
@@ -35,7 +46,8 @@ public class DoublyLinkedQueueTest extends TestCase {
     }
 
     @Test
-    public void testRemove() {
+    public void testRemove()
+    {
         list.remove(0, file);
         list.enqueue(node1);
         list.enqueue(node2);
