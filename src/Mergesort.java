@@ -23,12 +23,6 @@ public class Mergesort
         try
         {
             int numBuffers = Integer.parseInt(args[1]);
-            if (numBuffers < 1)
-            {
-                System.out.println(
-                        "Please provide at least 1 buffer for the buffer pool");
-                return;
-            }
             input = new RandomAccessFile(args[0], "rw");
             RuntimeStats.file = args[0];
             RuntimeStats.numBuffers = numBuffers;
