@@ -37,7 +37,7 @@ public class BufferPoolTest extends TestCase
             test3[k] = "c".getBytes()[0];
         file.write(test);
         file.write(test2);
-        file.write(test3);;
+        file.write(test3);
         Mergesort.fileSize = 12285;
     }
 
