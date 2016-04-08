@@ -11,32 +11,6 @@ public class LRUQueue
         list = new DoublyLinkedQueue();
     }
 
-    /**
-     * will add a buffer to the list if the ID and file name dont already exist
-     * in a buffer in the list. if the list was shifted or
-     * 
-     * @param newBuffer
-     * @return
-     */
-    public Buffer addOrPromote(Buffer newBuffer)
-    {
-        DoublyLinkedNode foundNode = list.remove(newBuffer.getID(),
-                newBuffer.getFile());
-        if (foundNode == null)
-        {
-            list.enqueue(new DoublyLinkedNode(newBuffer));
-            if (list.getSize() > MAX_SIZE)
-                return list.dequeue().getData();
-            else
-                return null;
-        }
-        else
-        {
-            list.enqueue(foundNode);
-            return null;
-        }
-    }
-
     public void makeMostRecent(int recordPos, RandomAccessFile searchFile)
     {
         DoublyLinkedNode foundNode = list
