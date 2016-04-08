@@ -116,7 +116,7 @@ public class Buffer
             if (dirtyBit)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                file.write(block, 0, furthestByte + 1);
+                file.write(block, 0, furthestByte);
                 RuntimeStats.writeDisk++;
             }
         }
