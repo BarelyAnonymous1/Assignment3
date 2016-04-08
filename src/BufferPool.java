@@ -6,7 +6,8 @@ import java.util.Arrays;
  * Recently Used model for flushing. Blocks in the buffers are 4096 bytes, with records
  * being 4 bytes. Blocks and records are byte arrays.
  * 
- * @author Jonathan
+ * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
+ * @version 1
  *
  */
 public class BufferPool
