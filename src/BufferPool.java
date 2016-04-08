@@ -31,11 +31,6 @@ public class BufferPool
         }
     }
 
-    public String toString()
-    {
-        return pool.toString();
-    }
-
     /**
      * returns the buffer that is relevant for the given record
      * 
