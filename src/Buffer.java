@@ -20,7 +20,7 @@ public class Buffer
     public Buffer(int startID, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
-        index = startID / BufferPool.BUFFER_SIZE;
+        index = startID;
         file = startFile;
         dirtyBit = false;
         furthestByte = 0;
