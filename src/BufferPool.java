@@ -6,7 +6,6 @@ public class BufferPool
     public static int    BUFFER_SIZE = 4096;
     public static int    RECORD_SIZE = 4;
     private LRUQueue     pool;
-    private int          maxBuffers;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -18,9 +17,8 @@ public class BufferPool
      */
     public BufferPool(int startMax)
     {
-        maxBuffers = startMax;
         pool = new LRUQueue(startMax);
-        for (int i = 0; i < maxBuffers; i++)
+        for (int i = 0; i < startMax; i++)
         {
             // the ID for each filler Buffer is so the Buffer pool knows to do
             // nothing
