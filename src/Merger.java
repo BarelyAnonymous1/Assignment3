@@ -24,6 +24,7 @@ public class Merger
      * pool
      * 
      * @param bufferPool
+     *            the buffer pool object reference to use in sorting
      */
     public Merger(BufferPool bufferPool)
     {
