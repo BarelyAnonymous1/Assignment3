@@ -61,36 +61,22 @@ public class Merger
             {
                 pool.writeRecordTemp(4 * curr, tempRec1, input);
                 i1++;
-
+                pool.getRecordTemp(4 * (i1), tempRec1, temp);
+                // A[curr] = temp[i1++];
+            }
+            else if (compareByteArray(tempRec1, tempRec2)) // Get smaller value
+            {
+                pool.writeRecordTemp(4 * curr, tempRec1, input);
+                i1++;
                 pool.getRecordTemp(4 * (i1), tempRec1, temp);
                 // A[curr] = temp[i1++];
             }
             else
             {
-                if (compareByteArray(tempRec1, tempRec2)) // Get smaller
-                                                           // value
-                {
-                    // pool.writeRecord(curr * 4,
-                    // pool.getRecord(4 * (i1++), temp), input);
-                    pool.writeRecordTemp(4 * curr, tempRec1, input);
-                    i1++;
-
-                    pool.getRecordTemp(4 * (i1), tempRec1, temp);
-
-                    // A[curr] = temp[i1++];
-                }
-
-                else
-                {
-                    // pool.writeRecord(curr * 4,
-                    // pool.getRecord(4 * (i2++), temp), input);
-                    pool.writeRecordTemp(4 * curr, tempRec2, input);
-                    i2++;
-
-                    pool.getRecordTemp(4 * (i2), tempRec2, temp);
-
-                    // A[curr] = temp[i2++];
-                }
+                pool.writeRecordTemp(4 * curr, tempRec2, input);
+                i2++;
+                pool.getRecordTemp(4 * (i2), tempRec2, temp);
+                // A[curr] = temp[i2++];
             }
         }
     }
