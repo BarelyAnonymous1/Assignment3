@@ -117,19 +117,18 @@ public class Buffer
     public void getRecord(byte[] record, int pos)
     { 
         for (int i = 0; i < BufferPool.RECORD_SIZE; i++)
-        record[0] = block[pos];
-        record[1] = block[pos + 1];
-        record[2] = block[pos + 2];
-        record[3] = block[pos + 3];
+        {
+            record[i] = block[pos + i];
+        }
     }
 
     public void setBlock(byte[] newPage, int recordNum)
     {
         dirtyBit = true;
-        block[recordNum] = newPage[0];
-        block[recordNum + 1] = newPage[1];
-        block[recordNum + 2] = newPage[2];
-        block[recordNum + 3] = newPage[3];
+        for (int i = 0; i < BufferPool.RECORD_SIZE; i++)
+        {
+            block[recordNum + i] = newPage[i];
+        }
 
         if (furthestByte < recordNum + 4)
             furthestByte = recordNum + 4;
