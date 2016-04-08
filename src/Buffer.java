@@ -187,6 +187,10 @@ public class Buffer
             furthestByte = recordNum + 4;
     }
 
+    /**
+     * writes the block of bytes contained within the buffer to the file that
+     * the buffer is referencing
+     */
     public void flush()
     {
         try
