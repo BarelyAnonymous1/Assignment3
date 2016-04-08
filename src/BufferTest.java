@@ -23,13 +23,14 @@ public class BufferTest extends TestCase
 
     public void setUpClass() throws IOException
     {
-        file = new RandomAccessFile("testin.txt", "rw");
-        test = "Hello, Test!".getBytes();
-        file.write(test);
+
     }
 
     public void testStoreBlock() throws IOException
     {
+        file = new RandomAccessFile("testin.txt", "rw");
+        test = "Hello, Test!".getBytes();
+        file.write(test);
         buffer = new Buffer(0, file);
         assertEquals(ByteBuffer.wrap(buffer.getBlock())
                 .compareTo(ByteBuffer.wrap(test)), 0);
