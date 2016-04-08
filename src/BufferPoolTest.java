@@ -79,7 +79,7 @@ public class BufferPoolTest extends TestCase
         buffpool.allocateBuffer(0, file);
         buffpool.allocateBuffer(4096, file);
         byte[] sample = new byte[4];
-        byte[] compare = "bbbb".getBytes();
+        byte[] compare = "cccc".getBytes();
         buffpool.getRecord(8192, sample, file);
         assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
                 compare)) == 0);
