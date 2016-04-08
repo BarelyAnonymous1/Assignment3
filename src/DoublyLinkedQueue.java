@@ -11,11 +11,11 @@ public class DoublyLinkedQueue
     /**
      * pointer to the first node in the list
      */
-    private DoublyLinkedNode head;
+    public DoublyLinkedNode head;
     /**
      * pointer to the end of the list
      */
-    private DoublyLinkedNode tail;
+    public DoublyLinkedNode tail;
 
     /**
      * number of nodes in the list
@@ -44,8 +44,8 @@ public class DoublyLinkedQueue
      */
     public void enqueue(DoublyLinkedNode newNode)
     {
-        tail.getPrev().setNext(newNode);
-        newNode.setPrev(tail.getPrev());
+        tail.prev.setNext(newNode);
+        newNode.setPrev(tail.prev);
         tail.setPrev(newNode);
         newNode.setNext(tail);
 
@@ -66,9 +66,9 @@ public class DoublyLinkedQueue
             return null;
         else
         {
-            DoublyLinkedNode temp = head.getNext();
-            head.setNext(temp.getNext());
-            temp.getNext().setPrev(head);
+            DoublyLinkedNode temp = head.next;
+            head.setNext(temp.next);
+            temp.next.setPrev(head);
             temp.setNext(null);
             temp.setPrev(null);
             size--;
@@ -83,51 +83,26 @@ public class DoublyLinkedQueue
      */
     public DoublyLinkedNode remove(int blockID, RandomAccessFile file)
     {
-        DoublyLinkedNode curr = tail.getPrev();
+        DoublyLinkedNode curr = tail.prev;
         while (curr != head)
         {
             Buffer buffer = curr.getData();
-            if (buffer.getID() == blockID && buffer.getFile() != null
+            if (buffer.getID() == blockID && 
+                    buffer.getFile() != null
                     && buffer.getFile() == file)
             {
-                curr.getPrev().setNext(curr.getNext());
-                curr.getNext().setPrev(curr.getPrev());
+                curr.prev.setNext(curr.next);
+                curr.next.setPrev(curr.prev);
                 curr.setPrev(null);
                 curr.setNext(null);
                 size--;
                 return curr;
             }
-            curr = curr.getPrev();
+            curr = curr.prev;
         }
         return null;
     }
 
-    /**
-     * get the pointer to the head of the list
-     * 
-     * @return the head of the list
-     */
-    public DoublyLinkedNode getHead()
-    {
-        return head;
-    }
-
-    public DoublyLinkedNode getTail()
-    {
-        return tail;
-    }
-    public String toString()
-    {
-        String str = "";
-        DoublyLinkedNode temp = head;
-        while (temp.getNext() != null)
-        {
-            str += temp;
-            str += "\n";
-            temp = temp.getNext();
-        }
-        return str;
-    }
     /**
      * get the size of the list; size should not include duplicates
      * 

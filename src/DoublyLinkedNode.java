@@ -10,8 +10,8 @@ public class DoublyLinkedNode
     /**
      * next node in the list
      */
-    private DoublyLinkedNode next;
-    private DoublyLinkedNode prev;
+    public DoublyLinkedNode next;
+    public DoublyLinkedNode prev;
     /**
      * point data contained in the node
      */
@@ -41,15 +41,6 @@ public class DoublyLinkedNode
         next = newNext;
     }
 
-    /**
-     * get the next node
-     * 
-     * @return the node next to this one
-     */
-    public DoublyLinkedNode getNext()
-    {
-        return next;
-    }
     
     /**
      * sets the value of the prev node
@@ -60,16 +51,6 @@ public class DoublyLinkedNode
     public void setPrev(DoublyLinkedNode newPrev)
     {
         prev = newPrev;
-    }
-
-    /**
-     * get the prev node
-     * 
-     * @return the node prev to this one
-     */
-    public DoublyLinkedNode getPrev()
-    {
-        return prev;
     }
 
     /**
