@@ -2,7 +2,8 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 
 /**
- * class that implements the Mergesort via a BufferPool. 
+ * class that implements the Mergesort via a BufferPool.
+ * 
  * @author Preston Lattimer (platt) Jonathan DeFreeuw (jondef95)
  * @version 1
  *
@@ -10,16 +11,18 @@ import java.nio.ByteBuffer;
 public class Merger
 {
     /**
-     * two temp byte arrays to prevent multi-initialization 
-     * and minimize reads of the same record locally
+     * two temp byte arrays to prevent multi-initialization and minimize reads
+     * of the same record locally
      */
-    private byte[] tempRec1;
-    private byte[] tempRec2;
-    
+    private byte[]     tempRec1;
+    private byte[]     tempRec2;
+
     private BufferPool pool;
 
     /**
-     * creates a new Merger objects, initializes temp arrays, and the buffer pool
+     * creates a new Merger objects, initializes temp arrays, and the buffer
+     * pool
+     * 
      * @param bufferPool
      */
     public Merger(BufferPool bufferPool)
@@ -33,8 +36,6 @@ public class Merger
      * The initial sorting point for the application -- where everything comes
      * in the door
      * 
-     * @param pool
-     *            the buffer pool we're working with
      * @param input
      *            the file where original content is
      * @param temp
@@ -44,8 +45,8 @@ public class Merger
      * @param right
      *            right side of mergesort
      */
-    public void sort(RandomAccessFile input,
-            RandomAccessFile temp, int left, int right)
+    public void sort(RandomAccessFile input, RandomAccessFile temp,
+            int left, int right)
     {
         if (left == right)
             return; // List has one record
@@ -60,38 +61,46 @@ public class Merger
         // Do the merge operation back to A
         int i1 = left;
         int i2 = mid + 1;
-        //preallocate tempRecs
+        // preallocate tempRecs
         pool.getRecord(BufferPool.recordSize * (i1), tempRec1, temp);
         pool.getRecord(BufferPool.recordSize * (i2), tempRec2, temp);
         for (int curr = left; curr <= right; curr++)
         {
             if (i1 == mid + 1) // Left sublist exhausted
             {
-                pool.writeRecord(BufferPool.recordSize * curr, tempRec2, input);
+                pool.writeRecord(BufferPool.recordSize * curr, tempRec2,
+                        input);
                 i2++;
-                pool.getRecord(BufferPool.recordSize * (i2), tempRec2, temp);
+                pool.getRecord(BufferPool.recordSize * (i2), tempRec2,
+                        temp);
                 // A[curr] = temp[i2++];
 
             }
             else if (i2 > right) // Right sublist exhausted
             {
-                pool.writeRecord(BufferPool.recordSize * curr, tempRec1, input);
+                pool.writeRecord(BufferPool.recordSize * curr, tempRec1,
+                        input);
                 i1++;
-                pool.getRecord(BufferPool.recordSize * (i1), tempRec1, temp);
+                pool.getRecord(BufferPool.recordSize * (i1), tempRec1,
+                        temp);
                 // A[curr] = temp[i1++];
             }
             else if (compareByteArray(tempRec1, tempRec2)) // Get smaller value
             {
-                pool.writeRecord(BufferPool.recordSize * curr, tempRec1, input);
+                pool.writeRecord(BufferPool.recordSize * curr, tempRec1,
+                        input);
                 i1++;
-                pool.getRecord(BufferPool.recordSize * (i1), tempRec1, temp);
+                pool.getRecord(BufferPool.recordSize * (i1), tempRec1,
+                        temp);
                 // A[curr] = temp[i1++];
             }
             else
             {
-                pool.writeRecord(BufferPool.recordSize * curr, tempRec2, input);
+                pool.writeRecord(BufferPool.recordSize * curr, tempRec2,
+                        input);
                 i2++;
-                pool.getRecord(BufferPool.recordSize * (i2), tempRec2, temp);
+                pool.getRecord(BufferPool.recordSize * (i2), tempRec2,
+                        temp);
                 // A[curr] = temp[i2++];
             }
         }
@@ -99,8 +108,11 @@ public class Merger
 
     /**
      * helper method to compare byte arrays (works for all machines)
-     * @param obj left comparison
-     * @param comp right comparison
+     * 
+     * @param obj
+     *            left comparison
+     * @param comp
+     *            right comparison
      * @return a boolean for whether the array is less or equal to another
      */
     private boolean compareByteArray(byte[] obj, byte[] comp)
