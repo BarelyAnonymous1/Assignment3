@@ -115,7 +115,8 @@ public class Buffer
     }
 
     public void getRecord(byte[] record, int pos)
-    {
+    { 
+        for (int i = 0; i < BufferPool.RECORD_SIZE; i++)
         record[0] = block[pos];
         record[1] = block[pos + 1];
         record[2] = block[pos + 2];
@@ -125,8 +126,6 @@ public class Buffer
     public void setBlock(byte[] newPage, int recordNum)
     {
         dirtyBit = true;
-        // System.arraycopy(newPage, 0, block, recordNum,
-        // BufferPool.RECORD_SIZE);
         block[recordNum] = newPage[0];
         block[recordNum + 1] = newPage[1];
         block[recordNum + 2] = newPage[2];
@@ -134,8 +133,6 @@ public class Buffer
 
         if (furthestByte < recordNum + 4)
             furthestByte = recordNum + 4;
-        // System.arraycopy(record, 0, block, recordNum,
-        // BufferPool.RECORD_SIZE);
     }
 
     public void flush()
