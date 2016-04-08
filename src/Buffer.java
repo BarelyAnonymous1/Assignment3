@@ -65,7 +65,7 @@ public class Buffer
      *            new file for the Buffer to read data from
      */
     public void reset(int resetID, RandomAccessFile resetFile)
-            throws IOException
+        throws IOException
     {
         index = resetID;
         file = resetFile;
