@@ -53,6 +53,7 @@ public class LRUQueue
             }
             else
             {
+                // cycle the node and flush its buffer so it may be reused
                 DoublyLinkedNode lruNode = list.dequeue();
                 list.enqueue(lruNode);
                 lruNode.getData().flush();
