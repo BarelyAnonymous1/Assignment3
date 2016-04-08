@@ -50,15 +50,11 @@ public class Buffer
     {
         block = new byte[BufferPool.BUFFER_SIZE]; // create the array necessary
                                                   // for operation
-        index = startID;
-        file = startFile;
-        dirtyBit = false;
-        furthestByte = 0;
-        storeBlock(); // get the initial block to store
+        reset(startID, startFile);
     }
 
     /**
-     * 
+     * practically implements the constructor again
      * @param resetID
      * @param resetFile
      */
