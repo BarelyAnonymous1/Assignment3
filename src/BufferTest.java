@@ -94,7 +94,7 @@ public class BufferTest extends TestCase
     /**
      * tests that a record can be properly written to the block
      * 
-     * @throws IOException
+     * @throws IOException if the file doesnt work
      */
     public void testSetRecord() throws IOException
     {
