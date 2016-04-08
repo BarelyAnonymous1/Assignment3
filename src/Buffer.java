@@ -48,7 +48,7 @@ public class Buffer
      *            first block will come from
      */
     public Buffer(int startID, RandomAccessFile startFile)
-            throws IOException
+        throws IOException
     {
         block = new byte[BufferPool.bufferSize]; // create the array necessary
                                                  // for operation
