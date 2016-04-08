@@ -2,8 +2,8 @@
  * Class that is used to keep count of a set of stats on the BufferPool-based
  * Mergesort. Is abstract to there is no way to insantiate the class.
  * 
- * @author Jonathan
- *
+ * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
+ * @version 1
  */
 public abstract class RuntimeStats
 {
