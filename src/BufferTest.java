@@ -15,8 +15,8 @@ import student.TestCase;
 public class BufferTest extends TestCase
 {
 
-    RandomAccessFile file;
-    Buffer           buffer;
+    private RandomAccessFile file;
+    private Buffer           buffer;
 
     protected void setUp()
     {
