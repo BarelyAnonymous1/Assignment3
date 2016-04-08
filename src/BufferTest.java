@@ -47,7 +47,7 @@ public class BufferTest extends TestCase
         assertEquals(ByteBuffer.wrap(buffer.getBlock())
                 .compareTo(ByteBuffer.wrap(test)), 0);
     }
-    
+
     public void testReset() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
@@ -58,8 +58,8 @@ public class BufferTest extends TestCase
         assertTrue(ByteBuffer.wrap(buffer.getBlock())
                 .compareTo(ByteBuffer.wrap(test2)) == 0);
     }
-    
-    public void testRecord() throws IOException
+
+    public void testGetRecord() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(1, file);
@@ -67,10 +67,23 @@ public class BufferTest extends TestCase
                 .compareTo(ByteBuffer.wrap(test2)) == 0);
         byte[] temp = new byte[4];
         byte[] compare = "bbbb".getBytes();
-        buffer.getRecord(temp,  0);
+        buffer.getRecord(temp, 0);
         assertTrue(ByteBuffer.wrap(temp)
                 .compareTo(ByteBuffer.wrap(compare)) == 0);
-        
+
+    }
+
+    public void testSetRecord() throws IOException
+    {
+        Mergesort.FILE_SIZE = 8192;
+        buffer = new Buffer(1, file);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock())
+                .compareTo(ByteBuffer.wrap(test2)) == 0);
+        byte[] temp = new byte[4];
+        byte[] compare = "bbbb".getBytes();
+        buffer.getRecord(temp, 0);
+        assertTrue(ByteBuffer.wrap(temp)
+                .compareTo(ByteBuffer.wrap(compare)) == 0);
     }
 
 }
