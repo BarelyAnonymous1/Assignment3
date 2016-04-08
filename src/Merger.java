@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 /**
  * class that implements the Mergesort via a BufferPool. 
  * @author Preston Lattimer (platt) Jonathan DeFreeuw (jondef95)
+ * @version 1
  *
  */
 public class Merger
