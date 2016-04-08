@@ -14,6 +14,9 @@ public class DoublyLinkedNodeTest extends TestCase
     private DoublyLinkedNode node1;
     private DoublyLinkedNode node2;
 
+    /**
+     * creates a RAF and two nodes to use during testing
+     */
     public void setUp() throws IOException
     {
         RandomAccessFile file = new RandomAccessFile("buffertest.txt",
