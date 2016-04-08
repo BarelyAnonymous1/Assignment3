@@ -39,5 +39,13 @@ public class BufferTest extends TestCase
         assertEquals(ByteBuffer.wrap(buffer.getBlock())
                 .compareTo(ByteBuffer.wrap(test)), 0);
     }
+    
+    public void testReset() throws IOException
+    {
+        Mergesort.FILE_SIZE = 100;
+        buffer = new Buffer(0, file);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock())
+                .compareTo(ByteBuffer.wrap(test)) < 0);
+    }
 
 }
