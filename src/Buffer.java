@@ -64,7 +64,7 @@ public class Buffer
      */
     public void reset(int resetID, RandomAccessFile resetFile)
     {
-        index = resetID / BufferPool.BUFFER_SIZE;
+        index = resetID; //  
         file = resetFile;
         dirtyBit = false;
         furthestByte = 0;
