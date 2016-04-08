@@ -76,9 +76,9 @@ public class BufferTest extends TestCase
     public void testSetRecord() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
-        buffer = new Buffer(1, file);
+        buffer = new Buffer(0, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test2)) == 0);
+                .compareTo(ByteBuffer.wrap(test)) == 0);
         byte[] temp = new byte[4];
         byte[] compare = "bbbb".getBytes();
         buffer.getRecord(temp, 0);
