@@ -52,7 +52,9 @@ public class DoublyLinkedQueueTest extends TestCase
         assertEquals(list.dequeue(), node2);
     }
 
-    @Test
+    /**
+     * tests that the queue properly searches for and removes a node
+     */
     public void testRemove()
     {
         list.remove(0, file);
