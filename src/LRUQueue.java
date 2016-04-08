@@ -2,7 +2,13 @@ import java.io.*;
 
 public class LRUQueue
 {
+    /**
+     * the maximum size of the list
+     */
     private final int         MAX_SIZE;
+    /**
+     * a private list in doubly linked implementation
+     */
     private DoublyLinkedQueue list;
 
     public LRUQueue(int max)
@@ -11,6 +17,12 @@ public class LRUQueue
         list = new DoublyLinkedQueue();
     }
 
+    /**
+     * searches the current buffer for a record. if found, adds to the list
+     * if not, creates a new buffer for the correct record
+     * @param recordPos the position to be searched
+     * @param searchFile the file to search
+     */
     public void makeMostRecent(int recordPos, RandomAccessFile searchFile)
     {
         DoublyLinkedNode foundNode = list
@@ -36,6 +48,10 @@ public class LRUQueue
         }
     }
 
+    /**
+     * removes the least recently used node
+     * @return the buffer removed
+     */
     public Buffer removeLRU()
     {
         DoublyLinkedNode found = list.dequeue();
@@ -46,24 +62,15 @@ public class LRUQueue
     }
 
     /**
-     * tostring
-     * 
-     * @return string
+     * getter for the size
+     * @return
      */
-    public String toString()
-    {
-        return list.toString();
-    }
-
     public int getSize()
     {
         return list.getSize();
     }
 
-    public DoublyLinkedQueue getLRUQueue()
-    {
-        return list;
-    }
+    
 
     public Buffer getMRU()
     {

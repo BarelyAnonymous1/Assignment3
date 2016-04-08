@@ -3,6 +3,10 @@ import java.nio.ByteBuffer;
 
 public class Merger
 {
+    /**
+     * two temp byte arrays to prevent multi-initialization 
+     * and minimize reads of the same record locally
+     */
     private byte[] tempRec1;
     private byte[] tempRec2;
 
@@ -43,11 +47,11 @@ public class Merger
         // Do the merge operation back to A
         int i1 = left;
         int i2 = mid + 1;
+        //preallocate tempRecs
         pool.getRecord(4 * (i1), tempRec1, temp);
         pool.getRecord(4 * (i2), tempRec2, temp);
         for (int curr = left; curr <= right; curr++)
         {
-
             if (i1 == mid + 1) // Left sublist exhausted
             {
                 pool.writeRecord(4 * curr, tempRec2, input);
@@ -80,6 +84,12 @@ public class Merger
         }
     }
 
+    /**
+     * helper method to compare byte arrays (works for all machines)
+     * @param obj left comparison
+     * @param comp right comparison
+     * @return a boolean for whether the array is less or equal to another
+     */
     private boolean compareByteArray(byte[] obj, byte[] comp)
     {
         short objNum = ByteBuffer.wrap(obj).getShort();
