@@ -73,4 +73,11 @@ public class BufferPoolTest extends TestCase
                 compare)) == 0);
         assertTrue(buffpool.getSize() == 2);
     }
+
+    public void testWriteRecord()
+    {
+        buffpool.allocateBuffer(0, file);
+        buffpool.allocateBuffer(4096, file);
+        buffpool.allocateBuffer(8192, file);
+    }
 }
