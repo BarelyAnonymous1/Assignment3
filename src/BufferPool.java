@@ -18,13 +18,6 @@ public class BufferPool
     public BufferPool(int startMax)
     {
         pool = new LRUQueue(startMax);
-//        for (int i = 0; i < startMax; i++)
-//        {
-//            // the ID for each filler Buffer is so the Buffer pool knows to do
-//            // nothing
-//            // with it when it is removed
-//            pool.makeMostRecent((-4096) * (i + 1), null);
-//        }
     }
 
     /**
