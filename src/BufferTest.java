@@ -26,11 +26,11 @@ public class BufferTest extends TestCase
         file = new RandomAccessFile("testin.txt", "rw");
         test = "Hello, Test!".getBytes();
         file.write(test);
-        buffer = new Buffer(0, file);
     }
 
-    public void testStoreBlock()
+    public void testStoreBlock() throws IOException
     {
+        buffer = new Buffer(0, file);
         assertEquals(ByteBuffer.wrap(buffer.getBlock())
                 .compareTo(ByteBuffer.wrap(test)), 0);
     }
