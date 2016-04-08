@@ -68,10 +68,14 @@ public class Buffer
         file = resetFile;
         dirtyBit = false; // makes sure that the new block won't be written if
                           // it hasn't been changed
-        furthestByte = 0;
+        furthestByte = 0; // make it so if the dirtyBit doesn't work, the block
+                          // won't get written at all
         storeBlock(); // get a new block
     }
 
+    /**
+     * 
+     */
     public void storeBlock()
     {
         try
@@ -93,7 +97,7 @@ public class Buffer
             e.printStackTrace();
         }
     }
-    
+
     public int getID()
     {
         return index;
@@ -108,14 +112,14 @@ public class Buffer
     {
         return block;
     }
-    
+
     public RandomAccessFile getFile()
     {
         return file;
     }
 
     public void getRecord(byte[] record, int pos)
-    { 
+    {
         for (int i = 0; i < BufferPool.RECORD_SIZE; i++)
         {
             record[i] = block[pos + i];
