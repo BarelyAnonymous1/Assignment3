@@ -1,6 +1,4 @@
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
-
+import java.io.*;
 import org.junit.Test;
 
 import student.TestCase;
@@ -11,7 +9,7 @@ public class DoublyLinkedQueueTest extends TestCase {
     private DoublyLinkedNode node2;
     private RandomAccessFile file; 
     private DoublyLinkedQueue list;
-    public void setUp() throws FileNotFoundException
+    public void setUp() throws IOException
     {
         file = new RandomAccessFile("buffertest.txt", "rw");
         node1 = new DoublyLinkedNode(new Buffer(0, file));

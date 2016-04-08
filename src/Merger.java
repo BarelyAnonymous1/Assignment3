@@ -1,4 +1,4 @@
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.ByteBuffer;
 
 /**
@@ -46,7 +46,7 @@ public class Merger
      *            right side of mergesort
      */
     public void sort(RandomAccessFile input, RandomAccessFile temp,
-            int left, int right)
+            int left, int right) throws IOException
     {
         if (left == right)
             return; // List has one record

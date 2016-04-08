@@ -48,6 +48,7 @@ public class Buffer
      *            first block will come from
      */
     public Buffer(int startID, RandomAccessFile startFile)
+            throws IOException
     {
         block = new byte[BufferPool.bufferSize]; // create the array necessary
                                                  // for operation
@@ -64,6 +65,7 @@ public class Buffer
      *            new file for the Buffer to read data from
      */
     public void reset(int resetID, RandomAccessFile resetFile)
+            throws IOException
     {
         index = resetID;
         file = resetFile;
@@ -79,7 +81,7 @@ public class Buffer
      * won't read beyond the end of the file if the block size extends beyond
      * the end of the file
      */
-    public void storeBlock()
+    public void storeBlock() throws IOException
     {
 
         // go to the byte position at the start of the block

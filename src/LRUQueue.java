@@ -40,7 +40,7 @@ public class LRUQueue
      * @param searchFile
      *            the file to search
      */
-    public void makeMostRecent(int recordPos, RandomAccessFile searchFile)
+    public void makeMostRecent(int recordPos, RandomAccessFile searchFile) throws IOException
     {
         DoublyLinkedNode foundNode = list
                 .remove(recordPos / BufferPool.bufferSize, searchFile);

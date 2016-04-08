@@ -19,16 +19,9 @@ public class BufferTest extends TestCase
     private RandomAccessFile file;
     private Buffer           buffer;
 
-    protected void setUp()
+    protected void setUp() throws IOException
     {
-        try
-        {
-            file = new RandomAccessFile("testin.txt", "rw");
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        file = new RandomAccessFile("testin.txt", "rw");
         buffer = new Buffer(0, file);
     }
 

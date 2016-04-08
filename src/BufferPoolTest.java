@@ -1,6 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
+import java.io.*;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +33,7 @@ public class BufferPoolTest extends TestCase
     /**
      * tests the allocation of the buffer
      */
-    public void testAllocateBuffer()
+    public void testAllocateBuffer() throws IOException
     {
         assertEquals(buffpool, buffpool.allocateBuffer(0, file));
 

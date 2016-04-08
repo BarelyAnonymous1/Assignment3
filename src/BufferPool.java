@@ -51,7 +51,7 @@ public class BufferPool
      * @return the Buffer that contains the record we are searching for
      */
     public Buffer allocateBuffer(int recordPos,
-            RandomAccessFile searchFile)
+            RandomAccessFile searchFile) throws IOException
     {
         // cycle the BufferPool
         pool.makeMostRecent(recordPos, searchFile);
@@ -75,7 +75,7 @@ public class BufferPool
      *            the file where the record will be read from
      */
     public void getRecord(int recordPos, byte[] record,
-            RandomAccessFile file)
+            RandomAccessFile file) throws IOException
     {
         allocateBuffer(recordPos, file).getRecord(record,
                 recordPos % BufferPool.bufferSize);
@@ -92,7 +92,7 @@ public class BufferPool
      *            file the where the record will be written
      */
     public void writeRecord(int recordPos, byte[] record,
-            RandomAccessFile file)
+            RandomAccessFile file) throws IOException
     {
         // recordpos % buffersize is the position within a single block
         allocateBuffer(recordPos, file).setBlock(record,
@@ -108,7 +108,7 @@ public class BufferPool
      *            name of the file that the stats from the sort will be written
      *            to
      */
-    public void flushPool(String statName)
+    public void flushPool(String statName) throws IOException
     {
         Buffer bufferToFlush = pool.removeLRU();
         while (bufferToFlush != null)
