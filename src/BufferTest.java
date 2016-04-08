@@ -58,6 +58,7 @@ public class BufferTest extends TestCase
      * needs to be written
      * 
      * @throws IOException
+     *             if the file doesnt work
      */
     public void testReset() throws IOException
     {
