@@ -122,4 +122,9 @@ public class BufferPool
         statFile.write(RuntimeStats.toStaticString().getBytes());
         statFile.close();
     }
+    
+    public int getSize()
+    {
+        return pool.getSize();
+    }
 }
