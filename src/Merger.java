@@ -19,7 +19,7 @@ public class Merger
     private BufferPool pool;
 
     /**
-     * 
+     * creates a new Merger objects, initializes temp arrays, and the buffer pool
      * @param bufferPool
      */
     public Merger(BufferPool bufferPool)
