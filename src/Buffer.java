@@ -89,8 +89,8 @@ public class Buffer
         if ((index + 1) * BufferPool.bufferSize > Mergesort.FILE_SIZE)
         { // check if the block would extend beyond the file
           // read from the start of the block to the end of the file
-            file.read(block, 0,
-                    Mergesort.FILE_SIZE - (index * BufferPool.bufferSize));
+            file.read(block, 0, Mergesort.FILE_SIZE - (index
+                    * BufferPool.bufferSize));
         }
         else
         {
