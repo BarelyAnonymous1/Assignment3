@@ -138,10 +138,10 @@ public class Buffer
      * 
      * While we understand that the use of magic numbers is frowned upon, we
      * decided that for the interest of efficiency for this project and keeping
-     * our sort times down, that the use of inlined array copying would be more
+     * our sort times down, that the use of inline array copying would be more
      * beneficial than using methods such as arraycopy or copyOfRange. We also
      * tried using a loop that would run from 0 to the RECORD_SIZE, but it was
-     * still significantly slower than using inlined code
+     * still significantly slower than using inline code
      * 
      * @param record
      * @param pos
@@ -155,6 +155,19 @@ public class Buffer
 
     }
 
+    /**
+     * stores a record into a specific spot in the block
+     * 
+     * While we understand that the use of magic numbers is frowned upon, we
+     * decided that for the interest of efficiency for this project and keeping
+     * our sort times down, that the use of inline array copying would be more
+     * beneficial than using methods such as arraycopy or copyOfRange. We also
+     * tried using a loop that would run from 0 to the RECORD_SIZE, but it was
+     * still significantly slower than using inline code
+     * 
+     * @param record
+     * @param recordNum
+     */
     public void setBlock(byte[] record, int recordNum)
     {
         dirtyBit = true;
