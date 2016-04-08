@@ -45,7 +45,9 @@ public class BufferPool
      * returns the buffer that is relevant for the given record
      * 
      * @param recordPos
+     *            position of the record in the file
      * @param searchFile
+     *            the file that contains the a record we are looking for
      * @return the Buffer that contains the record we are searching for
      */
     public Buffer allocateBuffer(int recordPos,
