@@ -26,13 +26,13 @@ public class BufferTest extends TestCase
     {
         file = new RandomAccessFile("testin.txt", "rw");
         test = new byte[4096];
-        test2 = new byte[100];
+        test2 = new byte[4096];
 
         for (int i = 0; i < 4096; i++)
         {
             test[i] = "a".getBytes()[0];
         }
-        for (int j = 0; j < 100; j++)
+        for (int j = 0; j < 4096; j++)
         {
             test2[j] = "b".getBytes()[0];
         }
