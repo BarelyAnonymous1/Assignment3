@@ -84,5 +84,10 @@ public class BufferPoolTest extends TestCase
         buffpool.getRecord(8192, sample, file);
         assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
                 compare)) == 0);
+        buffpool.writeRecord(0, sample, file);
+        buffpool.getRecord(4096, sample, file);
+        buffpool.getRecord(0, sample, file);
+        assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
+                compare)) == 0);
     }
 }
