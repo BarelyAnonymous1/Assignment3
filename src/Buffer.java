@@ -197,11 +197,12 @@ public class Buffer
     {
         try
         {
-            if (dirtyBit)
+            if (dirtyBit) // has the block been changed?
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                file.write(block, 0, furthestByte);
-                RuntimeStats.writeDisk++;
+                file.write(block, 0, furthestByte); // write the block until the
+                                                    // furthest changed byte
+                RuntimeStats.writeDisk++; // update writes to disk
             }
         }
         catch (IOException e)
