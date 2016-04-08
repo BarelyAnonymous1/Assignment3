@@ -1,5 +1,3 @@
-import java.io.RandomAccessFile;
-
 import student.TestCase;
 
 /**
@@ -9,21 +7,15 @@ import student.TestCase;
 
 public class MergesortTest extends TestCase
 {
-
     /**
-     * This method sets up the tests that follow.
+     * makes a new Mergesort object to show that the class can be made
      */
-    public void setUp()
-    {
-        // no op
-    }
-
     public void testInit()
     {
         Mergesort merge = new Mergesort();
         assertNotNull(merge);
         Mergesort.main(null);
-        assertFuzzyEquals("Hello, World", systemOut().getHistory());
+        assertFuzzyEquals("Try again?", systemOut().getHistory());
     }
 
     /**

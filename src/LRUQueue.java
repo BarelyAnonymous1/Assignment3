@@ -43,6 +43,8 @@ public class LRUQueue
     public void makeMostRecent(int recordPos, RandomAccessFile searchFile)
         throws IOException
     {
+        if (searchFile == null)
+            return;
         DoublyLinkedNode foundNode = list.remove(recordPos
                 / BufferPool.bufferSize, searchFile);
         if (foundNode == null)
