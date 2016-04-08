@@ -38,6 +38,7 @@ public class DoublyLinkedQueueTest extends TestCase {
 
     @Test
     public void testRemove() {
+        list.remove(0, file);
         list.enqueue(node1);
         list.enqueue(node2);
         assertEquals(node2, list.remove(0, file));
