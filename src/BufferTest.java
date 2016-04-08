@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.junit.Before;
@@ -20,8 +21,15 @@ public class BufferTest extends TestCase
 
     protected void setUp()
     {
-        // file = new RandomAccessFile("input.txt");
-        // buffer = new Buffer(0, );
+        try
+        {
+            file = new RandomAccessFile("testin.txt", "rw");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        buffer = new Buffer(0, file);
     }
 
 }
