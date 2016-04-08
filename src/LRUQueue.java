@@ -19,8 +19,8 @@ public class LRUQueue
         {
             if (list.getSize() < MAX_SIZE)
             {
-                list.enqueue(new DoublyLinkedNode(
-                        (new Buffer(recordPos, searchFile))));
+                list.enqueue(new DoublyLinkedNode((new Buffer(
+                        recordPos / BufferPool.BUFFER_SIZE, searchFile))));
             }
             else
             {
