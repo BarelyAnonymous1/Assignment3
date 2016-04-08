@@ -33,6 +33,8 @@ public class BufferPoolTest extends TestCase
             test[i] = "a".getBytes()[0];
         for (int j = 0; j < 4096; j++)
             test2[j] = "b".getBytes()[0];
+        for (int j = 0; j < 4096; j++)
+            test2[k] = "c".getBytes()[0];
         file.write(test);
         file.write(test2);
         Mergesort.fileSize = 12288;
