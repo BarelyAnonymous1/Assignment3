@@ -50,7 +50,7 @@ public class Buffer
     public Buffer(int startID, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.bufferSize]; // create the array necessary
-                                                  // for operation
+                                                 // for operation
         reset(startID, startFile);
     }
 
@@ -155,7 +155,6 @@ public class Buffer
         record[1] = block[recordNum + 1];
         record[2] = block[recordNum + 2];
         record[3] = block[recordNum + 3];
-
     }
 
     /**
@@ -194,21 +193,14 @@ public class Buffer
      * buffer was the least recently used or when the sort is done and the
      * buffer needs to be flushed
      */
-    public void flush()
+    public void flush() throws IOException
     {
-        try
+        if (dirtyBit) // has the block been changed?
         {
-            if (dirtyBit) // has the block been changed?
-            {
-                file.seek(index * BufferPool.bufferSize);
-                file.write(block, 0, furthestByte); // write the block until the
-                                                    // furthest changed byte
-                RuntimeStats.writeDisk++; // update writes to disk
-            }
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
+            file.seek(index * BufferPool.bufferSize);
+            file.write(block, 0, furthestByte); // write the block until the
+                                                // furthest changed byte
+            RuntimeStats.writeDisk++; // update writes to disk
         }
     }
 }
