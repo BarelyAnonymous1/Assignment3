@@ -34,7 +34,7 @@ public class BufferPoolTest extends TestCase
      */
     public void testAllocateBuffer() throws IOException
     {
-        assertEquals(buffpool, buffpool.allocateBuffer(0, file));
+        assertEquals(, buffpool.allocateBuffer(0, file));
 
     }
 }
