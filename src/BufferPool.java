@@ -33,7 +33,7 @@ public class BufferPool
         pool.makeMostRecent(recordPos, searchFile);
         if (pool.getMRU().getFile() != searchFile
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
-            pool.getMRU().reset(recordPos % BufferPool.BUFFER_SIZE,
+            pool.getMRU().reset(recordPos / BufferPool.BUFFER_SIZE,
                     searchFile);
         return pool.getMRU();
     }
