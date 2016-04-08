@@ -41,9 +41,6 @@ public class DoublyLinkedQueueTest extends TestCase {
         list.remove(0, file);
         list.enqueue(node1);
         list.enqueue(node2);
-        DoublyLinkedNode nullnode = new DoublyLinkedNode(
-                new Buffer(0, null));
-        list.enqueue(nullnode);
         assertNotSame(node2, list.remove(4, file));
         assertNull(list.remove(0, null));
         assertNull(list.remove(0, file));
