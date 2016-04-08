@@ -62,7 +62,7 @@ public class LRUQueue
         else
         {
             list.enqueue(foundNode);
-            RuntimeStats.foundInBuffer++;
+            RuntimeStats.foundInBuffer++; // increment number of cache hits
         }
     }
 
