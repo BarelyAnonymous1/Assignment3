@@ -189,7 +189,9 @@ public class Buffer
 
     /**
      * writes the block of bytes contained within the buffer to the file that
-     * the buffer is referencing
+     * the buffer is referencing. Is called only when the pool is full and this
+     * buffer was the least recently used or when the sort is done and the
+     * buffer needs to be flushed
      */
     public void flush()
     {
