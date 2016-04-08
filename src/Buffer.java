@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * Buffer class to implement a buffer pool. Contains a block for the byte array,
@@ -124,10 +125,7 @@ public class Buffer
 
     public void getRecord(byte[] record, int pos)
     {
-        for (int i = 0; i < BufferPool.RECORD_SIZE; i++)
-        {
-            record[i] = block[pos + i];
-        }
+        record = Arrays.copyOfRange(block, pos, BufferPool.RECORD_SIZE);
     }
 
     public void setBlock(byte[] newPage, int recordNum)
