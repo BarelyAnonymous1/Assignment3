@@ -55,6 +55,12 @@ public class BufferPoolTest extends TestCase
         assertTrue(buffpool.getSize() == 2);
     }
 
+    /**
+     * tests whether or not the buffer pool can properly get records from the
+     * buffers and file
+     * 
+     * @throws IOException
+     */
     public void testGetRecord() throws IOException
     {
         assertTrue(buffpool.allocateBuffer(0, file).getFile() == file);
