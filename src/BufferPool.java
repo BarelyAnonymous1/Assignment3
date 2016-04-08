@@ -56,7 +56,8 @@ public class BufferPool
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
             pool.getMRU().reset(recordPos / BufferPool.BUFFER_SIZE,
                     searchFile);
-        return pool.getMRU(); // return the Buffer that was just used
+        // return the Buffer that was just used
+        return pool.getMRU();
     }
 
     public void writeRecord(int recordPos, byte[] record,
