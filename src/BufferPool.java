@@ -68,7 +68,7 @@ public class BufferPool
      * @param record
      *            the byte array that contains the record values
      * @param file
-     *            file that contains the record
+     *            file the where the record will be written
      */
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
@@ -78,6 +78,16 @@ public class BufferPool
                 recordPos % BufferPool.BUFFER_SIZE);
     }
 
+    /**
+     * reads a byte array record from the allocated buffer
+     * 
+     * @param recordPos
+     *            the position of the record in the file
+     * @param record
+     *            the byte array where the new record will be stored
+     * @param file
+     *            the file where the record will be read from
+     */
     public void getRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
