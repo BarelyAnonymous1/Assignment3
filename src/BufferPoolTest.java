@@ -60,6 +60,7 @@ public class BufferPoolTest extends TestCase
      * buffers and file
      * 
      * @throws IOException
+     *             if the file doesnt work
      */
     public void testGetRecord() throws IOException
     {
@@ -85,6 +86,7 @@ public class BufferPoolTest extends TestCase
      * tests to see if the records are being written the file properly
      * 
      * @throws IOException
+     *             if the file doesnt work
      */
     public void testWriteRecord() throws IOException
     {
