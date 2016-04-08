@@ -27,8 +27,8 @@ public class BufferPool
     private LRUQueue  pool;
 
     /**
-     * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
-     * is. Uses LRUQueue implementation to create the bufferpool
+     * creates the linked queue with a maximum number of nodes allowed in the
+     * list
      * 
      * @param startMax
      *            the max number of blocks the bufferpool can hold (per project
