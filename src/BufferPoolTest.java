@@ -27,6 +27,7 @@ public class BufferPoolTest extends TestCase
     {
         buffpool = new BufferPool(3);
         file = new RandomAccessFile("buffertest.txt", "rw");
+        Mergesort.fileSize = 0;
     }
 
     /**
@@ -36,6 +37,6 @@ public class BufferPoolTest extends TestCase
     {
         assertTrue(buffpool.allocateBuffer(0, file).getFile() == file);
         assertTrue(buffpool.allocateBuffer(0, file).getID() == 0);
-
+        assertTrue()
     }
 }
