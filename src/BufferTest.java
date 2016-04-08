@@ -21,7 +21,7 @@ public class BufferTest extends TestCase
     private Buffer           buffer;
     private byte[]           test;
 
-    public void setUpClass() throws IOException
+    public void setUp() throws IOException
     {
         file = new RandomAccessFile("testin.txt", "rw");
         test = new byte[4096];
