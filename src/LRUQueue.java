@@ -21,7 +21,9 @@ public class LRUQueue
 
     /**
      * creates a queue and keeps track of the largest possible size of the list
+     * 
      * @param max
+     *            maximum size of the queue
      */
     public LRUQueue(int max)
     {
