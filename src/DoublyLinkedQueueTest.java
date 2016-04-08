@@ -41,7 +41,7 @@ public class DoublyLinkedQueueTest extends TestCase {
         list.remove(0, file);
         list.enqueue(node1);
         list.enqueue(node2);
-        assertEquals(node2, list.remove(4, file));
+        assertNotSame(node2, list.remove(4, file));
         assertEquals(node2, list.remove(0, file));
     }
 
