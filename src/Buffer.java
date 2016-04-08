@@ -55,6 +55,7 @@ public class Buffer
 
     /**
      * practically implements the constructor again
+     * 
      * @param resetID
      * @param resetFile
      */
