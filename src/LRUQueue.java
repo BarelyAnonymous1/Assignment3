@@ -67,6 +67,6 @@ public class LRUQueue
 
     public Buffer getMRU()
     {
-        return list.getTail().getPrev().getData();
+        return list.tail.getPrev().getData();
     }
 }

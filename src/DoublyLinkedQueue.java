@@ -11,11 +11,11 @@ public class DoublyLinkedQueue
     /**
      * pointer to the first node in the list
      */
-    private DoublyLinkedNode head;
+    public DoublyLinkedNode head;
     /**
      * pointer to the end of the list
      */
-    private DoublyLinkedNode tail;
+    public DoublyLinkedNode tail;
 
     /**
      * number of nodes in the list
@@ -102,32 +102,6 @@ public class DoublyLinkedQueue
         return null;
     }
 
-    /**
-     * get the pointer to the head of the list
-     * 
-     * @return the head of the list
-     */
-    public DoublyLinkedNode getHead()
-    {
-        return head;
-    }
-
-    public DoublyLinkedNode getTail()
-    {
-        return tail;
-    }
-    public String toString()
-    {
-        String str = "";
-        DoublyLinkedNode temp = head;
-        while (temp.getNext() != null)
-        {
-            str += temp;
-            str += "\n";
-            temp = temp.getNext();
-        }
-        return str;
-    }
     /**
      * get the size of the list; size should not include duplicates
      * 
