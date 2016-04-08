@@ -37,7 +37,7 @@ public class BufferTest extends TestCase
             test2[j] = "b".getBytes()[0];
         }
         file.write(test);
-        file.write(test2);
+        file.write(test2, 0, 100);
     }
 
     public void testStoreBlock() throws IOException
