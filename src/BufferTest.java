@@ -29,13 +29,9 @@ public class BufferTest extends TestCase
         test2 = new byte[4096];
 
         for (int i = 0; i < 4096; i++)
-        {
             test[i] = "a".getBytes()[0];
-        }
         for (int j = 0; j < 4096; j++)
-        {
             test2[j] = "b".getBytes()[0];
-        }
         file.write(test);
         file.write(test2);
     }
