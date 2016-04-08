@@ -122,7 +122,12 @@ public class BufferPool
         statFile.write(RuntimeStats.toStaticString().getBytes());
         statFile.close();
     }
-    
+
+    /**
+     * used exclusively in testing to determine if the pool has the correct size
+     * 
+     * @return the number of buffers in the pool
+     */
     public int getSize()
     {
         return pool.getSize();
