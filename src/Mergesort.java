@@ -30,7 +30,7 @@ public class Mergesort
     /**
      * the size of the file that is worked with
      */
-    public static int FILE_SIZE;
+    public static int fileSize;
 
     /**
      * The entry point of the application This application creates and sorts a
