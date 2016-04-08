@@ -63,6 +63,14 @@ public class BufferTest extends TestCase
     {
         Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(0, file);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock())
+                .compareTo(ByteBuffer.wrap(test)) == 0);
+        byte[] temp = new byte[4];
+        byte[] compare = "bbbb".getBytes();
+        buffer.getRecord(temp,  4096);
+        assertTrue(ByteBuffer.wrap(temp)
+                .compareTo(ByteBuffer.wrap(compare)) == 0);
+        
     }
 
 }
