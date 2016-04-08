@@ -63,15 +63,17 @@ public class LRUQueue
 
     /**
      * getter for the size
-     * @return
+     * @return the size
      */
     public int getSize()
     {
         return list.getSize();
     }
 
-    
-
+    /**
+     * getter for MRU
+     * @return most recently used node
+     */
     public Buffer getMRU()
     {
         return list.tail.prev.getData();
