@@ -81,7 +81,7 @@ public class BufferTest extends TestCase
                 .compareTo(ByteBuffer.wrap(test)) == 0);
         byte[] temp = new byte[4];
         byte[] compare = "bbbb".getBytes();
-        buffer.getRecord(temp, 0);
+        buffer.setBlock(compare, 0);
         assertTrue(ByteBuffer.wrap(temp)
                 .compareTo(ByteBuffer.wrap(compare)) == 0);
     }
