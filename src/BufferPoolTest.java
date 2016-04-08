@@ -81,6 +81,11 @@ public class BufferPoolTest extends TestCase
         assertTrue(buffpool.getSize() == 2);
     }
 
+    /**
+     * tests to see if the records are being written the file properly
+     * 
+     * @throws IOException
+     */
     public void testWriteRecord() throws IOException
     {
         buffpool.allocateBuffer(0, file);
