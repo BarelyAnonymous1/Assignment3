@@ -11,7 +11,7 @@ public class DoublyLinkedNodeTest extends TestCase {
     {
         RandomAccessFile file = new RandomAccessFile("buffertest.txt", "rw");
         node1 = new DoublyLinkedNode(new Buffer(0, file));
-        node1 = new DoublyLinkedNode(new Buffer(0, file));
+        node2 = new DoublyLinkedNode(new Buffer(0, file));
     }
 
     /**
@@ -21,8 +21,9 @@ public class DoublyLinkedNodeTest extends TestCase {
     {
         node1.setNext(node2);
         assertEquals(node1.next, node2);
-        //node2.setPrev(node1);
-        //assertEquals(node1, node2.prev);
+        node2.setPrev(node1);
+        assertEquals(node1, node2.prev);
+        
     }
     
 }
