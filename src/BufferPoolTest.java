@@ -15,8 +15,6 @@ public class BufferPoolTest extends TestCase
 
     private BufferPool       buffpool;
     private RandomAccessFile file;
-    private byte[]           test;
-    private byte[]           test2;
 
     /**
      * sets up the tests
@@ -27,8 +25,9 @@ public class BufferPoolTest extends TestCase
     {
         buffpool = new BufferPool(2);
         file = new RandomAccessFile("buffertest.txt", "rw");
-        test = new byte[4096];
-        test2 = new byte[4096];
+        byte[] test = new byte[4096];
+        byte[] test2 = new byte[4096];
+        byte[] test3 = new byte[4096];
 
         for (int i = 0; i < 4096; i++)
             test[i] = "a".getBytes()[0];
@@ -36,7 +35,7 @@ public class BufferPoolTest extends TestCase
             test2[j] = "b".getBytes()[0];
         file.write(test);
         file.write(test2);
-        Mergesort.fileSize = 8192;
+        Mergesort.fileSize = 12288;
     }
 
     /**
