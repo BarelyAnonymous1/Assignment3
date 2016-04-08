@@ -60,6 +60,16 @@ public class BufferPool
         return pool.getMRU();
     }
 
+    /**
+     * writes a byte array to the allocated buffer
+     * 
+     * @param recordPos
+     *            the position of the record in the file
+     * @param record
+     *            the byte array that contains the record values
+     * @param file
+     *            file that contains the record
+     */
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
     {
