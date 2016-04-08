@@ -3,8 +3,8 @@ import java.nio.ByteBuffer;
 
 public class Merger
 {
-    private static byte[] tempRec1;
-    private static byte[] tempRec2;
+    private byte[] tempRec1;
+    private byte[] tempRec2;
 
     public Merger()
     {
