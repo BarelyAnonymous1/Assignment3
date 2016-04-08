@@ -1,5 +1,5 @@
 
-public class RuntimeStats
+public abstract class RuntimeStats
 {
     public static String file = "";
     public static int    numBuffers = 0;
