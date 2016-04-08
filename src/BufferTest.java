@@ -24,10 +24,14 @@ public class BufferTest extends TestCase
     public void setUp() throws IOException
     {
         file = new RandomAccessFile("testin.txt", "rw");
-        test = new byte[4096];
+        test = new byte[8192];
         for (int i = 0; i < 4096; i++)
         {
             test[i] = "a".getBytes()[0];
+        }
+        for (int j = 4097; j < 8192; j++)
+        {
+            test[j] = "b".getBytes()[0];
         }
         file.write(test);
     }
