@@ -51,8 +51,6 @@ public class Merger
 
             if (i1 == mid + 1) // Left sublist exhausted
             {
-                // pool.writeRecord(curr * 4,
-                // pool.getRecord(4 * (i2++), temp), input);
                 pool.writeRecordTemp(4 * curr, tempRec2, input);
                 i2++;
                 pool.getRecordTemp(4 * (i2), tempRec2, temp);
@@ -61,20 +59,15 @@ public class Merger
             }
             else if (i2 > right) // Right sublist exhausted
             {
-                // pool.writeRecord(curr * 4,
-                // pool.getRecord(4 * (i1++), temp), input);
                 pool.writeRecordTemp(4 * curr, tempRec1, input);
                 i1++;
 
                 pool.getRecordTemp(4 * (i1), tempRec1, temp);
                 // A[curr] = temp[i1++];
             }
-            // compareByteArray(pool.getRecord(4 * i1, temp),
-            // pool.getRecord(4 * i2, temp)) <= 0
-            // compareByteArray(tempRec1, tempRec2) <= 0
             else
             {
-                if (compareByteArray2(tempRec1, tempRec2)) // Get smaller
+                if (compareByteArray(tempRec1, tempRec2)) // Get smaller
                                                            // value
                 {
                     // pool.writeRecord(curr * 4,
@@ -102,7 +95,7 @@ public class Merger
         }
     }
 
-    private boolean compareByteArray2(byte[] obj, byte[] comp)
+    private boolean compareByteArray(byte[] obj, byte[] comp)
     {
         short objNum = ByteBuffer.wrap(obj).getShort();
         short compNum = ByteBuffer.wrap(comp).getShort();
