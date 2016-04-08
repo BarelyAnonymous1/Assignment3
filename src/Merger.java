@@ -15,11 +15,11 @@ public class Merger
     private byte[] tempRec1;
     private byte[] tempRec2;
     
-    private BufferPool bufPool;
+    private BufferPool pool;
 
-    public Merger(BufferPool pool)
+    public Merger(BufferPool bufferPool)
     {
-        bufPool = pool;
+        pool = bufferPool;
         tempRec1 = new byte[BufferPool.recordSize];
         tempRec2 = new byte[BufferPool.recordSize];
     }
@@ -39,14 +39,14 @@ public class Merger
      * @param right
      *            right side of mergesort
      */
-    public void sort(BufferPool pool, RandomAccessFile input,
+    public void sort(RandomAccessFile input,
             RandomAccessFile temp, int left, int right)
     {
         if (left == right)
             return; // List has one record
         int mid = (left + right) / 2; // Select midpoint
-        sort(pool, input, temp, left, mid); // Mergesort first half
-        sort(pool, input, temp, mid + 1, right); // Mergesort second half
+        sort(input, temp, left, mid); // Mergesort first half
+        sort(input, temp, mid + 1, right); // Mergesort second half
         for (int i = left; i <= right; i++) // Copy subarray to temp
         {
             pool.getRecord(BufferPool.recordSize * i, tempRec1, input);

@@ -70,11 +70,11 @@ public class Mergesort
             temp = new RandomAccessFile("temp", "rw");
             temp.setLength(0); // empties the temp files used
             BufferPool pool = new BufferPool(numBuffers);
-            Merger fileSort = new Merger();
+            Merger fileSort = new Merger(pool);
             FILE_SIZE = (int) input.length();
 
             RuntimeStats.startTime = System.currentTimeMillis();
-            fileSort.sort(pool, input, temp, 0, (FILE_SIZE - 4) / 4);
+            fileSort.sort(input, temp, 0, (FILE_SIZE - 4) / 4);
             pool.flushPool(args[2]);
 
             input.close();
