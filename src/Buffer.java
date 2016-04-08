@@ -168,7 +168,10 @@ public class Buffer
      * still significantly slower than using inline code
      * 
      * @param record
+     *            the array that the record is being written from
      * @param recordNum
+     *            the position within the block that the record will be written
+     *            to
      */
     public void setBlock(byte[] record, int recordNum)
     {
