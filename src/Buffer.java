@@ -123,6 +123,11 @@ public class Buffer
         return block;
     }
 
+    /**
+     * returns a reference to the file contained the buffer
+     * 
+     * @return the pointer to the file in the buffer
+     */
     public RandomAccessFile getFile()
     {
         return file;
