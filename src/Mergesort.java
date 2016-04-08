@@ -65,6 +65,7 @@ public class Mergesort
         {
             int numBuffers = Integer.parseInt(args[1]);
             input = new RandomAccessFile(args[0], "rw");
+            System.out.println(input.length());
             RuntimeStats.file = args[0];
             RuntimeStats.numBuffers = numBuffers;
             temp = new RandomAccessFile("temp", "rw");
