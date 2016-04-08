@@ -20,20 +20,21 @@ public class BufferTest extends TestCase
     private RandomAccessFile file;
     private Buffer           buffer;
     private byte[]           test;
+    private byte[]           test2;
 
     public void setUp() throws IOException
     {
         file = new RandomAccessFile("testin.txt", "rw");
-        test = new byte[8192];
+        test = new byte[4096];
+        test2 = new byte[4096];
+
         for (int i = 0; i < 4096; i++)
         {
             test[i] = "a".getBytes()[0];
-        }
-        for (int j = 4097; j < 8192; j++)
-        {
-            test[j] = "b".getBytes()[0];
+            test2[i] = "b".getBytes()[0];
         }
         file.write(test);
+        file.write(test2);
     }
 
     public void testStoreBlock() throws IOException
