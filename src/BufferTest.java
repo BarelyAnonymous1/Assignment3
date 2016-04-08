@@ -29,7 +29,10 @@ public class BufferTest extends TestCase
     public void testStoreBlock() throws IOException
     {
         file = new RandomAccessFile("testin.txt", "rw");
-        test = "Hello, Test!".getBytes();
+        for (int i = 0; i < 4096; i++)
+        {
+            test[i] = "a".getBytes()[0];
+        }
         file.write(test);
         buffer = new Buffer(0, file);
         assertEquals(ByteBuffer.wrap(buffer.getBlock())
