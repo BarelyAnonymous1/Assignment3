@@ -23,7 +23,7 @@ public class DoublyLinkedNodeTest extends TestCase {
         assertEquals(node1.next, node2);
         node2.setPrev(node1);
         assertEquals(node1, node2.prev);
-        
+        node1.setData(node2.getData());
     }
     
 }
