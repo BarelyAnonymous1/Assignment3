@@ -144,14 +144,16 @@ public class Buffer
      * still significantly slower than using inline code
      * 
      * @param record
-     * @param pos
+     *            the array that the record will be written into
+     * @param recordNum
+     *            the position within the block that is being retrieved
      */
-    public void getRecord(byte[] record, int pos)
+    public void getRecord(byte[] record, int recordNum)
     {
-        record[0] = block[pos];
-        record[1] = block[pos + 1];
-        record[2] = block[pos + 2];
-        record[3] = block[pos + 3];
+        record[0] = block[recordNum];
+        record[1] = block[recordNum + 1];
+        record[2] = block[recordNum + 2];
+        record[3] = block[recordNum + 3];
 
     }
 
