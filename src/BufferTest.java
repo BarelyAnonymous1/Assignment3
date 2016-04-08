@@ -26,12 +26,15 @@ public class BufferTest extends TestCase
     {
         file = new RandomAccessFile("testin.txt", "rw");
         test = new byte[4096];
-        test2 = new byte[4096];
+        test2 = new byte[100];
 
         for (int i = 0; i < 4096; i++)
         {
             test[i] = "a".getBytes()[0];
-            test2[i] = "b".getBytes()[0];
+        }
+        for (int j = 0; j < 100; j++)
+        {
+            test2[j] = "b".getBytes()[0];
         }
         file.write(test);
         file.write(test2);
@@ -50,7 +53,10 @@ public class BufferTest extends TestCase
         Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(0, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test)) <= 0);
+                .compareTo(ByteBuffer.wrap(test)) == 0);
+        buffer.reset(1,  file);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock())
+                .compareTo(ByteBuffer.wrap(test)) == 0)
     }
 
 }
