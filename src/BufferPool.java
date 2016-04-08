@@ -59,6 +59,23 @@ public class BufferPool
         // return the Buffer that was just used
         return pool.getMRU();
     }
+    
+    /**
+     * reads a byte array record from the allocated buffer
+     * 
+     * @param recordPos
+     *            the position of the record in the file
+     * @param record
+     *            the byte array where the new record will be stored
+     * @param file
+     *            the file where the record will be read from
+     */
+    public void getRecord(int recordPos, byte[] record,
+            RandomAccessFile file)
+    {
+        allocateBuffer(recordPos, file).getRecord(record,
+                recordPos % BufferPool.BUFFER_SIZE);
+    }
 
     /**
      * writes a byte array to the allocated buffer
@@ -75,23 +92,6 @@ public class BufferPool
     {
         // recordpos % buffersize is the position within a single block
         allocateBuffer(recordPos, file).setBlock(record,
-                recordPos % BufferPool.BUFFER_SIZE);
-    }
-
-    /**
-     * reads a byte array record from the allocated buffer
-     * 
-     * @param recordPos
-     *            the position of the record in the file
-     * @param record
-     *            the byte array where the new record will be stored
-     * @param file
-     *            the file where the record will be read from
-     */
-    public void getRecord(int recordPos, byte[] record,
-            RandomAccessFile file)
-    {
-        allocateBuffer(recordPos, file).getRecord(record,
                 recordPos % BufferPool.BUFFER_SIZE);
     }
 
