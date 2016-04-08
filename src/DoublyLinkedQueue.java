@@ -140,7 +140,7 @@ public class DoublyLinkedQueue
     
     public void setMRUBuffer(Buffer newBuffer)
     {
-        head.getNext().setData(newBuffer);
+        tail.getPrev().setData(newBuffer);
     }
 
 }
