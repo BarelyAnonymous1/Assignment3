@@ -49,7 +49,7 @@ public class Buffer
      */
     public Buffer(int startID, RandomAccessFile startFile)
     {
-        block = new byte[BufferPool.BUFFER_SIZE]; // create the array necessary
+        block = new byte[BufferPool.bufferSize]; // create the array necessary
                                                   // for operation
         reset(startID, startFile);
     }
@@ -84,12 +84,12 @@ public class Buffer
         try
         {
             // go to the byte position at the start of the block
-            file.seek(index * BufferPool.BUFFER_SIZE);
-            if ((index + 1) * BufferPool.BUFFER_SIZE > Mergesort.FILE_SIZE)
+            file.seek(index * BufferPool.bufferSize);
+            if ((index + 1) * BufferPool.bufferSize > Mergesort.FILE_SIZE)
             { // check if the block would extend beyond the file
               // read from the start of the block to the end of the file
                 file.read(block, 0, Mergesort.FILE_SIZE
-                        - (index * BufferPool.BUFFER_SIZE));
+                        - (index * BufferPool.bufferSize));
             }
             else
             {
@@ -200,7 +200,7 @@ public class Buffer
         {
             if (dirtyBit) // has the block been changed?
             {
-                file.seek(index * BufferPool.BUFFER_SIZE);
+                file.seek(index * BufferPool.bufferSize);
                 file.write(block, 0, furthestByte); // write the block until the
                                                     // furthest changed byte
                 RuntimeStats.writeDisk++; // update writes to disk

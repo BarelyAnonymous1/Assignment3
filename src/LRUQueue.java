@@ -26,13 +26,13 @@ public class LRUQueue
     public void makeMostRecent(int recordPos, RandomAccessFile searchFile)
     {
         DoublyLinkedNode foundNode = list
-                .remove(recordPos / BufferPool.BUFFER_SIZE, searchFile);
+                .remove(recordPos / BufferPool.bufferSize, searchFile);
         if (foundNode == null)
         {
             if (list.getSize() < MAX_SIZE)
             {
                 list.enqueue(new DoublyLinkedNode((new Buffer(
-                        recordPos / BufferPool.BUFFER_SIZE, searchFile))));
+                        recordPos / BufferPool.bufferSize, searchFile))));
             }
             else
             {

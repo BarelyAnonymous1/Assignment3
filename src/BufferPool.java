@@ -55,8 +55,8 @@ public class BufferPool
         pool.makeMostRecent(recordPos, searchFile);
         // if a new Buffer was moved to MRU, change the Buffer values
         if (pool.getMRU().getFile() != searchFile
-                || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
-            pool.getMRU().reset(recordPos / BufferPool.BUFFER_SIZE,
+                || pool.getMRU().getID() != recordPos / BufferPool.bufferSize)
+            pool.getMRU().reset(recordPos / BufferPool.bufferSize,
                     searchFile);
         // return the Buffer that was just used
         return pool.getMRU();
@@ -76,7 +76,7 @@ public class BufferPool
             RandomAccessFile file)
     {
         allocateBuffer(recordPos, file).getRecord(record,
-                recordPos % BufferPool.BUFFER_SIZE);
+                recordPos % BufferPool.bufferSize);
     }
 
     /**
@@ -94,7 +94,7 @@ public class BufferPool
     {
         // recordpos % buffersize is the position within a single block
         allocateBuffer(recordPos, file).setBlock(record,
-                recordPos % BufferPool.BUFFER_SIZE);
+                recordPos % BufferPool.bufferSize);
     }
 
     /**
