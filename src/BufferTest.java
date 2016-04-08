@@ -54,9 +54,9 @@ public class BufferTest extends TestCase
         buffer = new Buffer(0, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock())
                 .compareTo(ByteBuffer.wrap(test)) == 0);
-        buffer.reset(1,  file);
+        buffer.reset(1, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test)) == 0)
+                .compareTo(ByteBuffer.wrap(test2)) == 0);
     }
 
 }
