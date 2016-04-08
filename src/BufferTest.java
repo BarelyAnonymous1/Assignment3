@@ -32,7 +32,7 @@ public class BufferTest extends TestCase
         {
             test[i] = "a".getBytes()[0];
         }
-        for (int j = 0; j < 4096; j++)
+        for (int j = 0; j < 100; j++)
         {
             test2[j] = "b".getBytes()[0];
         }
