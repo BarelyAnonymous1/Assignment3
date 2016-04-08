@@ -1,6 +1,11 @@
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 
+/**
+ * class that implements the Mergesort via a BufferPool. 
+ * @author Preston Lattimer (platt) Jonathan DeFreeuw (jondef95)
+ *
+ */
 public class Merger
 {
     /**
