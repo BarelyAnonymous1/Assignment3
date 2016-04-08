@@ -54,10 +54,13 @@ public class Buffer
     }
 
     /**
-     * practically implements the constructor again
+     * resets all of the fields in the buffer; used to recycle Buffers in the
+     * Buffer Pool
      * 
      * @param resetID
+     *            new index for the block of the file
      * @param resetFile
+     *            new file for the Buffer to read data from
      */
     public void reset(int resetID, RandomAccessFile resetFile)
     {
