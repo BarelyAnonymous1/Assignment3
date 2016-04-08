@@ -13,13 +13,13 @@ import java.util.Arrays;
 public class BufferPool
 {
     /**
-     * standard size of the Buffer; number of bytes in the Buffer
-     * wanted to write as BUFFER_SIZE but WebCAT threw a fit
+     * standard size of the Buffer; number of bytes in the Buffer wanted to
+     * write as BUFFER_SIZE but WebCAT threw a fit
      */
     public static int bufferSize = 4096;
     /**
-     * standard size of the records; number of bytes for each record
-     * wanted to write as RECORD_SIZE but WebCAT threw a fit
+     * standard size of the records; number of bytes for each record wanted to
+     * write as RECORD_SIZE but WebCAT threw a fit
      */
     public static int recordSize = 4;
     /**
@@ -54,8 +54,8 @@ public class BufferPool
         // cycle the BufferPool
         pool.makeMostRecent(recordPos, searchFile);
         // if a new Buffer was moved to MRU, change the Buffer values
-        if (pool.getMRU().getFile() != searchFile
-                || pool.getMRU().getID() != recordPos / BufferPool.bufferSize)
+        if (pool.getMRU().getFile() != searchFile || pool.getMRU()
+                .getID() != recordPos / BufferPool.bufferSize)
             pool.getMRU().reset(recordPos / BufferPool.bufferSize,
                     searchFile);
         // return the Buffer that was just used
