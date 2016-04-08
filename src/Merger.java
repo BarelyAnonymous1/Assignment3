@@ -14,9 +14,12 @@ public class Merger
      */
     private byte[] tempRec1;
     private byte[] tempRec2;
+    
+    private BufferPool bufPool;
 
-    public Merger()
+    public Merger(BufferPool pool)
     {
+        bufPool = pool;
         tempRec1 = new byte[BufferPool.recordSize];
         tempRec2 = new byte[BufferPool.recordSize];
     }
