@@ -52,14 +52,19 @@ public class BufferPoolTest extends TestCase
         assertTrue(buffpool.allocateBuffer(1, file).getID() == 0);
         assertTrue(buffpool.getSize() == 2);
     }
-    
+
     public void testGetRecord() throws IOException
     {
         assertTrue(buffpool.allocateBuffer(0, file).getFile() == file);
         byte[] sample = new byte[4];
         byte[] compare = "aaaa".getBytes();
         buffpool.getRecord(0, sample, file);
-        assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer
-                .wrap(compare)) == 0);
+        assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
+                compare)) == 0);
+        assertTrue(buffpool.allocateBuffer(4096, file).getFile() == file);
+        compare = "bbbb".getBytes();
+        buffpool.getRecord(4096, sample, file);
+        assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
+                compare)) == 0);
     }
 }
