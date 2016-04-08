@@ -27,7 +27,7 @@ public class BufferPoolTest extends TestCase
     {
         buffpool = new BufferPool(3);
         file = new RandomAccessFile("buffertest.txt", "rw");
-        Mergesort.fileSize = 0;
+        Mergesort.fileSize = 8192;
     }
 
     /**
