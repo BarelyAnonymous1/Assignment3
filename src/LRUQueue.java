@@ -1,5 +1,10 @@
 import java.io.*;
 
+/**
+ * 
+ * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
+ *
+ */
 public class LRUQueue
 {
     /**
