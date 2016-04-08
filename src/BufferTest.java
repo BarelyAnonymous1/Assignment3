@@ -39,6 +39,12 @@ public class BufferTest extends TestCase
         file.write(test2);
     }
 
+    /**
+     * checks that the buffer correctly reads a block from the file
+     * 
+     * @throws IOException
+     *             if the file doesnt work
+     */
     public void testStoreBlock() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
@@ -47,6 +53,12 @@ public class BufferTest extends TestCase
                 ByteBuffer.wrap(test)), 0);
     }
 
+    /**
+     * checks that the buffer properly resets its own data when a new block
+     * needs to be written
+     * 
+     * @throws IOException
+     */
     public void testReset() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
