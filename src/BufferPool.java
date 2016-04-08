@@ -49,12 +49,14 @@ public class BufferPool
     public Buffer allocateBuffer(int recordPos,
             RandomAccessFile searchFile)
     {
+        // cycle the BufferPool
         pool.makeMostRecent(recordPos, searchFile);
+        // if a new Buffer was moved to MRU, change the Buffer values
         if (pool.getMRU().getFile() != searchFile
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
             pool.getMRU().reset(recordPos / BufferPool.BUFFER_SIZE,
                     searchFile);
-        return pool.getMRU();
+        return pool.getMRU(); // return the Buffer that was just used
     }
 
     public void writeRecord(int recordPos, byte[] record,
