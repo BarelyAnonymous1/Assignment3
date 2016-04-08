@@ -3,6 +3,7 @@ import java.io.*;
 /**
  * 
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
+ * @version 1
  *
  */
 public class LRUQueue
