@@ -47,7 +47,7 @@ public class BufferTest extends TestCase
      */
     public void testStoreBlock() throws IOException
     {
-        Mergesort.FILE_SIZE = 8192;
+        Mergesort.fileSize = 8192;
         buffer = new Buffer(0, file);
         assertEquals(ByteBuffer.wrap(buffer.getBlock()).compareTo(
                 ByteBuffer.wrap(test)), 0);
@@ -62,7 +62,7 @@ public class BufferTest extends TestCase
      */
     public void testReset() throws IOException
     {
-        Mergesort.FILE_SIZE = 8192;
+        Mergesort.fileSize = 8192;
         buffer = new Buffer(0, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock()).compareTo(ByteBuffer
                 .wrap(test)) == 0);
@@ -79,7 +79,7 @@ public class BufferTest extends TestCase
      */
     public void testGetRecord() throws IOException
     {
-        Mergesort.FILE_SIZE = 8192;
+        Mergesort.fileSize = 8192;
         buffer = new Buffer(1, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock()).compareTo(ByteBuffer
                 .wrap(test2)) == 0);
@@ -98,7 +98,7 @@ public class BufferTest extends TestCase
      */
     public void testSetRecord() throws IOException
     {
-        Mergesort.FILE_SIZE = 8192;
+        Mergesort.fileSize = 8192;
         buffer = new Buffer(0, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock()).compareTo(ByteBuffer
                 .wrap(test)) == 0);
