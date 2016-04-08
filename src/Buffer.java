@@ -69,7 +69,7 @@ public class Buffer
         dirtyBit = false; // makes sure that the new block won't be written if
                           // it hasn't been changed
         furthestByte = 0;
-        storeBlock();
+        storeBlock(); // get a new block
     }
 
     public int getID()
