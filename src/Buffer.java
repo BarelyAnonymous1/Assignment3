@@ -45,19 +45,19 @@ public class Buffer
             if (file != null)
             {
                 file.seek(index * BufferPool.BUFFER_SIZE);
-                if ((index + 1)
-                        * BufferPool.BUFFER_SIZE > Mergesort.FILE_SIZE)
-                {
-                    file.read(block, 0, Mergesort.FILE_SIZE
-                            - (index * BufferPool.BUFFER_SIZE));
-                    size = (Mergesort.FILE_SIZE
-                            - (index * BufferPool.BUFFER_SIZE));
-                }
-                else
-                {
+//                if ((index + 1)
+//                        * BufferPool.BUFFER_SIZE > Mergesort.FILE_SIZE)
+//                {
+//                    file.read(block, 0, Mergesort.FILE_SIZE
+//                            - (index * BufferPool.BUFFER_SIZE));
+//                    size = (Mergesort.FILE_SIZE
+//                            - (index * BufferPool.BUFFER_SIZE));
+//                }
+//                else
+//                {
                     file.read(block);
                     size = BufferPool.BUFFER_SIZE;
-                }
+//                }
                 RuntimeStats.readDisk++;
             }
         }
