@@ -72,11 +72,6 @@ public class Buffer
         storeBlock(); // get a new block
     }
 
-    public int getID()
-    {
-        return index;
-    }
-
     public void storeBlock()
     {
         try
@@ -98,6 +93,11 @@ public class Buffer
             e.printStackTrace();
         }
     }
+    
+    public int getID()
+    {
+        return index;
+    }
 
     /**
      * grabs a block from the file
@@ -107,6 +107,11 @@ public class Buffer
     public byte[] getBlock()
     {
         return block;
+    }
+    
+    public RandomAccessFile getFile()
+    {
+        return file;
     }
 
     public void getRecord(byte[] record, int pos)
@@ -131,11 +136,6 @@ public class Buffer
             furthestByte = recordNum + 4;
         // System.arraycopy(record, 0, block, recordNum,
         // BufferPool.RECORD_SIZE);
-    }
-
-    public RandomAccessFile getFile()
-    {
-        return file;
     }
 
     public void flush()
