@@ -181,6 +181,8 @@ public class Buffer
         block[recordNum + 2] = record[2];
         block[recordNum + 3] = record[3];
 
+        // updates the furthestByte if the new record was further into the block
+        // than the previous furthest
         if (furthestByte < recordNum + 4)
             furthestByte = recordNum + 4;
     }
