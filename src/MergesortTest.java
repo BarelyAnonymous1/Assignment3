@@ -43,7 +43,7 @@ public class MergesortTest
 	    genargs[2] = "4";
 	    //String numBlocks = "100"; // Test file size
 	    generator.generateFile(genargs);
-	    //Mergesort.main(args);
+	    Mergesort.main(args);
 
 	}
 }
