@@ -116,17 +116,11 @@ public class BufferPool
             bufferToFlush = pool.removeLRU();
         }
         RandomAccessFile statFile;
-        try
-        {
             RuntimeStats.endTime = System.currentTimeMillis();
             statFile = new RandomAccessFile(statName, "rw");
             statFile.seek(statFile.length());
             statFile.write(RuntimeStats.toStaticString().getBytes());
             statFile.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
         }
     }
 }
