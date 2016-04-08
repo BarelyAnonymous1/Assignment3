@@ -11,6 +11,9 @@ public class DoublyLinkedNode
      * next node in the list
      */
     public DoublyLinkedNode next;
+    /**
+     * previous node in the list
+     */
     public DoublyLinkedNode prev;
     /**
      * point data contained in the node
