@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,23 +19,20 @@ public class BufferTest extends TestCase
 
     private RandomAccessFile file;
     private Buffer           buffer;
-    private byte[] test;
+    private byte[]           test;
 
     protected void setUpClass() throws IOException
     {
         file = new RandomAccessFile("testin.txt", "rw");
         test = "Hello, Test!".getBytes();
         file.write(test);
-    }
-    protected void setUp() throws IOException
-    {
         buffer = new Buffer(0, file);
     }
-    
-    public void writeInit()
+
+    public void testStoreBlock()
     {
-        
+        assertEquals(ByteBuffer.wrap(buffer.getBlock())
+                .compareTo(ByteBuffer.wrap(test)), 0);
     }
-        
 
 }
