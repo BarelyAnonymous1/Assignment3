@@ -14,12 +14,14 @@ public class BufferPool
 {
     /**
      * standard size of the Buffer; number of bytes in the Buffer
+     * wanted to write as BUFFER_SIZE but WebCAT threw a fit
      */
-    public static int BUFFER_SIZE = 4096;
+    public static int bufferSize = 4096;
     /**
      * standard size of the records; number of bytes for each record
+     * wanted to write as RECORD_SIZE but WebCAT threw a fit
      */
-    public static int RECORD_SIZE = 4;
+    public static int recordSize = 4;
     /**
      * modified linked queue used to implement the insertion and cycling of
      * Buffers
