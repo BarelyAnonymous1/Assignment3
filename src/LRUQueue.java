@@ -90,4 +90,14 @@ public class LRUQueue
     {
         return list.tail.prev.getData();
     }
+
+    /**
+     * number of nodes in the queue
+     * 
+     * @return number of nodes besides the sentinel nodes
+     */
+    public int getSize()
+    {
+        return list.getSize();
+    }
 }
