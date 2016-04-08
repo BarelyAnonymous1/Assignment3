@@ -92,9 +92,9 @@ public class Buffer
             }
             else
             {
-                file.read(block);
+                file.read(block); // read the block from the file
             }
-            RuntimeStats.readDisk++;
+            RuntimeStats.readDisk++; // increment the number of disk reads
         }
         catch (IOException e)
         {
@@ -102,6 +102,12 @@ public class Buffer
         }
     }
 
+    /**
+     * returns which block is in this buffer
+     * 
+     * @return the index of the block, in chunks of BUFFER_SIZE determined in
+     *         the BufferPool 0 is 0-4095, 1 is 4096-8191, etc
+     */
     public int getID()
     {
         return index;
