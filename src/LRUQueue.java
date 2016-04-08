@@ -13,7 +13,7 @@ public class LRUQueue
     /**
      * the maximum size of the list
      */
-    private final int         MAX_SIZE;
+    private final int         maxSize;
     /**
      * a private list in doubly linked implementation
      */
@@ -27,7 +27,7 @@ public class LRUQueue
      */
     public LRUQueue(int max)
     {
-        MAX_SIZE = max;
+        maxSize = max;
         list = new DoublyLinkedQueue();
     }
 
@@ -46,7 +46,7 @@ public class LRUQueue
                 .remove(recordPos / BufferPool.bufferSize, searchFile);
         if (foundNode == null)
         {
-            if (list.getSize() < MAX_SIZE)
+            if (list.getSize() < maxSize)
             {
                 list.enqueue(new DoublyLinkedNode((new Buffer(
                         recordPos / BufferPool.bufferSize, searchFile))));
