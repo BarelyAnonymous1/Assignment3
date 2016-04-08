@@ -51,7 +51,10 @@ public class Buffer
     {
         block = new byte[BufferPool.BUFFER_SIZE]; // create the array necessary
                                                   // for operation
-        reset(startID, startFile);
+        if (startFile != null)
+        {
+            reset(startID, startFile);
+        }
     }
 
     /**
