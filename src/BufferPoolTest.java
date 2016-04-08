@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
 import org.junit.Before;
@@ -11,11 +13,12 @@ public class BufferPoolTest extends TestCase {
     RandomAccessFile file;
     /**
      * sets up the tests
+     * @throws FileNotFoundException 
      */
-    public void setUp()
+    public void setUp() throws FileNotFoundException
     {
         buffpool = new BufferPool(3);
-        file = new RandomAccessFile("test.txt", "rw");
+        file = new RandomAccessFile("buffertest.txt", "rw");
     }
     
     /**
