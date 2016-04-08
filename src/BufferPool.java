@@ -76,8 +76,8 @@ public class BufferPool
     public void getRecord(int recordPos, byte[] record,
             RandomAccessFile file) throws IOException
     {
-        allocateBuffer(recordPos, file).getRecord(record,
-                recordPos % BufferPool.bufferSize);
+        allocateBuffer(recordPos, file).getRecord(record, recordPos
+                % BufferPool.bufferSize);
     }
 
     /**
@@ -94,8 +94,8 @@ public class BufferPool
             RandomAccessFile file) throws IOException
     {
         // recordpos % buffersize is the position within a single block
-        allocateBuffer(recordPos, file).setBlock(record,
-                recordPos % BufferPool.bufferSize);
+        allocateBuffer(recordPos, file).setBlock(record, recordPos
+                % BufferPool.bufferSize);
     }
 
     /**
