@@ -29,7 +29,9 @@ public class DoublyLinkedQueueTest extends TestCase
         list = new DoublyLinkedQueue();
     }
 
-    @Test
+    /**
+     * tests that the queue properly adds nodes to the list
+     */
     public void testEnqueue()
     {
         list.enqueue(node1);
@@ -38,7 +40,9 @@ public class DoublyLinkedQueueTest extends TestCase
         assertEquals(2, list.getSize());
     }
 
-    @Test
+    /**
+     * tests that the queue properly removes nodes from the list
+     */
     public void testDequeue()
     {
         assertNull(list.dequeue());
