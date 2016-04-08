@@ -83,8 +83,8 @@ public class DoublyLinkedQueue
      */
     public DoublyLinkedNode remove(int blockID, RandomAccessFile file)
     {
-        DoublyLinkedNode curr = head.getNext();
-        while (curr != tail)
+        DoublyLinkedNode curr = head.getPrev();
+        while (curr != head)
         {
             Buffer buffer = curr.getData();
             if (buffer.getID() == blockID && buffer.getFile() != null
@@ -97,7 +97,7 @@ public class DoublyLinkedQueue
                 size--;
                 return curr;
             }
-            curr = curr.getNext();
+            curr = curr.getPrev();
         }
         return null;
     }
