@@ -28,7 +28,12 @@ public class DoublyLinkedQueueTest extends TestCase {
 
     @Test
     public void testDequeue() {
-        fail("Not yet implemented");
+        list.enqueue(node1);
+        list.enqueue(node1);
+        list.enqueue(node2);
+        assertEquals(list.dequeue(), node1);
+        assertEquals(list.dequeue(), node1);
+        assertEquals(list.dequeue(), node2);
     }
 
     @Test
