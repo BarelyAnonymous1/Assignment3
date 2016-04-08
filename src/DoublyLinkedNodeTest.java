@@ -2,6 +2,12 @@ import java.io.*;
 
 import student.TestCase;
 
+/**
+ * tests to ensure the proper implementation of a DoublyLinkedNode
+ * 
+ * @author Preston Lattimer (platt) Jonathan DeFreeuw (jondef95)
+ * @version 1
+ */
 public class DoublyLinkedNodeTest extends TestCase
 {
 
