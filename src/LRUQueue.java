@@ -19,6 +19,10 @@ public class LRUQueue
      */
     private DoublyLinkedQueue list;
 
+    /**
+     * creates a queue and keeps track of the largest possible size of the list
+     * @param max
+     */
     public LRUQueue(int max)
     {
         MAX_SIZE = max;
