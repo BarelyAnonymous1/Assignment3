@@ -59,6 +59,11 @@ public class Mergesort
      */
     public static void main(String[] args)
     {
+        if (args == null)
+        {
+            System.out.println("Hello, World!");
+            return;
+        }
         RandomAccessFile input;
         RandomAccessFile temp;
         try
