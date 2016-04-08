@@ -32,12 +32,12 @@ public class BufferTest extends TestCase
         {
             test[i] = "a".getBytes()[0];
         }
-        for (int j = 0; j < 100; j++)
+        for (int j = 0; j < 4096; j++)
         {
             test2[j] = "b".getBytes()[0];
         }
         file.write(test);
-        file.write(test2, 0, 100);
+        file.write(test2);
     }
 
     public void testStoreBlock() throws IOException
@@ -50,7 +50,7 @@ public class BufferTest extends TestCase
     
     public void testReset() throws IOException
     {
-        Mergesort.FILE_SIZE = 4196;
+        Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(0, file);
         assertTrue(ByteBuffer.wrap(buffer.getBlock())
                 .compareTo(ByteBuffer.wrap(test)) == 0);
