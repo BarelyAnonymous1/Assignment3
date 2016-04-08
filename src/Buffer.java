@@ -94,7 +94,9 @@ public class Buffer
         block[recordNum + 1] = newPage[1];
         block[recordNum + 2] = newPage[2];
         block[recordNum + 3] = newPage[3];
-        furthestByte = recordNum + 4;
+        
+        if (furthestByte < recordNum + 4)
+            furthestByte = recordNum + 4;
         // System.arraycopy(record, 0, block, recordNum,
         // BufferPool.RECORD_SIZE);
     }
