@@ -18,11 +18,12 @@ public class MergesortTest extends TestCase
         // no op
     }
 
-    public void testInit() throws Exception
+    public void testInit()
     {
         Mergesort merge = new Mergesort();
         assertNotNull(merge);
         Mergesort.main(null);
+        assertFuzzyEquals("Hello, World", systemOut().getHistory());
     }
 
     /**
