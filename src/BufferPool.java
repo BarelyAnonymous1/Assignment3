@@ -115,12 +115,15 @@ public class BufferPool
             bufferToFlush.flush();
             bufferToFlush = pool.removeLRU();
         }
-        RandomAccessFile statFile;
-        RuntimeStats.endTime = System.currentTimeMillis();
-        statFile = new RandomAccessFile(statName, "rw");
-        statFile.seek(statFile.length());
-        statFile.write(RuntimeStats.toStaticString().getBytes());
-        statFile.close();
+        if (statName != null)
+        {
+            RandomAccessFile statFile;
+            RuntimeStats.endTime = System.currentTimeMillis();
+            statFile = new RandomAccessFile(statName, "rw");
+            statFile.seek(statFile.length());
+            statFile.write(RuntimeStats.toStaticString().getBytes());
+            statFile.close();
+        }
     }
 
     /**
