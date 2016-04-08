@@ -74,7 +74,9 @@ public class Buffer
     }
 
     /**
-     * 
+     * retrieves the block from the file, based on the sizes in the BufferPool.
+     * won't read beyond the end of the file if the block size extends beyond
+     * the end of the file
      */
     public void storeBlock()
     {
