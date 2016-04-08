@@ -37,7 +37,7 @@ public class BufferPoolTest extends TestCase
     {
         assertTrue(buffpool.allocateBuffer(0, file).getFile() == file);
         assertTrue(buffpool.allocateBuffer(0, file).getID() == 0);
-        assertTrue(buffpool.allocateBuffer(1, file).getFile() == file);
-//        assertTrue(buffpool.allocateBuffer(1, file).getID() == 1);
+        assertTrue(buffpool.allocateBuffer(4096, file).getFile() == file);
+        assertTrue(buffpool.allocateBuffer(4096, file).getID() == 1);
     }
 }
