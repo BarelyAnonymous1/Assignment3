@@ -2,13 +2,16 @@ import java.io.*;
 
 import student.TestCase;
 
-public class DoublyLinkedNodeTest extends TestCase {
+public class DoublyLinkedNodeTest extends TestCase
+{
 
     private DoublyLinkedNode node1;
     private DoublyLinkedNode node2;
+
     public void setUp() throws IOException
     {
-        RandomAccessFile file = new RandomAccessFile("buffertest.txt", "rw");
+        RandomAccessFile file = new RandomAccessFile("buffertest.txt",
+                "rw");
         node1 = new DoublyLinkedNode(new Buffer(0, file));
         node2 = new DoublyLinkedNode(new Buffer(0, file));
     }
@@ -24,5 +27,5 @@ public class DoublyLinkedNodeTest extends TestCase {
         assertEquals(node1, node2.prev);
         node1.setData(node2.getData());
     }
-    
+
 }
