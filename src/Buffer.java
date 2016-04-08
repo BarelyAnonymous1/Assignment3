@@ -133,6 +133,19 @@ public class Buffer
         return file;
     }
 
+    /**
+     * stores the record from the block into a byte array of size 4
+     * 
+     * While we understand that the use of magic numbers is frowned upon, we
+     * decided that for the interest of efficiency for this project and keeping
+     * our sort times down, that the use of inlined array copying would be more
+     * beneficial than using methods such as arraycopy or copyOfRange. We also
+     * tried using a loop that would run from 0 to the RECORD_SIZE, but it was
+     * still significantly slower than using inlined code
+     * 
+     * @param record
+     * @param pos
+     */
     public void getRecord(byte[] record, int pos)
     {
         record[0] = block[pos];
