@@ -1,7 +1,5 @@
 import java.io.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import java.nio.ByteBuffer;
 
 import student.TestCase;
 
@@ -17,16 +15,27 @@ public class BufferPoolTest extends TestCase
 
     private BufferPool       buffpool;
     private RandomAccessFile file;
+    private byte[]           test;
+    private byte[]           test2;
 
     /**
      * sets up the tests
      * 
      * @throws FileNotFoundException
      */
-    public void setUp() throws FileNotFoundException
+    public void setUp() throws IOException
     {
         buffpool = new BufferPool(3);
         file = new RandomAccessFile("buffertest.txt", "rw");
+        test = new byte[4096];
+        test2 = new byte[4096];
+
+        for (int i = 0; i < 4096; i++)
+            test[i] = "a".getBytes()[0];
+        for (int j = 0; j < 4096; j++)
+            test2[j] = "b".getBytes()[0];
+        file.write(test);
+        file.write(test2);
         Mergesort.fileSize = 8192;
     }
 
@@ -47,5 +56,10 @@ public class BufferPoolTest extends TestCase
     public void testGetRecord() throws IOException
     {
         assertTrue(buffpool.allocateBuffer(0, file).getFile() == file);
+        byte[] sample = new byte[4];
+        byte[] compare = "aaaa".getBytes();
+        buffpool.getRecord(0, sample, file);
+        assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer
+                .wrap(compare)) == 0);
     }
 }
