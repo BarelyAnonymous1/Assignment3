@@ -106,6 +106,7 @@ public class BufferPoolTest extends TestCase
                 compare)) == 0);
         buffpool.flushPool(null);
         byte[] first = new byte[4];
+        file.seek(0);
         file.read(first);
         assertEquals(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
                 first)), 0);
