@@ -71,6 +71,12 @@ public class BufferTest extends TestCase
                 .wrap(test2)) == 0);
     }
 
+    /**
+     * tests that a record can be properly retrieved from the block
+     * 
+     * @throws IOException
+     *             if the file doesnt work
+     */
     public void testGetRecord() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
@@ -85,6 +91,11 @@ public class BufferTest extends TestCase
 
     }
 
+    /**
+     * tests that a record can be properly written to the block
+     * 
+     * @throws IOException
+     */
     public void testSetRecord() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
