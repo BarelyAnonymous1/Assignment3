@@ -26,7 +26,7 @@ public class BufferPoolTest extends TestCase {
      */
     public void testAllocateBuffer()
     {
-        assertEquals(0, buffpool.allocateBuffer(0, file));
+        assertEquals(buffpool, buffpool.allocateBuffer(0, file));
         
     }
 }
