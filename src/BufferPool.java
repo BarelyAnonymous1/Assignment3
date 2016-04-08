@@ -1,6 +1,14 @@
 import java.io.*;
 import java.util.Arrays;
 
+/**
+ * BufferPool that is implemented with a modified linked queue to use the Least
+ * Recently Used model for flushing. Blocks in the buffers are 4096 bytes, with records
+ * being 4 bytes. Blocks and records are byte arrays.
+ * 
+ * @author Jonathan
+ *
+ */
 public class BufferPool
 {
     public static int BUFFER_SIZE = 4096;
