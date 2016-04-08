@@ -9,10 +9,11 @@ public class DoublyLinkedQueueTest extends TestCase {
 
     private DoublyLinkedNode node1;
     private DoublyLinkedNode node2;
-    DoublyLinkedQueue list;
+    private RandomAccessFile file; 
+    private DoublyLinkedQueue list;
     public void setUp() throws FileNotFoundException
     {
-        RandomAccessFile file = new RandomAccessFile("buffertest.txt", "rw");
+        file = new RandomAccessFile("buffertest.txt", "rw");
         node1 = new DoublyLinkedNode(new Buffer(0, file));
         node2 = new DoublyLinkedNode(new Buffer(0, file));
         list = new DoublyLinkedQueue();
@@ -37,7 +38,9 @@ public class DoublyLinkedQueueTest extends TestCase {
 
     @Test
     public void testRemove() {
-        fail("Not yet implemented");
+        list.enqueue(node1);
+        list.enqueue(node2);
+        assertEquals(node2, list.remove(0, file));
     }
 
 }
