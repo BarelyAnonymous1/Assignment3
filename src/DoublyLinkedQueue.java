@@ -1,7 +1,9 @@
 import java.io.*;
 
 /**
- * basic linked list implementation; based on storing Points
+ * DoublyLinkedQueue that is modified to be able to search remove from the
+ * middle of the list; contains basic enqueue and dequeue operations, as well as
+ * accessing the data in the MRU node
  * 
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
@@ -20,7 +22,7 @@ public class DoublyLinkedQueue
     /**
      * number of nodes in the list
      */
-    private int              size;
+    private int             size;
 
     /**
      * default constructor for the LinkedList
@@ -35,12 +37,11 @@ public class DoublyLinkedQueue
     }
 
     /**
-     * adds a new node into the linked queue
-     * This node is inserted into the front of the queue
-     *     -------------
-     * ->  x
-     *     -------------
-     * @param newNode the node to be inserted
+     * adds a new node into the linked queue This node is inserted into the
+     * front of the queue ------------- -> x -------------
+     * 
+     * @param newNode
+     *            the node to be inserted
      */
     public void enqueue(DoublyLinkedNode newNode)
     {
@@ -53,11 +54,9 @@ public class DoublyLinkedQueue
     }
 
     /**
-     * pulls the last added node from the queue
-     * this node removed from the queue
-     *     -------------
-     *     x-x-x-x-x-x   x ->
-     *     -------------
+     * pulls the last added node from the queue this node removed from the queue
+     * ------------- x-x-x-x-x-x x -> -------------
+     * 
      * @return
      */
     public DoublyLinkedNode dequeue()
@@ -75,10 +74,14 @@ public class DoublyLinkedQueue
             return temp;
         }
     }
+
     /**
      * removes from the middle of the queue and relinks the next and previous
-     * @param blockID the block of the node
-     * @param file the file to look for the block in
+     * 
+     * @param blockID
+     *            the block of the node
+     * @param file
+     *            the file to look for the block in
      * @return the node with the block removed
      */
     public DoublyLinkedNode remove(int blockID, RandomAccessFile file)
@@ -87,8 +90,7 @@ public class DoublyLinkedQueue
         while (curr != head)
         {
             Buffer buffer = curr.getData();
-            if (buffer.getID() == blockID && 
-                    buffer.getFile() != null
+            if (buffer.getID() == blockID && buffer.getFile() != null
                     && buffer.getFile() == file)
             {
                 curr.prev.setNext(curr.next);
