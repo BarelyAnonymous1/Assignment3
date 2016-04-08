@@ -10,7 +10,7 @@ public class DoublyLinkedNodeTest extends TestCase {
     public void setUp() throws FileNotFoundException
     {
         RandomAccessFile file = new RandomAccessFile("buffertest.txt", "rw");
-        node1 = new DoublyLinkedNode(new Buffer(0), file));
+        node1 = new DoublyLinkedNode(new Buffer(0, file));
         node1 = new DoublyLinkedNode(new Buffer(0, file));
     }
 
@@ -20,7 +20,7 @@ public class DoublyLinkedNodeTest extends TestCase {
     public void testNodes()
     {
         node1.setNext(node2);
-        assertEquals(node1, node2.prev);
+        assertEquals(node1.next, node2);
     }
     
 }
