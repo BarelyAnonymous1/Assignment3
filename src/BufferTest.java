@@ -29,7 +29,8 @@ public class BufferTest extends TestCase
     public void testStoreBlock() throws IOException
     {
         file = new RandomAccessFile("testin.txt", "rw");
-        for (int i = 0; i < 4097; i++)
+        test = new byte[4096];
+        for (int i = 0; i < 4096; i++)
         {
             test[i] = "a".getBytes()[0];
         }
