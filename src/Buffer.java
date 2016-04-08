@@ -17,10 +17,10 @@ public class Buffer
      * @param pageIndex
      * @param startFile
      */
-    public Buffer(int startPosition, RandomAccessFile startFile)
+    public Buffer(int startID, RandomAccessFile startFile)
     {
         block = new byte[BufferPool.BUFFER_SIZE];
-        index = startPosition / BufferPool.BUFFER_SIZE;
+        index = startID / BufferPool.BUFFER_SIZE;
         file = startFile;
         dirtyBit = false;
         furthestByte = 0;
