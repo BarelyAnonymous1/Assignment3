@@ -44,7 +44,7 @@ public class BufferPool
      * 
      * @param recordPos
      * @param searchFile
-     * @return
+     * @return the Buffer that contains the record we are searching for
      */
     public Buffer allocateBuffer(int recordPos,
             RandomAccessFile searchFile)
