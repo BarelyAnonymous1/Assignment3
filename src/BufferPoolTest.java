@@ -33,7 +33,7 @@ public class BufferPoolTest extends TestCase
             test[i] = "a".getBytes()[0];
         for (int j = 0; j < 4096; j++)
             test2[j] = "b".getBytes()[0];
-        for (int k = 0; j < 4096; j++)
+        for (int k = 0; k < 4096; k++)
             test2[k] = "c".getBytes()[0];
         file.write(test);
         file.write(test2);
@@ -79,7 +79,7 @@ public class BufferPoolTest extends TestCase
         buffpool.allocateBuffer(0, file);
         buffpool.allocateBuffer(4096, file);
         byte[] sample = new byte[4];
-        byte[] compare = "cccc".getBytes();
+        byte[] compare = "bbbb".getBytes();
         buffpool.getRecord(8192, sample, file);
         assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
                 compare)) == 0);
