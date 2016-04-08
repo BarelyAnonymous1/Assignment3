@@ -22,6 +22,9 @@ public class BufferTest extends TestCase
     private byte[]           test;
     private byte[]           test2;
 
+    /**
+     * sets up the file that will be used for the buffer IO
+     */
     public void setUp() throws IOException
     {
         file = new RandomAccessFile("testin.txt", "rw");
@@ -40,32 +43,32 @@ public class BufferTest extends TestCase
     {
         Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(0, file);
-        assertEquals(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test)), 0);
+        assertEquals(ByteBuffer.wrap(buffer.getBlock()).compareTo(
+                ByteBuffer.wrap(test)), 0);
     }
 
     public void testReset() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(0, file);
-        assertTrue(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test)) == 0);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock()).compareTo(ByteBuffer
+                .wrap(test)) == 0);
         buffer.reset(1, file);
-        assertTrue(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test2)) == 0);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock()).compareTo(ByteBuffer
+                .wrap(test2)) == 0);
     }
 
     public void testGetRecord() throws IOException
     {
         Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(1, file);
-        assertTrue(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test2)) == 0);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock()).compareTo(ByteBuffer
+                .wrap(test2)) == 0);
         byte[] temp = new byte[4];
         byte[] compare = "bbbb".getBytes();
         buffer.getRecord(temp, 0);
-        assertTrue(ByteBuffer.wrap(temp)
-                .compareTo(ByteBuffer.wrap(compare)) == 0);
+        assertTrue(ByteBuffer.wrap(temp).compareTo(ByteBuffer.wrap(
+                compare)) == 0);
 
     }
 
@@ -73,14 +76,14 @@ public class BufferTest extends TestCase
     {
         Mergesort.FILE_SIZE = 8192;
         buffer = new Buffer(0, file);
-        assertTrue(ByteBuffer.wrap(buffer.getBlock())
-                .compareTo(ByteBuffer.wrap(test)) == 0);
+        assertTrue(ByteBuffer.wrap(buffer.getBlock()).compareTo(ByteBuffer
+                .wrap(test)) == 0);
         byte[] temp = new byte[4];
         byte[] compare = "bbbb".getBytes();
         buffer.setBlock(compare, 0);
         buffer.getRecord(temp, 0);
-        assertTrue(ByteBuffer.wrap(temp)
-                .compareTo(ByteBuffer.wrap(compare)) == 0);
+        assertTrue(ByteBuffer.wrap(temp).compareTo(ByteBuffer.wrap(
+                compare)) == 0);
     }
 
 }
