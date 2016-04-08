@@ -57,7 +57,8 @@ public class DoublyLinkedQueue
      * pulls the last added node from the queue this node removed from the queue
      * ------------- x-x-x-x-x-x x -> -------------
      * 
-     * @return
+     * @return the node that was just removed from the list so that it may be
+     *         recycled and returned to the back of the queue
      */
     public DoublyLinkedNode dequeue()
     {
