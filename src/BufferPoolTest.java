@@ -7,6 +7,11 @@ import org.junit.Test;
 
 import student.TestCase;
 
+/**
+ * 
+ * @author Preston Lattimer (platt) Jonathan DeFreeuw (jondef95)
+ *
+ */
 public class BufferPoolTest extends TestCase {
 
     BufferPool buffpool;
