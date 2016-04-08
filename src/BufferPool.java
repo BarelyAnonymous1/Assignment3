@@ -3,8 +3,8 @@ import java.util.Arrays;
 
 /**
  * BufferPool that is implemented with a modified linked queue to use the Least
- * Recently Used model for flushing. Blocks in the buffers are 4096 bytes, with records
- * being 4 bytes. Blocks and records are byte arrays.
+ * Recently Used model for flushing. Blocks in the buffers are 4096 bytes, with
+ * records being 4 bytes. Blocks and records are byte arrays.
  * 
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
@@ -12,8 +12,18 @@ import java.util.Arrays;
  */
 public class BufferPool
 {
+    /**
+     * standard size of the Buffer; number of bytes in the Buffer
+     */
     public static int BUFFER_SIZE = 4096;
+    /**
+     * standard size of the records; number of bytes for each record
+     */
     public static int RECORD_SIZE = 4;
+    /**
+     * modified linked queue used to implement the insertion and cycling of
+     * Buffers
+     */
     private LRUQueue  pool;
 
     /**
