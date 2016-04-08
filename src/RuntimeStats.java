@@ -11,7 +11,7 @@ public abstract class RuntimeStats
 
   
 
-    public String toStaticString()
+    public static String toStaticString()
     {
         long total = endTime - startTime;
         return ("Filename: " + file + "\nNumber of Buffers: " + numBuffers
