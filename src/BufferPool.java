@@ -46,7 +46,7 @@ public class BufferPool
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
             pool.getMRU().reset(recordPos, searchFile);
         return pool.getMRU();
-    } // edit
+    } 
 
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
