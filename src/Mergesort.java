@@ -60,7 +60,7 @@ public class Mergesort
     {
         if (args == null)
         {
-            System.out.println("Hello, World!");
+            System.out.println("Try again?");
             return;
         }
         RandomAccessFile input;
