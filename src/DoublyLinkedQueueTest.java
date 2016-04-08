@@ -18,6 +18,9 @@ public class DoublyLinkedQueueTest extends TestCase
     private RandomAccessFile  file;
     private DoublyLinkedQueue list;
 
+    /**
+     * sets up the nodes and files for the DoublyLinkedQueue
+     */
     public void setUp() throws IOException
     {
         file = new RandomAccessFile("buffertest.txt", "rw");
