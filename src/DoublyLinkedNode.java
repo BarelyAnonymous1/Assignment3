@@ -1,6 +1,6 @@
 /**
  * 
- * nodes to build a linked list of points
+ * nodes to build a linked list of Buffers
  * 
  * @author Jonathan DeFreeuw (jondef95) Preston Lattimer (platt)
  * @version 1
