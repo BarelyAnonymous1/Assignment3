@@ -125,7 +125,7 @@ public class Buffer
 
     public void getRecord(byte[] record, int pos)
     {
-        record = Arrays.copyOfRange(block, pos, pos + BufferPool.RECORD_SIZE);
+        System.arraycopy(block, pos,  record, 0, BufferPool.RECORD_SIZE);
     }
 
     public void setBlock(byte[] newPage, int recordNum)
