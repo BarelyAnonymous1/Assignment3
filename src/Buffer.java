@@ -64,9 +64,10 @@ public class Buffer
      */
     public void reset(int resetID, RandomAccessFile resetFile)
     {
-        index = resetID; //  
+        index = resetID;
         file = resetFile;
-        dirtyBit = false;
+        dirtyBit = false; // makes sure that the new block won't be written if
+                          // it hasn't been changed
         furthestByte = 0;
         storeBlock();
     }
