@@ -91,7 +91,7 @@ public class DoublyLinkedQueue
         while (curr != head)
         {
             Buffer buffer = curr.getData();
-            if (buffer.getID() == blockID && buffer.getFile() != null
+            if (buffer.getID() == blockID //&& buffer.getFile() != null
                     && buffer.getFile() == file)
             {
                 curr.prev.setNext(curr.next);
