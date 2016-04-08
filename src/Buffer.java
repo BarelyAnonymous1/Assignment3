@@ -45,8 +45,6 @@ public class Buffer
     {
         try
         {
-            if (file != null)
-            {
                 file.seek(index * BufferPool.BUFFER_SIZE);
                 if ((index + 1)
                         * BufferPool.BUFFER_SIZE > Mergesort.FILE_SIZE)
@@ -62,7 +60,6 @@ public class Buffer
                     size = BufferPool.BUFFER_SIZE;
                 }
                 RuntimeStats.readDisk++;
-            }
         }
         catch (IOException e)
         {
@@ -109,8 +106,6 @@ public class Buffer
 
     public void flush()
     {
-        if (file == null)
-            return;
         try
         {
             if (dirtyBit)
