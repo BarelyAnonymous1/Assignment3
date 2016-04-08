@@ -14,6 +14,9 @@ public class Merger
      * and minimize reads of the same record locally
      */
     private byte[] tempRec1;
+    /**
+     * temp array to prevent multi-initialization of the same record
+     */
     private byte[] tempRec2;
     
     private BufferPool pool;
