@@ -3,9 +3,9 @@ import java.util.Arrays;
 
 public class BufferPool
 {
-    public static int    BUFFER_SIZE = 4096;
-    public static int    RECORD_SIZE = 4;
-    private LRUQueue     pool;
+    public static int BUFFER_SIZE = 4096;
+    public static int RECORD_SIZE = 4;
+    private LRUQueue  pool;
 
     /**
      * initializes the bufferpool with -1, -2, -3, ... for whatever the startMax
@@ -33,10 +33,10 @@ public class BufferPool
         pool.makeMostRecent(recordPos, searchFile);
         if (pool.getMRU().getFile() != searchFile
                 || pool.getMRU().getID() != recordPos / BUFFER_SIZE)
-            pool.getMRU().reset(recordPos, searchFile);
+            pool.getMRU().reset(recordPos % BufferPool.BUFFER_SIZE,
+                    searchFile);
         return pool.getMRU();
-    } 
-
+    }
 
     public void writeRecord(int recordPos, byte[] record,
             RandomAccessFile file)
