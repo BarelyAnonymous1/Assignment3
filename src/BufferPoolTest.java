@@ -26,6 +26,6 @@ public class BufferPoolTest extends TestCase {
      */
     public void testAllocateBuffer()
     {
-        
+        buffpool.allocateBuffer(0, file);
     }
 }
