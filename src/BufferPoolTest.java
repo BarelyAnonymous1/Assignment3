@@ -83,7 +83,9 @@ public class BufferPoolTest extends TestCase
     }
 
     /**
-     * tests to see if the records are being written the file properly
+     * tests to see if the records are being written to the block properly
+     * also runs the flushPool method to show that the file is being 
+     * written to correctly
      * 
      * @throws IOException
      *             if the file doesnt work
@@ -102,5 +104,7 @@ public class BufferPoolTest extends TestCase
         buffpool.getRecord(0, sample, file);
         assertTrue(ByteBuffer.wrap(sample).compareTo(ByteBuffer.wrap(
                 compare)) == 0);
+        buffpool.flushPool(null);
     }
+    
 }
